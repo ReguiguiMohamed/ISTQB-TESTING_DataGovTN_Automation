@@ -1,0 +1,6 @@
+{
+  "tests/functional/test_error_cases.py::test_search_with_very_long_string_does_not_break_page": true,
+  "tests/cross_browser/test_smoke_cross_browser.py::test_basic_search_works_on_all_browsers[health]": true,
+  "tests/functional/test_dataset_details.py::test_dataset_resources_downloadable": true,
+  "tests/functional/test_dataset_details.py::test_dataset_download_link_is_accessible": true
+}

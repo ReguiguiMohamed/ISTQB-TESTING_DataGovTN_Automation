@@ -30,7 +30,6 @@ def test_search_results_persist_after_pagination(browser, base_url):
     home_page = HomePage(browser, base_url)
     search_page = SearchPage(browser)
 
-    home_page.open()
     home_page.go_to_dataset_search_fr()
 
     # utilise un mot-clé qui renvoie vraiment des résultats

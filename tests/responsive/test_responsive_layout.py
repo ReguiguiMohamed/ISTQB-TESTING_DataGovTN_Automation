@@ -22,7 +22,7 @@ def test_homepage_responsive_layout(browser, base_url, width, height):
     set_viewport_size(browser, width, height)
 
     # Open homepage
-    home_page.open()
+    home_page.go_to_dataset_search_fr()
 
     # Wait for page to load
     wait = WebDriverWait(browser, 10)
@@ -59,7 +59,6 @@ def test_search_results_responsive_layout(browser, base_url, width, height):
     set_viewport_size(browser, width, height)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform a search

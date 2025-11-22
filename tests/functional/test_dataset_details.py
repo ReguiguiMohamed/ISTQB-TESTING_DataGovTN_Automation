@@ -16,7 +16,6 @@ def test_dataset_details_display_correctly(browser, base_url):
     dataset_page = DatasetPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search for a specific dataset
@@ -49,7 +48,6 @@ def test_dataset_resources_downloadable(browser, base_url):
     dataset_page = DatasetPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search
@@ -82,7 +80,6 @@ def test_dataset_has_metadata(browser, base_url):
     dataset_page = DatasetPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search
@@ -128,7 +125,6 @@ def test_dataset_download_link_is_accessible(browser, base_url):
     dataset_page = DatasetPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search
@@ -167,7 +163,6 @@ def test_breadcrumb_allows_return_to_search(browser, base_url):
     dataset_page = DatasetPage(browser)
 
     # Track the search URL
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search and note current URL

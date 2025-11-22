@@ -17,6 +17,7 @@ class SearchPage:
     DEFAULT_URL_FR = "https://catalog.data.gov.tn/fr/dataset/"
 
     # Filter locators (for compatibility with existing tests)
+    RESULTS_CONTAINER = (By.CSS_SELECTOR, ".results-container, .search-results, #search-results")
     FILTER_CATEGORY = (By.CSS_SELECTOR, "select[name='groups'], select[name='organization'], select[name='vocab_category'], .filter-category select")
     FILTER_ORGANIZATION = (By.CSS_SELECTOR, "select[name='organization'], select[name='owner_org'], .filter-org select")
     FILTER_FORMAT = (By.CSS_SELECTOR, "select[name='format'], .filter-format select, select[name*='res_format']")
@@ -79,6 +80,24 @@ class SearchPage:
 
     # ---------- Infos sur les résultats ----------
 
+    def get_results_count(self) -> int:
+        """
+        Récupère le nombre de jeux de données affichés sur la page actuelle.
+        """
+        return len(self._result_items())
+
+    def is_search_result_visible(self) -> bool:
+        """
+        Vérifie si la zone de recherche est visible (contient des résultats ou un message d'absence de résultats).
+        """
+        try:
+            # Attend qu'au moins l'un des deux états soit vrai
+            return self.wait.until(
+                lambda d: self.has_results() or self.has_no_results_message()
+            )
+        except Exception:
+            return False
+
     def has_results(self) -> bool:
         return len(self._result_items()) > 0
 
@@ -109,7 +128,7 @@ class SearchPage:
             raise IndexError(f"Index {index} hors limites pour {len(items)} résultats.")
 
         link = items[index].find_element(By.CSS_SELECTOR, "h2.dataset-heading a")
-        link.click()
+        self.driver.execute_script("arguments[0].click();", link)
 
     # ---------- Message d'absence de résultat ----------
 

@@ -12,7 +12,6 @@ def test_concurrent_search_load(browser, base_url):
     search_page = SearchPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform multiple searches in succession
@@ -43,7 +42,6 @@ def test_paginated_search_under_load(browser, base_url):
     search_page = SearchPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform an initial search
@@ -80,7 +78,6 @@ def test_repeated_search_does_not_crash(browser, base_url):
     search_page = SearchPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search repeatedly in a loop (20 iterations)

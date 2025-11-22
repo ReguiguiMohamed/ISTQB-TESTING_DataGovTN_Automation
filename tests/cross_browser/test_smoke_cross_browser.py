@@ -10,7 +10,7 @@ def test_homepage_loads(browser, base_url):
     home_page = HomePage(browser, base_url)
 
     # Open homepage
-    home_page.open()
+    home_page.go_to_dataset_search_fr()
 
     # Verify page loaded correctly
     assert browser.title is not None and browser.title.strip() != "", "Page should have a title"
@@ -31,7 +31,6 @@ def test_basic_search_works_on_all_browsers(browser, base_url, search_keyword):
     search_page = SearchPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform a basic search

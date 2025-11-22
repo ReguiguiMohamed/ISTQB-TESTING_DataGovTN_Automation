@@ -12,7 +12,6 @@ def test_search_with_empty_keyword_shows_all_or_error(browser, base_url):
     search_page = SearchPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search with empty keyword
@@ -33,7 +32,6 @@ def test_search_with_special_characters(browser, base_url):
     search_page = SearchPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search with special characters
@@ -53,7 +51,6 @@ def test_search_with_very_long_keyword(browser, base_url):
     search_page = SearchPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search with a very long keyword
@@ -71,11 +68,13 @@ def test_navigate_to_nonexistent_page(browser, base_url):
     # Initialize page object
     home_page = HomePage(browser, base_url)
 
-    # Open homepage
-    home_page.open()
+    # Navigate to a valid page first
+    home_page.go_to_dataset_search_fr()
 
     # Try to navigate to a non-existent page by changing URL
-    nonexistent_url = f"{base_url}/nonexistent-page-12345"
+    current_url = browser.current_url
+    base_catalog_url = "/".join(current_url.split("/")[:4]) #e.g., https://catalog.data.gov.tn/fr
+    nonexistent_url = f"{base_catalog_url}/nonexistent-page-12345"
     browser.get(nonexistent_url)
 
     # Check how the site handles 404 or similar errors
@@ -95,7 +94,6 @@ def test_search_with_garbage_string_returns_no_results(browser, base_url):
     search_page = SearchPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search with garbage string
@@ -107,28 +105,27 @@ def test_search_with_garbage_string_returns_no_results(browser, base_url):
 
     # Check if there's a "no results" message
     no_results_message_found = False
-    try:
-        # Look for common "no results" indicators
-        no_results_selectors = [
-            ".no-results, .no-result, .results-empty, [data-testid='no-results']",
-            "//*[contains(text(), 'no result') or contains(text(), 'no match') or contains(text(), 'not found')]",
-            "//*[contains(., 'no result') or contains(., 'no match') or contains(., 'not found')]"
-        ]
+    # Look for common "no results" indicators
+    no_results_selectors = [
+        ".no-results, .no-result, .results-empty, [data-testid='no-results']",
+        "//*[contains(text(), 'no result') or contains(text(), 'no match') or contains(text(), 'not found')]",
+        "//*[contains(., 'no result') or contains(., 'no match') or contains(., 'not found')]"
+    ]
 
-        from selenium.webdriver.common.by import By
-        from selenium.webdriver.support.ui import WebDriverWait
-        from selenium.webdriver.support import expected_conditions as EC
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
 
-        wait = WebDriverWait(browser, 5)
+    wait = WebDriverWait(browser, 5)
 
-        for selector in no_results_selectors[:1]:  # Using first CSS selector
-            try:
-                element = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, selector)))
-                if element.text.strip():
-                    no_results_message_found = True
-                    break
-            except:
-                continue
+    for selector in no_results_selectors[:1]:  # Using first CSS selector
+        try:
+            element = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, selector)))
+            if element.text.strip():
+                no_results_message_found = True
+                break
+        except:
+            continue
 
     # Either no results should be returned or a "no results" message should be displayed
     assert len(results) == 0 or no_results_message_found, \
@@ -145,7 +142,6 @@ def test_search_with_empty_string_shows_validation_or_default(browser, base_url)
     search_page = SearchPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search with empty string (already implemented in the original test)
@@ -194,7 +190,6 @@ def test_search_with_very_long_string_does_not_break_page(browser, base_url):
     search_page = SearchPage(browser)
 
     # Open homepage and navigate to search page
-    home_page.open()
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform search with very long keyword (> 500 characters)
@@ -237,9 +232,6 @@ def test_invalid_url_does_not_crash(browser, base_url):
     """Test that opening an invalid dataset URL handles error gracefully"""
     # Initialize page object
     home_page = HomePage(browser, base_url)
-
-    # Open homepage
-    home_page.open()
 
     # Navigate to search page first to get a valid base URL
     home_page.go_to_dataset_search_fr()  # Updated to use new method

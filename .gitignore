@@ -1,3 +1,111 @@
-# Created by pytest automatically.
-.venv/lib
-libraries
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+venv/
+env/
+ENV/
+.venv/
+
+# Virtual Environment
+.venv/
+
+# Project-specific virtual environment
+.venv/
+
+# Reports and test output
+reports/
+screenshots/
+*.log
+*.tmp
+*.out
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+Icon?
+VolumeIcon.icns
+
+# Docker
+.dockerenv
+.devcontainer/
+
+# Local configuration
+.env
+*.env
+.env.local
+.env.*.local
+config.json
+secrets.json
+
+# Coverage
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Compiled files
+*.pyc
+*.pyo
+*.pyd
+*.pyc.bak
+
+# Browser
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# pytest
+.pytest_cache/
+pytestdebug.log
+
+# Selenium
+selenium.log
+
+# IDE specific
+.vscode/settings.json
+.idea/*
+*.sublime-project
+*.sublime-workspace
+
+# Environment specific
+.envrc
+.direnv/
+
+# Python dependency management
+pip-selfcheck.json

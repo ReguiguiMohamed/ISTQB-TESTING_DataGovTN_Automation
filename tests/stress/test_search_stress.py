@@ -15,7 +15,7 @@ def test_concurrent_search_load(browser, base_url):
     home_page.go_to_dataset_search_fr()  # Updated to use new method
 
     # Perform multiple searches in succession
-    keywords = ["data", "education", "health", "transport", "economy"]
+    keywords = ["data", "education", "santé", "transport", "economie"]
 
     for i, keyword in enumerate(keywords):
         start_time = time.time()

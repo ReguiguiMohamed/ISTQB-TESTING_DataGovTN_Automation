@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  selenium-hub:
+    image: selenium/hub:4.24.0
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+    environment:
+      - GRID_MAX_SESSION=16
+      - GRID_BROWSER_TIMEOUT=300
+      - GRID_TEST_SESSION_TIMEOUT=300
+    networks:
+      - selenium-grid-network
+
+  chrome:
+    image: selenium/node-chrome:4.24.0
+    container_name: chrome-node
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - NODE_MAX_INSTANCES=4
+      - NODE_MAX_SESSION=4
+    networks:
+      - selenium-grid-network
+    shm_size: 2gb
+
+  firefox:
+    image: selenium/node-firefox:4.24.0
+    container_name: firefox-node
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - NODE_MAX_INSTANCES=4
+      - NODE_MAX_SESSION=4
+    networks:
+      - selenium-grid-network
+
+  edge:
+    image: selenium/node-edge:4.24.0
+    container_name: edge-node
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - NODE_MAX_INSTANCES=4
+      - NODE_MAX_SESSION=4
+    networks:
+      - selenium-grid-network
+    shm_size: 2gb
+
+  # Note: Safari is only available on macOS and cannot be containerized like other browsers.
+  # For Safari testing, use local execution with: pytest --browser=safari (on macOS only)
+
+networks:
+  selenium-grid-network:
+    driver: bridge

@@ -7,6 +7,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 def pytest_addoption(parser):
     """Adds command-line options to pytest."""
@@ -16,6 +18,24 @@ def pytest_addoption(parser):
         default="chrome",
         help="Browser to use for tests. Supported: chrome, firefox, edge.",
     )
+    parser.addoption(
+        "--remote",
+        action="store_true",
+        default=False,
+        help="Run tests on remote Selenium Grid (Docker).",
+    )
+    parser.addoption(
+        "--hub-host",
+        action="store",
+        default="localhost",
+        help="Selenium Grid hub host (for remote execution).",
+    )
+    parser.addoption(
+        "--hub-port",
+        action="store",
+        default="4444",
+        help="Selenium Grid hub port (for remote execution).",
+    )
 
 @pytest.fixture(scope="session")
 def browser(request):
@@ -24,30 +44,67 @@ def browser(request):
     The browser type is determined by the --browser command-line option.
     """
     browser_name = request.config.getoption("--browser").lower()
-    
-    # Let Selenium Manager handle the drivers automatically
-    if browser_name == "chrome":
-        options = ChromeOptions()
-        options.add_argument("--start-maximized")
-        driver = webdriver.Chrome(options=options)
-    elif browser_name == "firefox":
-        options = FirefoxOptions()
-        # Firefox doesn't have a simple '--start-maximized' argument
-        # It's generally better to set a large window size
-        options.add_argument("-width=1920")
-        options.add_argument("-height=1080")
-        driver = webdriver.Firefox(options=options)
-    elif browser_name == "edge":
-        options = EdgeOptions()
-        options.add_argument("--start-maximized")
-        driver = webdriver.Edge(options=options)
+    use_remote = request.config.getoption("--remote")
+
+    # Check for unsupported browser combinations
+    if browser_name == "safari" and use_remote:
+        raise ValueError("Safari cannot be used with remote execution (Docker). Safari is only supported on macOS with local execution.")
+
+    if use_remote:
+        # Connect to remote Selenium Grid (Docker)
+        hub_host = request.config.getoption("--hub-host")
+        hub_port = request.config.getoption("--hub-port")
+        hub_url = f"http://{hub_host}:{hub_port}/wd/hub"
+
+        if browser_name == "chrome":
+            from selenium.webdriver.chrome.options import Options as ChromeOptions
+            options = ChromeOptions()
+            options.add_argument("--start-maximized")
+        elif browser_name == "firefox":
+            from selenium.webdriver.firefox.options import Options as FirefoxOptions
+            options = FirefoxOptions()
+            options.add_argument("--width=1920")
+            options.add_argument("--height=1080")
+        elif browser_name == "edge":
+            from selenium.webdriver.edge.options import Options as EdgeOptions
+            options = EdgeOptions()
+            options.add_argument("--start-maximized")
+        else:
+            raise ValueError(f"Unsupported browser for remote execution: {browser_name}. Use 'chrome', 'firefox', or 'edge'.")
+
+        driver = webdriver.Remote(
+            command_executor=hub_url,
+            options=options
+        )
     else:
-        raise ValueError(f"Unsupported browser: {browser_name}. Use 'chrome', 'firefox', or 'edge'.")
+        # Use local browser drivers
+        if browser_name == "chrome":
+            options = ChromeOptions()
+            options.add_argument("--start-maximized")
+            driver = webdriver.Chrome(options=options)
+        elif browser_name == "firefox":
+            options = FirefoxOptions()
+            # Firefox doesn't have a simple '--start-maximized' argument
+            # It's generally better to set a large window size
+            options.add_argument("-width=1920")
+            options.add_argument("-height=1080")
+            driver = webdriver.Firefox(options=options)
+        elif browser_name == "edge":
+            options = EdgeOptions()
+            options.add_argument("--start-maximized")
+            driver = webdriver.Edge(options=options)
+        elif browser_name == "safari":
+            from selenium.webdriver.safari.options import Options as SafariOptions
+            options = SafariOptions()
+            options.add_argument("--start-maximized")
+            driver = webdriver.Safari(options=options)
+        else:
+            raise ValueError(f"Unsupported browser: {browser_name}. Use 'chrome', 'firefox', 'edge', or 'safari'.")
 
     driver.implicitly_wait(10)
-    
+
     yield driver
-    
+
     driver.quit()
 
 @pytest.fixture(scope="session")

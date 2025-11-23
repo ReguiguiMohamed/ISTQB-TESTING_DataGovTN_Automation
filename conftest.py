@@ -56,9 +56,7 @@ def browser(request):
     elif browser_name == "edge":
         from selenium.webdriver.edge.options import Options as EdgeOptions
         BrowserOptions = EdgeOptions
-    elif browser_name == "safari":
-        from selenium.webdriver.safari.options import Options as SafariOptions
-        BrowserOptions = SafariOptions
+    
     else:
         raise ValueError(f"Unsupported browser: {browser_name}. Use 'chrome', 'firefox', 'edge', or 'safari'.")
 

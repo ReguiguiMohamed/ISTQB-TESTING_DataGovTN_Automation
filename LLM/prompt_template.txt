@@ -1,0 +1,25 @@
+ROLE: You are a senior ISTQB-certified test analyst.
+TASK: Generate black-box test cases from the following user story and acceptance criteria.
+
+CONSTRAINTS:
+- Focus ONLY on functional, black-box behavior (no implementation).
+- Use clear, concise French.
+- Structure the test cases in a markdown table with the columns:
+  - ID
+  - Titre
+  - Type (positif / négatif / limite)
+  - Préconditions
+  - Données d'entrée
+  - Étapes
+  - Résultat attendu
+
+INPUT:
+User Story:
+[USER_STORY]
+
+Critères d'acceptation:
+[ACCEPTANCE_CRITERIA]
+
+OUTPUT:
+- Une liste de cas de test couvrant les critères d'acceptation, avec des cas positifs, négatifs et aux limites si applicable.
+- Format : un tableau markdown, sans explication autour.

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Test Case Generator with Gemini AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        select, textarea, input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 150px;
+            font-family: monospace;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .error {
+            color: #e74c3c;
+            background-color: #fadbd8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .success {
+            color: #27ae60;
+            background-color: #d5f4e6;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .instructions {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Générateur de Cas de Test avec Gemini AI</h1>
+        
+        <div class="instructions">
+            <h3>Comment utiliser:</h3>
+            <ol>
+                <li>Étape 1: Choisissez un modèle (ex: "Gemini 2.5 Flash")</li>
+                <li>Étape 2: Collez votre clé API Gemini dans le champ</li>
+                <li>Étape 3: Collez votre User Story + Critères d'acceptation</li>
+                <li>Étape 4: Cliquez sur "Générer les cas de test"</li>
+                <li>Copiez le tableau markdown dans votre rapport</li>
+            </ol>
+        </div>
+
+        <form id="testForm">
+            <div class="form-group">
+                <label for="model">Modèle:</label>
+                <select id="model" required>
+                    {% for model in models %}
+                    <option value="{{ model.id }}">{{ model.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="api_key">Clé API Gemini:</label>
+                <input type="password" id="api_key" placeholder="Votre clé API Gemini" required>
+            </div>
+
+            <div class="form-group">
+                <label for="user_story">User Story:</label>
+                <textarea id="user_story" placeholder="Ex: En tant qu'utilisateur, je veux..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="acceptance_criteria">Critères d'acceptation:</label>
+                <textarea id="acceptance_criteria" placeholder="Ex: - Lorsque je fais X, alors Y se produit..." required></textarea>
+            </div>
+
+            <button type="submit" id="generateBtn">Générer les cas de test</button>
+        </form>
+
+        <div id="result" class="result" style="display:none;">
+            <h3>Résultat:</h3>
+            <textarea id="result_text" readonly style="height: 300px; background-color: white;"></textarea>
+            <br><br>
+            <button id="copyBtn">Copier le résultat</button>
+        </div>
+
+        <div id="error" class="error" style="display:none;"></div>
+        <div id="success" class="success" style="display:none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const model = document.getElementById('model').value;
+            const api_key = document.getElementById('api_key').value;
+            const user_story = document.getElementById('user_story').value;
+            const acceptance_criteria = document.getElementById('acceptance_criteria').value;
+            
+            const generateBtn = document.getElementById('generateBtn');
+            generateBtn.disabled = true;
+            generateBtn.textContent = 'Génération en cours...';
+            
+            try {
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        model_id: model,
+                        api_key: api_key,
+                        user_story: user_story,
+                        acceptance_criteria: acceptance_criteria
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('result_text').value = data.result;
+                    document.getElementById('result').style.display = 'block';
+                    document.getElementById('error').style.display = 'none';
+                } else {
+                    document.getElementById('error').textContent = `Erreur: ${data.error}`;
+                    document.getElementById('error').style.display = 'block';
+                    document.getElementById('result').style.display = 'none';
+                }
+            } catch (error) {
+                document.getElementById('error').textContent = `Erreur de connexion: ${error.message}`;
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('result').style.display = 'none';
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.textContent = 'Générer les cas de test';
+            }
+        });
+
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const resultText = document.getElementById('result_text');
+            resultText.select();
+            document.execCommand('copy');
+            
+            const successDiv = document.getElementById('success');
+            successDiv.textContent = 'Résultat copié dans le presse-papiers!';
+            successDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                successDiv.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

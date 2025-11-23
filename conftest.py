@@ -46,6 +46,22 @@ def browser(request):
     browser_name = request.config.getoption("--browser").lower()
     use_remote = request.config.getoption("--remote")
 
+    # Import browser options globally for both remote and local execution
+    if browser_name == "chrome":
+        from selenium.webdriver.chrome.options import Options as ChromeOptions
+        BrowserOptions = ChromeOptions
+    elif browser_name == "firefox":
+        from selenium.webdriver.firefox.options import Options as FirefoxOptions
+        BrowserOptions = FirefoxOptions
+    elif browser_name == "edge":
+        from selenium.webdriver.edge.options import Options as EdgeOptions
+        BrowserOptions = EdgeOptions
+    elif browser_name == "safari":
+        from selenium.webdriver.safari.options import Options as SafariOptions
+        BrowserOptions = SafariOptions
+    else:
+        raise ValueError(f"Unsupported browser: {browser_name}. Use 'chrome', 'firefox', 'edge', or 'safari'.")
+
     # Check for unsupported browser combinations
     if browser_name == "safari" and use_remote:
         raise ValueError("Safari cannot be used with remote execution (Docker). Safari is only supported on macOS with local execution.")
@@ -57,16 +73,13 @@ def browser(request):
         hub_url = f"http://{hub_host}:{hub_port}/wd/hub"
 
         if browser_name == "chrome":
-            from selenium.webdriver.chrome.options import Options as ChromeOptions
             options = ChromeOptions()
             options.add_argument("--start-maximized")
         elif browser_name == "firefox":
-            from selenium.webdriver.firefox.options import Options as FirefoxOptions
             options = FirefoxOptions()
             options.add_argument("--width=1920")
             options.add_argument("--height=1080")
         elif browser_name == "edge":
-            from selenium.webdriver.edge.options import Options as EdgeOptions
             options = EdgeOptions()
             options.add_argument("--start-maximized")
         else:
@@ -94,7 +107,6 @@ def browser(request):
             options.add_argument("--start-maximized")
             driver = webdriver.Edge(options=options)
         elif browser_name == "safari":
-            from selenium.webdriver.safari.options import Options as SafariOptions
             options = SafariOptions()
             options.add_argument("--start-maximized")
             driver = webdriver.Safari(options=options)

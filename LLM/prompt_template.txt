@@ -4,14 +4,15 @@ TASK: Generate black-box test cases from the following user story and acceptance
 CONSTRAINTS:
 - Focus ONLY on functional, black-box behavior (no implementation).
 - Use clear, concise French.
-- Structure the test cases in a markdown table with the columns:
-  - ID
-  - Titre
-  - Type (positif / négatif / limite)
-  - Préconditions
-  - Données d'entrée
-  - Étapes
-  - Résultat attendu
+- Structure the test cases as a JSON array with these fields:
+  - id: Test case identifier
+  - title: Title of the test case
+  - type: Type of test case (positif / négatif / limite)
+  - preconditions: Array of preconditions
+  - input_data: Array of input data
+  - steps: Array of steps to execute
+  - expected_result: Expected result of the test
+- Output only valid JSON with no additional text.
 
 INPUT:
 User Story:
@@ -21,5 +22,4 @@ Critères d'acceptation:
 [ACCEPTANCE_CRITERIA]
 
 OUTPUT:
-- Une liste de cas de test couvrant les critères d'acceptation, avec des cas positifs, négatifs et aux limites si applicable.
-- Format : un tableau markdown, sans explication autour.
+- JSON array of test cases covering the acceptance criteria, with positive, negative and boundary cases if applicable.

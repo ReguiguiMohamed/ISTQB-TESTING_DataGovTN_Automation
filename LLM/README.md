@@ -39,7 +39,7 @@ setx GEMINI_API_KEY "VOTRE_CLÉ_API_ICI"
 
 ### Méthode 1: Interface Web (Recommandée)
 
-L'interface web offre une expérience utilisateur plus conviviale.
+L'interface web offre une expérience utilisateur plus conviviale avec sortie JSON structurée.
 
 1. Installez les dépendances :
    ```bash
@@ -58,7 +58,14 @@ L'interface web offre une expérience utilisateur plus conviviale.
    - Étape 1: Choisissez un modèle (ex: "Gemini 2.5 Flash")
    - Étape 2: Collez votre clé API Gemini dans le champ
    - Étape 3: Collez votre User Story + Critères d'acceptation, cliquez sur "Générer les cas de test"
-   - Copiez le tableau markdown du bas dans votre rapport
+   - Étape 4: Visualisez les résultats en format Markdown ou JSON
+   - Étape 5: Téléchargez les résultats ou créez des tickets Jira automatiquement
+
+#### Nouvelles Fonctionnalités Web:
+- **Format Double**: Sortie à la fois en tableau Markdown et en JSON structuré
+- **Téléchargement**: Boutons pour télécharger les formats JSON et Markdown
+- **Jira Integration**: Bouton pour créer des tickets Jira directement depuis les résultats
+- **Conversion Automatique**: Conversion fluide entre formats pour différentes utilisations
 
 ### Méthode 2: Script Python en ligne de commande
 
@@ -74,6 +81,23 @@ Double-cliquez sur `generate_test_cases.bat` ou exécutez-le dans un terminal :
 ```cmd
 generate_test_cases.bat
 ```
+
+## 🎫 Intégration Jira (Nouveau!)
+
+Le système inclut maintenant une automatisation complète pour Jira:
+
+### Gestion des échecs de test:
+- Analyse automatique des rapports de test pytest (HTML)
+- Création de tickets "Bug" pour chaque test échoué
+- Intégration avec Jira via API REST
+
+### Gestion des cas de test générés par LLM:
+- Prise en charge du format JSON pour l'intégration Jira
+- Création de tickets "Task" pour les nouveaux cas de test
+- Étiquetage automatique et catégorisation
+
+### Configuration:
+Voir `README_JIRA_JSON.md` pour les détails complets sur la configuration Jira.
 
 ## 📝 Prompt utilisé
 

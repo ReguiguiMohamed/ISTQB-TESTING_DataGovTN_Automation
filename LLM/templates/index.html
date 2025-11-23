@@ -133,9 +133,25 @@
 
         <div id="result" class="result" style="display:none;">
             <h3>Résultat:</h3>
-            <textarea id="result_text" readonly style="height: 300px; background-color: white;"></textarea>
-            <br><br>
-            <button id="copyBtn">Copier le résultat</button>
+            <div style="display: flex; gap: 20px; margin-bottom: 15px;">
+                <button type="button" id="showMarkdownBtn">Afficher Markdown</button>
+                <button type="button" id="showJsonBtn">Afficher JSON</button>
+            </div>
+            <div id="markdownView" style="display:block;">
+                <h4>Format Tableau Markdown:</h4>
+                <textarea id="result_text" readonly style="height: 300px; background-color: white; width: 100%;"></textarea>
+            </div>
+            <div id="jsonView" style="display:none; margin-top: 15px;">
+                <h4>Format JSON (pour intégration):</h4>
+                <textarea id="json_result_text" readonly style="height: 300px; background-color: #f8f9fa; width: 100%; font-family: monospace;"></textarea>
+            </div>
+            <div style="margin-top: 15px;">
+                <button id="copyBtn">Copier le résultat (Markdown)</button>
+                <button id="copyJsonBtn">Copier le JSON</button>
+                <button id="downloadJsonBtn">Télécharger JSON</button>
+                <button id="downloadMarkdownBtn">Télécharger Markdown</button>
+                <button id="createJiraTicketsBtn">Créer Tickets Jira</button>
+            </div>
         </div>
 
         <div id="error" class="error" style="display:none;"></div>
@@ -143,18 +159,29 @@
     </div>
 
     <script>
+        // Toggle between markdown and JSON views
+        document.getElementById('showMarkdownBtn').addEventListener('click', function() {
+            document.getElementById('markdownView').style.display = 'block';
+            document.getElementById('jsonView').style.display = 'none';
+        });
+
+        document.getElementById('showJsonBtn').addEventListener('click', function() {
+            document.getElementById('markdownView').style.display = 'none';
+            document.getElementById('jsonView').style.display = 'block';
+        });
+
         document.getElementById('testForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+
             const model = document.getElementById('model').value;
             const api_key = document.getElementById('api_key').value;
             const user_story = document.getElementById('user_story').value;
             const acceptance_criteria = document.getElementById('acceptance_criteria').value;
-            
+
             const generateBtn = document.getElementById('generateBtn');
             generateBtn.disabled = true;
             generateBtn.textContent = 'Génération en cours...';
-            
+
             try {
                 const response = await fetch('/generate', {
                     method: 'POST',
@@ -168,11 +195,12 @@
                         acceptance_criteria: acceptance_criteria
                     })
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (response.ok) {
                     document.getElementById('result_text').value = data.result;
+                    document.getElementById('json_result_text').value = JSON.stringify(data.json_result, null, 2);
                     document.getElementById('result').style.display = 'block';
                     document.getElementById('error').style.display = 'none';
                 } else {
@@ -194,14 +222,94 @@
             const resultText = document.getElementById('result_text');
             resultText.select();
             document.execCommand('copy');
-            
+
             const successDiv = document.getElementById('success');
             successDiv.textContent = 'Résultat copié dans le presse-papiers!';
             successDiv.style.display = 'block';
-            
+
             setTimeout(() => {
                 successDiv.style.display = 'none';
             }, 3000);
+        });
+
+        document.getElementById('copyJsonBtn').addEventListener('click', function() {
+            const jsonText = document.getElementById('json_result_text');
+            jsonText.select();
+            document.execCommand('copy');
+
+            const successDiv = document.getElementById('success');
+            successDiv.textContent = 'JSON copié dans le presse-papiers!';
+            successDiv.style.display = 'block';
+
+            setTimeout(() => {
+                successDiv.style.display = 'none';
+            }, 3000);
+        });
+
+        document.getElementById('downloadJsonBtn').addEventListener('click', function() {
+            const jsonText = document.getElementById('json_result_text').value;
+            const blob = new Blob([jsonText], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'test_cases_' + new Date().toISOString().slice(0, 19).replace(/:/g, '-') + '.json';
+            document.body.appendChild(a);
+            a.click();
+
+            // Clean up
+            setTimeout(() => {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            }, 0);
+        });
+
+        document.getElementById('downloadMarkdownBtn').addEventListener('click', function() {
+            const markdownText = document.getElementById('result_text').value;
+            const blob = new Blob([markdownText], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'test_cases_' + new Date().toISOString().slice(0, 19).replace(/:/g, '-') + '.md';
+            document.body.appendChild(a);
+            a.click();
+
+            // Clean up
+            setTimeout(() => {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            }, 0);
+        });
+
+        document.getElementById('createJiraTicketsBtn').addEventListener('click', function() {
+            const jsonText = document.getElementById('json_result_text').value;
+            try {
+                const testCases = JSON.parse(jsonText);
+
+                // In a real implementation, this would call a backend endpoint to create Jira tickets
+                alert(`Prêt à créer des tickets Jira pour ${testCases.length} cas de test. Veuillez configurer les paramètres Jira dans le script jira_automation.py`);
+
+                // Example of how this could work in a full implementation:
+                /*
+                fetch('/create-jira-tickets', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        test_cases: testCases,
+                        // Additional Jira configuration would go here
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Jira tickets created:', data);
+                });
+                */
+            } catch (e) {
+                alert('Erreur de format JSON. Impossible de créer les tickets Jira.');
+            }
         });
     </script>
 </body>

@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://data.gov.tn/fr/reutilisations-de-donnees/ -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- ***********Navbar section*********** -->
+    <!-- Google tag (gtag.js) -->
+<script type="text/javascript" async="" charset="utf-8" src="./Portail National des Données Ouvertes en Tunisie_files/recaptcha__en.js.download" crossorigin="anonymous" integrity="sha384-Ft89l3aihBBhSrkZ/Syx/7cCCaryQcJICINmdoWVHhaQefSnqabq/akNl06biiHi"></script><script async="" src="./Portail National des Données Ouvertes en Tunisie_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MCB42SRD0X');
+</script>
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="https://data.gov.tn/static/assets/img/favicon.ico">
+    <title>Portail National des Données Ouvertes en Tunisie</title>
+    <meta property="og:title" content="Portail National des Données Ouvertes en Tunisie">
+    <meta name="twitter:title" content="Portail National des Données Ouvertes en Tunisie">
+
+    <meta name="Description" content="">
+
+    <meta name="og:description" content="">
+    <meta name="twitter:description" content="">
+    
+    <meta name="keywords" content="open data, tunisie, ">
+
+    <meta property="og:url" content="http://data.gov.tn/fr/reutilisations-de-donnees/">
+    
+    <meta property="og:image" content="http://data.gov.tn//static/assets/img/opendata-tn.webp">
+    <meta name="twitter:image" content="http://data.gov.tn//static/assets/img/opendata-tn.webp">
+    
+
+
+  
+      <link async="" rel="stylesheet" href="./Portail National des Données Ouvertes en Tunisie_files/css">
+  
+  
+  
+      <link href="./Portail National des Données Ouvertes en Tunisie_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <link href="./Portail National des Données Ouvertes en Tunisie_files/font-awesome.min.css" rel="stylesheet">
+      <link href="./Portail National des Données Ouvertes en Tunisie_files/swiper-bundle.css" rel="stylesheet" integrity="sha512-15OzXDrYC/wTgcjNDIx6+2LiAHCPnS9DiKQj/dhgdRMpdW+W4AoSjxism+gRaDobBaFN+UONPGic1ttu5mpWxg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+
+  
+  
+    
+    
+        <link rel="stylesheet" href="./Portail National des Données Ouvertes en Tunisie_files/styles.css">
+        <link rel="stylesheet" href="./Portail National des Données Ouvertes en Tunisie_files/reuse.css">
+    
+
+  
+    
+      <link rel="stylesheet" href="./Portail National des Données Ouvertes en Tunisie_files/print.css" media="print">
+    
+  
+  
+  
+    
+      <link rel="stylesheet" href="./Portail National des Données Ouvertes en Tunisie_files/_detail.css">
+      <link rel="stylesheet" href="./Portail National des Données Ouvertes en Tunisie_files/_popover.css">
+    
+  
+  
+
+
+
+
+
+  <style type="text/css" id="operaUserStyle">
+  video {
+    filter: -opera-shader(url(data:text/plain;base64,Ly8gaHR0cHM6Ly9naXRodWIuY29tL0dQVU9wZW4tRWZmZWN0cy9GaWRlbGl0eUZYLUNBUwovLyB2MwoKdW5pZm9ybSBzaGFkZXIgaUNodW5rOwp1bmlmb3JtIGZsb2F0MiBpQ2h1bmtTaXplOwp1bmlmb3JtIGZsb2F0MiBpTW91c2U7CnVuaWZvcm0gZmxvYXQgaUFyZ3NbMV07Cgpjb25zdCBmbG9hdCBFUFNJT04gPSAwLjE7CmNvbnN0IGZsb2F0IFZfTUlOID0gMDsKY29uc3QgZmxvYXQgVl9MT1cgPSAwLjI1Owpjb25zdCBmbG9hdCBWX01FRCA9IDAuNTsKY29uc3QgZmxvYXQgVl9ISUdIID0gMC43NTsKY29uc3QgZmxvYXQgVl9NQVggPSAxOwoKY29uc3QgZmxvYXQgVEhSRVNIT0xEX0FSRUEgPSA4MDAgKiA2MDA7CmNvbnN0IGZsb2F0IE1JTl9BUkVBID0gNDAwICogMTAwOwpjb25zdCBmbG9hdCBNSU5fU1RSSVAgPSAyMDsKY29uc3QgZmxvYXQgTUFSR0lOID0gMTsKCmZsb2F0MyBwaXhlbChpbnQgeCwgaW50IHksIGZsb2F0MiB4eSkgewogICAgcmV0dXJuIGlDaHVuay5ldmFsKHh5ICsgZmxvYXQyKHgsIHkpKS5yZ2I7Cn0KCmZsb2F0MyBzaGFycGVuKGZsb2F0MiB4eSkgewogICAgZmxvYXQzIGYgPQogICAgICAgIHBpeGVsKC0xLCAtMSwgeHkpICogIDEgKwogICAgICAgIHBpeGVsKCAwLCAtMSwgeHkpICogLTEgKwogICAgICAgIHBpeGVsKCAxLCAtMSwgeHkpICogIDEgKwoKICAgICAgICBwaXhlbCgtMSwgMCwgeHkpICogLTEgICsKICAgICAgICBwaXhlbCggMCwgMCwgeHkpICogLTEgICsKICAgICAgICBwaXhlbCggMSwgMCwgeHkpICogLTEgICsKCiAgICAgICAgcGl4ZWwoLTEsIDEsIHh5KSAqIDEgICArCiAgICAgICAgcGl4ZWwoIDAsIDEsIHh5KSAqIC0xICArCiAgICAgICAgcGl4ZWwoIDEsIDEsIHh5KSAqIDE7CiAgICByZXR1cm4gZiAvIC0xOwp9CgpmbG9hdDQgUkdYMihmbG9hdDIgeHkpIHsKICAgIGZsb2F0NCBjb2xvciA9IGlDaHVuay5ldmFsKHh5KTsKCiAgICBpZiAoaUNodW5rU2l6ZS54ICogaUNodW5rU2l6ZS55IDwgTUlOX0FSRUEpIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgaWYgKGlDaHVua1NpemUueSA8IE1JTl9TVFJJUCB8fCBpQ2h1bmtTaXplLnggPCBNSU5fU1RSSVApIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgaWYgKHh5LnggPCBNQVJHSU4gfHwgeHkueCA+IChpQ2h1bmtTaXplLnggLSBNQVJHSU4pIHx8CiAgICAgICAgeHkueSA8IE1BUkdJTiB8fCB4eS55ID4gKGlDaHVua1NpemUueSAtIE1BUkdJTikpIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgcmV0dXJuIGZsb2F0NChzaGFycGVuKHh5KSwgMSk7Cn0KCmZsb2F0IG1pbjMoZmxvYXQgeCwgZmxvYXQgeSwgZmxvYXQgeikgewogICAgcmV0dXJuIG1pbih4LCBtaW4oeSwgeikpOwp9CgpmbG9hdCBtYXgzKGZsb2F0IHgsIGZsb2F0IHksIGZsb2F0IHopIHsKICAgIHJldHVybiBtYXgoeCwgbWF4KHksIHopKTsKfQoKZmxvYXQgcmNwKGZsb2F0IHYpIHsKICAgIHJldHVybiAxIC8gdjsKfQoKZmxvYXQzIFJHWDMoZmxvYXQyIHh5LCBmbG9hdCBzdHJlbmd0aCkgewogICAgZmxvYXQzIGEgPSBwaXhlbCgtMSwgLTEsIHh5KTsKICAgIGZsb2F0MyBiID0gcGl4ZWwoIDAsIC0xLCB4eSk7CiAgICBmbG9hdDMgYyA9IHBpeGVsKCAxLCAtMSwgeHkpOwoKICAgIGZsb2F0MyBkID0gcGl4ZWwoLTEsIDAsIHh5KTsKICAgIGZsb2F0MyBlID0gcGl4ZWwoIDAsIDAsIHh5KTsKICAgIGZsb2F0MyBmID0gcGl4ZWwoIDEsIDAsIHh5KTsKCiAgICBmbG9hdDMgZyA9IHBpeGVsKC0xLCAxLCB4eSk7CiAgICBmbG9hdDMgaCA9IHBpeGVsKCAwLCAxLCB4eSk7CiAgICBmbG9hdDMgaSA9IHBpeGVsKCAxLCAxLCB4eSk7CgogICAgZmxvYXQgbW5SID0gbWluMyhtaW4zKGQuciwgZS5yLCBmLnIpLCBiLnIsIGgucik7CiAgICBmbG9hdCBtbkcgPSBtaW4zKG1pbjMoZC5nLCBlLmcsIGYuZyksIGIuZywgaC5nKTsKICAgIGZsb2F0IG1uQiA9IG1pbjMobWluMyhkLmIsIGUuYiwgZi5iKSwgYi5iLCBoLmIpOwoKICAgIGZsb2F0IG1uUjIgPSBtaW4zKG1pbjMobW5SLCBhLnIsIGMuciksIGcuciwgaS5yKTsKICAgIGZsb2F0IG1uRzIgPSBtaW4zKG1pbjMobW5HLCBhLmcsIGMuZyksIGcuZywgaS5nKTsKICAgIGZsb2F0IG1uQjIgPSBtaW4zKG1pbjMobW5CLCBhLmIsIGMuYiksIGcuYiwgaS5iKTsKCiAgICBtblIgPSBtblIgKyBtblIyOwogICAgbW5HID0gbW5HICsgbW5HMjsKICAgIG1uQiA9IG1uQiArIG1uQjI7CgogICAgZmxvYXQgbXhSID0gbWF4MyhtYXgzKGQuciwgZS5yLCBmLnIpLCBiLnIsIGgucik7CiAgICBmbG9hdCBteEcgPSBtYXgzKG1heDMoZC5nLCBlLmcsIGYuZyksIGIuZywgaC5nKTsKICAgIGZsb2F0IG14QiA9IG1heDMobWF4MyhkLmIsIGUuYiwgZi5iKSwgYi5iLCBoLmIpOwoKICAgIGZsb2F0IG14UjIgPSBtYXgzKG1heDMobXhSLCBhLnIsIGMuciksIGcuciwgaS5yKTsKICAgIGZsb2F0IG14RzIgPSBtYXgzKG1heDMobXhHLCBhLmcsIGMuZyksIGcuZywgaS5nKTsKICAgIGZsb2F0IG14QjIgPSBtYXgzKG1heDMobXhCLCBhLmIsIGMuYiksIGcuYiwgaS5iKTsKCiAgICBteFIgPSBteFIgKyBteFIyOwogICAgbXhHID0gbXhHICsgbXhHMjsKICAgIG14QiA9IG14QiArIG14QjI7CgogICAgZmxvYXQgcmNwTVIgPSByY3AobXhSKTsKICAgIGZsb2F0IHJjcE1HID0gcmNwKG14Ryk7CiAgICBmbG9hdCByY3BNQiA9IHJjcChteEIpOwoKICAgIGZsb2F0IGFtcFIgPSBzYXR1cmF0ZShtaW4obW5SLCAyIC0gbXhSKSAqIHJjcE1SKTsKICAgIGZsb2F0IGFtcEcgPSBzYXR1cmF0ZShtaW4obW5HLCAyIC0gbXhHKSAqIHJjcE1HKTsKICAgIGZsb2F0IGFtcEIgPSBzYXR1cmF0ZShtaW4obW5CLCAyIC0gbXhCKSAqIHJjcE1CKTsKCiAgICBhbXBSID0gc3FydChhbXBSKTsKICAgIGFtcEcgPSBzcXJ0KGFtcEcpOwogICAgYW1wQiA9IHNxcnQoYW1wQik7CgogICAgZmxvYXQgcGVhayA9IC1yY3AobWl4KDgsIDUsIHN0cmVuZ3RoKSk7CgogICAgZmxvYXQgd1IgPSBhbXBSICogcGVhazsKICAgIGZsb2F0IHdHID0gYW1wRyAqIHBlYWs7CiAgICBmbG9hdCB3QiA9IGFtcEIgKiBwZWFrOwoKICAgIGZsb2F0IHJjcFdlaWdodFIgPSByY3AoMSArIDQgKiB3Uik7CiAgICBmbG9hdCByY3BXZWlnaHRHID0gcmNwKDEgKyA0ICogd0cpOwogICAgZmxvYXQgcmNwV2VpZ2h0QiA9IHJjcCgxICsgNCAqIHdCKTsKCiAgICByZXR1cm4gZmxvYXQzKAogICAgICAgIHNhdHVyYXRlKChiLnIgKiB3UiArIGQuciAqIHdSICsgZi5yICogd1IgKyBoLnIgKiB3UiArIGUucikgKiByY3BXZWlnaHRSKSwKICAgICAgICBzYXR1cmF0ZSgoYi5nICogd0cgKyBkLmcgKiB3RyArIGYuZyAqIHdHICsgaC5nICogd0cgKyBlLmcpICogcmNwV2VpZ2h0RyksCiAgICAgICAgc2F0dXJhdGUoKGIuYiAqIHdCICsgZC5iICogd0IgKyBmLmIgKiB3QiArIGguYiAqIHdCICsgZS5iKSAqIHJjcFdlaWdodEIpKTsKfQoKCmZsb2F0NCBtYWluKGZsb2F0MiB4eSkgewoKICAgIGZsb2F0NCBvcmlnaW5hbENvbG9yID0gaUNodW5rLmV2YWwoeHkpOwogICAgaWYgKG9yaWdpbmFsQ29sb3IuYSA8IDEpIHsKICAgICAgICByZXR1cm4gaUNodW5rLmV2YWwoeHkpOwogICAgfQoKICAgIGZsb2F0IGludGVuc2l0eSA9IGlBcmdzWzBdOwogICAgZmxvYXQgc3RyZW5ndGggPSAwOwogICAgZmxvYXQzIGNvbG9yOwoKICAgIGlmIChpbnRlbnNpdHkgPCBWX01JTiArIEVQU0lPTikgewogICAgICAgIHN0cmVuZ3RoID0gMC4xMDsKICAgICAgICBjb2xvciA9IFJHWDMoeHksIHN0cmVuZ3RoKTsKCiAgICB9IGVsc2UgaWYgKGludGVuc2l0eSA+IFZfTE9XIC0gRVBTSU9OICYmIGludGVuc2l0eSA8IFZfTE9XICsgRVBTSU9OKSB7CiAgICAgICAgc3RyZW5ndGggPSAwLjMzOwogICAgICAgIGNvbG9yID0gUkdYMyh4eSwgc3RyZW5ndGgpOwoKICAgIH0gZWxzZSBpZiAoaW50ZW5zaXR5ID4gVl9NRUQgLSBFUFNJT04gJiYgaW50ZW5zaXR5IDwgVl9NRUQgKyBFUFNJT04pIHsKICAgICAgICBzdHJlbmd0aCA9IDAuNTsKICAgICAgICBjb2xvciA9IFJHWDMoeHksIHN0cmVuZ3RoKTsKCiAgICB9IGVsc2UgaWYgKGludGVuc2l0eSA+IFZfSElHSCAtIEVQU0lPTiAmJiBpbnRlbnNpdHkgPCBWX0hJR0ggKyBFUFNJT04pIHsKICAgICAgICBzdHJlbmd0aCA9IDAuOTk7CiAgICAgICAgY29sb3IgPSBSR1gzKHh5LCBzdHJlbmd0aCk7CgogICAgfSBlbHNlIGlmIChpbnRlbnNpdHkgPiBWX01BWCAtIEVQU0lPTikgewogICAgICAgIHN0cmVuZ3RoID0gMTsKICAgICAgICBjb2xvciA9IFJHWDIoeHkpLnJnYjsKICAgIH0KCiAgICByZXR1cm4gZmxvYXQ0KGNvbG9yLCBvcmlnaW5hbENvbG9yLmEpOwp9) -opera-args(1.00 calc(env(-opera-accent-color-r, 255)/255) calc(env(-opera-accent-color-g, 255)/255) calc(env(-opera-accent-color-b, 255)/255)));
+  }
+
+
+  img {
+    filter: -opera-shader(url(data:text/plain;base64,Ly8gaHR0cHM6Ly9naXRodWIuY29tL0dQVU9wZW4tRWZmZWN0cy9GaWRlbGl0eUZYLUNBUwovLyB2MwoKdW5pZm9ybSBzaGFkZXIgaUNodW5rOwp1bmlmb3JtIGZsb2F0MiBpQ2h1bmtTaXplOwp1bmlmb3JtIGZsb2F0MiBpTW91c2U7CnVuaWZvcm0gZmxvYXQgaUFyZ3NbMV07Cgpjb25zdCBmbG9hdCBFUFNJT04gPSAwLjE7CmNvbnN0IGZsb2F0IFZfTUlOID0gMDsKY29uc3QgZmxvYXQgVl9MT1cgPSAwLjI1Owpjb25zdCBmbG9hdCBWX01FRCA9IDAuNTsKY29uc3QgZmxvYXQgVl9ISUdIID0gMC43NTsKY29uc3QgZmxvYXQgVl9NQVggPSAxOwoKY29uc3QgZmxvYXQgVEhSRVNIT0xEX0FSRUEgPSA4MDAgKiA2MDA7CmNvbnN0IGZsb2F0IE1JTl9BUkVBID0gNDAwICogMTAwOwpjb25zdCBmbG9hdCBNSU5fU1RSSVAgPSAyMDsKY29uc3QgZmxvYXQgTUFSR0lOID0gMTsKCmZsb2F0MyBwaXhlbChpbnQgeCwgaW50IHksIGZsb2F0MiB4eSkgewogICAgcmV0dXJuIGlDaHVuay5ldmFsKHh5ICsgZmxvYXQyKHgsIHkpKS5yZ2I7Cn0KCmZsb2F0MyBzaGFycGVuKGZsb2F0MiB4eSkgewogICAgZmxvYXQzIGYgPQogICAgICAgIHBpeGVsKC0xLCAtMSwgeHkpICogIDEgKwogICAgICAgIHBpeGVsKCAwLCAtMSwgeHkpICogLTEgKwogICAgICAgIHBpeGVsKCAxLCAtMSwgeHkpICogIDEgKwoKICAgICAgICBwaXhlbCgtMSwgMCwgeHkpICogLTEgICsKICAgICAgICBwaXhlbCggMCwgMCwgeHkpICogLTEgICsKICAgICAgICBwaXhlbCggMSwgMCwgeHkpICogLTEgICsKCiAgICAgICAgcGl4ZWwoLTEsIDEsIHh5KSAqIDEgICArCiAgICAgICAgcGl4ZWwoIDAsIDEsIHh5KSAqIC0xICArCiAgICAgICAgcGl4ZWwoIDEsIDEsIHh5KSAqIDE7CiAgICByZXR1cm4gZiAvIC0xOwp9CgpmbG9hdDQgUkdYMihmbG9hdDIgeHkpIHsKICAgIGZsb2F0NCBjb2xvciA9IGlDaHVuay5ldmFsKHh5KTsKCiAgICBpZiAoaUNodW5rU2l6ZS54ICogaUNodW5rU2l6ZS55IDwgTUlOX0FSRUEpIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgaWYgKGlDaHVua1NpemUueSA8IE1JTl9TVFJJUCB8fCBpQ2h1bmtTaXplLnggPCBNSU5fU1RSSVApIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgaWYgKHh5LnggPCBNQVJHSU4gfHwgeHkueCA+IChpQ2h1bmtTaXplLnggLSBNQVJHSU4pIHx8CiAgICAgICAgeHkueSA8IE1BUkdJTiB8fCB4eS55ID4gKGlDaHVua1NpemUueSAtIE1BUkdJTikpIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgcmV0dXJuIGZsb2F0NChzaGFycGVuKHh5KSwgMSk7Cn0KCmZsb2F0IG1pbjMoZmxvYXQgeCwgZmxvYXQgeSwgZmxvYXQgeikgewogICAgcmV0dXJuIG1pbih4LCBtaW4oeSwgeikpOwp9CgpmbG9hdCBtYXgzKGZsb2F0IHgsIGZsb2F0IHksIGZsb2F0IHopIHsKICAgIHJldHVybiBtYXgoeCwgbWF4KHksIHopKTsKfQoKZmxvYXQgcmNwKGZsb2F0IHYpIHsKICAgIHJldHVybiAxIC8gdjsKfQoKZmxvYXQzIFJHWDMoZmxvYXQyIHh5LCBmbG9hdCBzdHJlbmd0aCkgewogICAgZmxvYXQzIGEgPSBwaXhlbCgtMSwgLTEsIHh5KTsKICAgIGZsb2F0MyBiID0gcGl4ZWwoIDAsIC0xLCB4eSk7CiAgICBmbG9hdDMgYyA9IHBpeGVsKCAxLCAtMSwgeHkpOwoKICAgIGZsb2F0MyBkID0gcGl4ZWwoLTEsIDAsIHh5KTsKICAgIGZsb2F0MyBlID0gcGl4ZWwoIDAsIDAsIHh5KTsKICAgIGZsb2F0MyBmID0gcGl4ZWwoIDEsIDAsIHh5KTsKCiAgICBmbG9hdDMgZyA9IHBpeGVsKC0xLCAxLCB4eSk7CiAgICBmbG9hdDMgaCA9IHBpeGVsKCAwLCAxLCB4eSk7CiAgICBmbG9hdDMgaSA9IHBpeGVsKCAxLCAxLCB4eSk7CgogICAgZmxvYXQgbW5SID0gbWluMyhtaW4zKGQuciwgZS5yLCBmLnIpLCBiLnIsIGgucik7CiAgICBmbG9hdCBtbkcgPSBtaW4zKG1pbjMoZC5nLCBlLmcsIGYuZyksIGIuZywgaC5nKTsKICAgIGZsb2F0IG1uQiA9IG1pbjMobWluMyhkLmIsIGUuYiwgZi5iKSwgYi5iLCBoLmIpOwoKICAgIGZsb2F0IG1uUjIgPSBtaW4zKG1pbjMobW5SLCBhLnIsIGMuciksIGcuciwgaS5yKTsKICAgIGZsb2F0IG1uRzIgPSBtaW4zKG1pbjMobW5HLCBhLmcsIGMuZyksIGcuZywgaS5nKTsKICAgIGZsb2F0IG1uQjIgPSBtaW4zKG1pbjMobW5CLCBhLmIsIGMuYiksIGcuYiwgaS5iKTsKCiAgICBtblIgPSBtblIgKyBtblIyOwogICAgbW5HID0gbW5HICsgbW5HMjsKICAgIG1uQiA9IG1uQiArIG1uQjI7CgogICAgZmxvYXQgbXhSID0gbWF4MyhtYXgzKGQuciwgZS5yLCBmLnIpLCBiLnIsIGgucik7CiAgICBmbG9hdCBteEcgPSBtYXgzKG1heDMoZC5nLCBlLmcsIGYuZyksIGIuZywgaC5nKTsKICAgIGZsb2F0IG14QiA9IG1heDMobWF4MyhkLmIsIGUuYiwgZi5iKSwgYi5iLCBoLmIpOwoKICAgIGZsb2F0IG14UjIgPSBtYXgzKG1heDMobXhSLCBhLnIsIGMuciksIGcuciwgaS5yKTsKICAgIGZsb2F0IG14RzIgPSBtYXgzKG1heDMobXhHLCBhLmcsIGMuZyksIGcuZywgaS5nKTsKICAgIGZsb2F0IG14QjIgPSBtYXgzKG1heDMobXhCLCBhLmIsIGMuYiksIGcuYiwgaS5iKTsKCiAgICBteFIgPSBteFIgKyBteFIyOwogICAgbXhHID0gbXhHICsgbXhHMjsKICAgIG14QiA9IG14QiArIG14QjI7CgogICAgZmxvYXQgcmNwTVIgPSByY3AobXhSKTsKICAgIGZsb2F0IHJjcE1HID0gcmNwKG14Ryk7CiAgICBmbG9hdCByY3BNQiA9IHJjcChteEIpOwoKICAgIGZsb2F0IGFtcFIgPSBzYXR1cmF0ZShtaW4obW5SLCAyIC0gbXhSKSAqIHJjcE1SKTsKICAgIGZsb2F0IGFtcEcgPSBzYXR1cmF0ZShtaW4obW5HLCAyIC0gbXhHKSAqIHJjcE1HKTsKICAgIGZsb2F0IGFtcEIgPSBzYXR1cmF0ZShtaW4obW5CLCAyIC0gbXhCKSAqIHJjcE1CKTsKCiAgICBhbXBSID0gc3FydChhbXBSKTsKICAgIGFtcEcgPSBzcXJ0KGFtcEcpOwogICAgYW1wQiA9IHNxcnQoYW1wQik7CgogICAgZmxvYXQgcGVhayA9IC1yY3AobWl4KDgsIDUsIHN0cmVuZ3RoKSk7CgogICAgZmxvYXQgd1IgPSBhbXBSICogcGVhazsKICAgIGZsb2F0IHdHID0gYW1wRyAqIHBlYWs7CiAgICBmbG9hdCB3QiA9IGFtcEIgKiBwZWFrOwoKICAgIGZsb2F0IHJjcFdlaWdodFIgPSByY3AoMSArIDQgKiB3Uik7CiAgICBmbG9hdCByY3BXZWlnaHRHID0gcmNwKDEgKyA0ICogd0cpOwogICAgZmxvYXQgcmNwV2VpZ2h0QiA9IHJjcCgxICsgNCAqIHdCKTsKCiAgICByZXR1cm4gZmxvYXQzKAogICAgICAgIHNhdHVyYXRlKChiLnIgKiB3UiArIGQuciAqIHdSICsgZi5yICogd1IgKyBoLnIgKiB3UiArIGUucikgKiByY3BXZWlnaHRSKSwKICAgICAgICBzYXR1cmF0ZSgoYi5nICogd0cgKyBkLmcgKiB3RyArIGYuZyAqIHdHICsgaC5nICogd0cgKyBlLmcpICogcmNwV2VpZ2h0RyksCiAgICAgICAgc2F0dXJhdGUoKGIuYiAqIHdCICsgZC5iICogd0IgKyBmLmIgKiB3QiArIGguYiAqIHdCICsgZS5iKSAqIHJjcFdlaWdodEIpKTsKfQoKCmZsb2F0NCBtYWluKGZsb2F0MiB4eSkgewoKICAgIGZsb2F0NCBvcmlnaW5hbENvbG9yID0gaUNodW5rLmV2YWwoeHkpOwogICAgaWYgKG9yaWdpbmFsQ29sb3IuYSA8IDEpIHsKICAgICAgICByZXR1cm4gaUNodW5rLmV2YWwoeHkpOwogICAgfQoKICAgIGZsb2F0IGludGVuc2l0eSA9IGlBcmdzWzBdOwogICAgZmxvYXQgc3RyZW5ndGggPSAwOwogICAgZmxvYXQzIGNvbG9yOwoKICAgIGlmIChpbnRlbnNpdHkgPCBWX01JTiArIEVQU0lPTikgewogICAgICAgIHN0cmVuZ3RoID0gMC4xMDsKICAgICAgICBjb2xvciA9IFJHWDMoeHksIHN0cmVuZ3RoKTsKCiAgICB9IGVsc2UgaWYgKGludGVuc2l0eSA+IFZfTE9XIC0gRVBTSU9OICYmIGludGVuc2l0eSA8IFZfTE9XICsgRVBTSU9OKSB7CiAgICAgICAgc3RyZW5ndGggPSAwLjMzOwogICAgICAgIGNvbG9yID0gUkdYMyh4eSwgc3RyZW5ndGgpOwoKICAgIH0gZWxzZSBpZiAoaW50ZW5zaXR5ID4gVl9NRUQgLSBFUFNJT04gJiYgaW50ZW5zaXR5IDwgVl9NRUQgKyBFUFNJT04pIHsKICAgICAgICBzdHJlbmd0aCA9IDAuNTsKICAgICAgICBjb2xvciA9IFJHWDMoeHksIHN0cmVuZ3RoKTsKCiAgICB9IGVsc2UgaWYgKGludGVuc2l0eSA+IFZfSElHSCAtIEVQU0lPTiAmJiBpbnRlbnNpdHkgPCBWX0hJR0ggKyBFUFNJT04pIHsKICAgICAgICBzdHJlbmd0aCA9IDAuOTk7CiAgICAgICAgY29sb3IgPSBSR1gzKHh5LCBzdHJlbmd0aCk7CgogICAgfSBlbHNlIGlmIChpbnRlbnNpdHkgPiBWX01BWCAtIEVQU0lPTikgewogICAgICAgIHN0cmVuZ3RoID0gMTsKICAgICAgICBjb2xvciA9IFJHWDIoeHkpLnJnYjsKICAgIH0KCiAgICByZXR1cm4gZmxvYXQ0KGNvbG9yLCBvcmlnaW5hbENvbG9yLmEpOwp9) -opera-args(1.00 calc(env(-opera-accent-color-r, 255)/255) calc(env(-opera-accent-color-g, 255)/255) calc(env(-opera-accent-color-b, 255)/255)));
+  }
+</style><style type="text/css"></style></head>
+  <body id="root">
+  
+      
+      <!-- ***********Navbar section*********** -->
+      
+
+
+
+
+
+
+<nav class="header">
+   <div class="nav nav-top">
+    <!-- Language switcher -->
+    <div class="switcher-lang">
+     <div id="switcher-lang" class="language">
+      <svg xmlns="http://www.w3.org/2000/svg" width="17.01" height="17" viewBox="0 0 17.01 17">
+       <g id="Group_1456" data-name="Group 1456" transform="translate(-174.379 -19.541)">
+        <path id="Path_1946" data-name="Path 1946" d="M191.389,27.508v1.03a1.468,1.468,0,0,0-.027.159,8.238,8.238,0,0,1-.138,1,8.5,8.5,0,0,1-6.873,6.712c-.309.052-.621.087-.932.13h-1.063a.157.157,0,0,0-.109-.028,8.5,8.5,0,0,1-7.786-9.607,8.515,8.515,0,0,1,9.8-7.253,8.12,8.12,0,0,1,4.265,2.036,8.366,8.366,0,0,1,2.729,4.886C191.313,26.884,191.346,27.2,191.389,27.508Zm-8.508,2.657c.9,0,1.8,0,2.705,0,.111,0,.162-.024.2-.138a6.946,6.946,0,0,0,0-3.974.164.164,0,0,0-.191-.144q-2.7.006-5.41,0c-.12,0-.157.042-.188.147a6.909,6.909,0,0,0,0,3.958.174.174,0,0,0,.2.152C181.089,30.162,181.985,30.165,182.881,30.165Zm-4.319,0c-.017-.075-.031-.133-.044-.192a8.772,8.772,0,0,1-.216-1.425,8,8,0,0,1,.234-2.5c.028-.111,0-.137-.11-.136q-1.087.006-2.175,0a.138.138,0,0,0-.159.12,7.147,7.147,0,0,0,0,4.009.146.146,0,0,0,.171.126c.52,0,1.041,0,1.561,0Zm8.654-4.242c.015.066.028.125.042.184a8.886,8.886,0,0,1,.215,1.424,8,8,0,0,1-.234,2.5c-.028.113,0,.137.111.136q1.078-.006,2.157,0c.1,0,.146-.016.176-.121a7.161,7.161,0,0,0,0-4.008.147.147,0,0,0-.172-.125c-.725,0-1.45,0-2.174,0C187.3,25.914,187.262,25.92,187.216,25.923Zm-4.327-1.429c.709,0,1.417,0,2.125,0,.108,0,.154-.008.089-.133a14.263,14.263,0,0,0-2.121-3.018c-.078-.085-.116-.078-.189,0a14.144,14.144,0,0,0-2.106,2.99c-.068.13-.058.161.094.16C181.484,24.491,182.186,24.494,182.889,24.494Zm-2.262,7.09a.421.421,0,0,0,.02.074,13.993,13.993,0,0,0,2.161,3.091c.088.1.122.037.176-.021a13.89,13.89,0,0,0,2.1-2.976c.087-.167.087-.167-.106-.167h-4.347Zm.393,3.283a.633.633,0,0,0-.048-.087,13.8,13.8,0,0,1-1.879-3.1c-.039-.09-.1-.1-.181-.1-.664,0-1.328,0-1.992,0a.169.169,0,0,0-.14.032A7.164,7.164,0,0,0,181.02,34.867Zm-4.241-10.373c.717,0,1.414,0,2.11,0a.2.2,0,0,0,.222-.143,13.738,13.738,0,0,1,1.827-3.012c.024-.03.065-.055.055-.107A6.985,6.985,0,0,0,176.779,24.494Zm12.213,0c-.629-1.369-3-3.189-4.223-3.248.109.143.214.277.316.413a13.956,13.956,0,0,1,1.583,2.694c.03.068.044.144.152.143C187.538,24.492,188.257,24.494,188.992,24.494Zm-4.226,10.342c1.28-.1,3.945-2.167,4.208-3.252-.7,0-1.394,0-2.09,0a.2.2,0,0,0-.22.145,13.769,13.769,0,0,1-1.58,2.7C184.982,34.558,184.877,34.691,184.766,34.836Z" fill="#fff"></path>
+       </g>
+      </svg>
+      
+      <span id="selectedLanguage"> 
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees/#" class="lang" aria-label="">Fr</a>  
+      </span>
+      </div>
+      <div id="cases" class="dropdown-content">
+        <span id="case"> 
+        	
+          
+          	
+          
+          	 
+                <a href="https://data.gov.tn/ar/reutilisations-de-donnees/" class="lang">
+	              	
+	                    Ar 
+	                
+                </a>
+             
+          
+        </span>
+      </div>
+    </div>
+    <!-- Navbar TOP right side -->
+    <div class="nav-top-content">
+     <ul class="links">
+     	
+
+
+
+<!-- ======= Menu items Start ======= -->
+
+
+    
+    
+        <li class="hide-item">
+            <a href="https://data.gov.tn/fr/demandes-de-donnees/" class="nav-link fs-top ">Demandes d’ouverture des données</a>
+        </li>
+    
+
+    
+    
+        <li class="hide-item">
+            <a href="https://data.gov.tn/fr/faq/" class="nav-link fs-top ">FAQ</a>
+        </li>
+    
+
+    
+    
+        <li class="hide-item">
+            <a href="https://data.gov.tn/fr/contact/contact-us/" class="nav-link fs-top ">Contact</a>
+        </li>
+    
+
+    
+    
+        <li class="hide-item">
+            <a href="https://data.gov.tn/fr/" class="nav-link fs-top ">Plan de site</a>
+        </li>
+    
+
+<!-- ======= Menu items End ======= -->
+      <li class="hide-item">
+       <div class="change-font-size">
+        <a id="font1" href="https://data.gov.tn/fr/reutilisations-de-donnees/#" class="nav-link fs-top pointer" data-label="14">A<sup>-</sup></a>
+        <a id="font2" href="https://data.gov.tn/fr/reutilisations-de-donnees/#" class="nav-link  fs-top pointer" data-label="16">A</a>
+        <a id="font3" href="https://data.gov.tn/fr/reutilisations-de-donnees/#" class="nav-link fs-top pointer" data-label="18">A<sup>+</sup></a>
+       </div>
+      </li>
+      <li class="hide-item">
+       <a class="nav-link fs-top" aria-label="search" data-bs-toggle="modal" href="https://data.gov.tn/fr/reutilisations-de-donnees/#exampleModalToggle" role="button">
+        <span>
+         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+          <g id="Group_1503" data-name="Group 1503" transform="translate(-1621.329 -22.2)">
+           <g id="Group_1502" data-name="Group 1502">
+            <g id="Group_1500" data-name="Group 1500">
+             <path id="Path_1946" data-name="Path 1946" d="M1628.051,35.645a6.723,6.723,0,1,1,4.756-1.967A6.7,6.7,0,0,1,1628.051,35.645Zm0-12.124a5.4,5.4,0,1,0,3.822,1.58A5.389,5.389,0,0,0,1628.051,23.521Z" fill="#fff"></path>
+            </g>
+            <g id="Group_1501" data-name="Group 1501">
+             <path id="Path_1947" data-name="Path 1947" d="M1637.668,39.2a.659.659,0,0,1-.467-.194l-5.2-5.2a.661.661,0,1,1,.935-.934l5.2,5.2a.661.661,0,0,1-.467,1.128Z" fill="#fff"></path>
+            </g>
+           </g>
+          </g>
+         </svg>
+        </span>
+       </a>
+      </li>
+      
+      
+        <li>
+          <a class="nav-link fs-top" aria-label="Connexion" href="https://data.gov.tn/fr/auth/login/">
+          <span class="me-2">
+           <svg xmlns="http://www.w3.org/2000/svg" width="13.044" height="17.391" viewBox="0 0 13.044 17.391">
+            <g id="Group_1497" data-name="Group 1497" transform="translate(-1657.86 -22.2)">
+             <g id="Group_1496" data-name="Group 1496">
+              <path id="Path_1944" data-name="Path 1944" d="M1664.382,30.9a4.348,4.348,0,1,0-4.348-4.348A4.348,4.348,0,0,0,1664.382,30.9Zm0-7.247a2.9,2.9,0,1,1-2.9,2.9A2.9,2.9,0,0,1,1664.382,23.649Z" fill="#fff"></path>
+              <path id="Path_1945" data-name="Path 1945" d="M1664.382,32.345a6.529,6.529,0,0,0-6.522,6.522.725.725,0,0,0,1.45,0,5.072,5.072,0,1,1,10.144,0,.725.725,0,0,0,1.45,0A6.529,6.529,0,0,0,1664.382,32.345Z" fill="#fff"></path>
+             </g>
+            </g>
+           </svg>
+          </span>
+          Connexion
+        </a>
+        </li>
+      
+     </ul>
+    </div>
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recherche rapide</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" name="close" aria-label="Close">✖</button>
+                </div>
+                <div class="modal-body">
+                  <!-- Starting search blocks -->
+                  
+
+
+<div class="search-container">
+       <div class="search-input">
+        <form id="form-search" class="datasets-form" action="https://data.gov.tn/">
+            <div class="tabs-search ">
+              <span class="active op-dataset">Jeux de données</span>
+               <span class="op-reutilisation">Cas de réutilisations</span>
+            </div>
+
+            <div class="d-flex flex-row search-area w-100">
+              <input class="input-form w-100" name="q" type="search" placeholder="Entrer un mot clé, un titre ..." id="rechercheInput">
+              <button type="submit" class="search-icon" aria-label="search-icon">
+               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36.039 36.039">
+                <g id="Group_147" data-name="Group 147" transform="translate(-876.087 -705.802)">
+                 <circle id="Ellipse_262" data-name="Ellipse 262" cx="13.192" cy="13.192" r="13.192" transform="translate(876.886 706.601)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.599"></circle>
+                 <line id="Line_9" data-name="Line 9" x2="11.307" y2="11.307" transform="translate(899.689 729.404)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.599"></line>
+                </g>
+               </svg>
+              </button>
+            </div>
+
+            <div class="select-section">
+                
+
+                
+            </div>
+
+         
+        </form>
+
+
+        <form id="form-search" class="reutilisations-form d-none" action="https://data.gov.tn/fr/reutilisations-de-donnees/search/">
+          <div class="tabs-search ">
+           <span class=" op-dataset">Jeux de données</span>
+           <span class="active op-reutilisation">Cas de réutilisations</span>
+          </div>
+ 
+          <div class="d-flex flex-row search-area w-100">
+           <input class="input-form w-100" name="search" type="search" placeholder="Entrer un mot clé, un titre ..." id="rechercheInput">
+           <button type="submit" class="search-icon" aria-label="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36.039 36.039">
+             <g id="Group_147" data-name="Group 147" transform="translate(-876.087 -705.802)">
+              <circle id="Ellipse_262" data-name="Ellipse 262" cx="13.192" cy="13.192" r="13.192" transform="translate(876.886 706.601)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.599"></circle>
+              <line id="Line_9" data-name="Line 9" x2="11.307" y2="11.307" transform="translate(899.689 729.404)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.599"></line>
+             </g>
+            </svg>
+           </button>
+          </div>
+ 
+          <div class="select-section">
+            
+
+            
+          </div>
+         </form>
+       </div>
+      </div>
+
+
+
+
+                  <!-- Ending search blocks -->
+             
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+
+  <!-- Middle navbar  -->
+  <div class="nav nav-middle">
+    <!-- Logo -->
+    <div class="left-side">
+      <a href="https://data.gov.tn/fr" class="logo">
+        <div class="d-flex flex-row align-items-center gap-2">
+          <img src="./Portail National des Données Ouvertes en Tunisie_files/ALOGO.png" class="first lazyloaded" height="52.6" width="34" alt="REPUBLIQUE TUNISIENNE" title="Acceuil">
+          <div class="merge-logo">
+            <img src="./Portail National des Données Ouvertes en Tunisie_files/flag.svg" class=" lazyloaded" height="38" width="100%" alt="REPUBLIQUE TUNISIENNE" title="Acceuil">
+              <span>
+                <small>REPUBLIQUE</small>
+                TUNISIENNE
+              </span>
+          </div>
+        </div>
+      </a>
+      <div class="d-flex flex-column data-gov ">
+          <a href="https://data.gov.tn/fr" class="hide plat"> data.gov.tn</a>
+          <p class="link-logo">
+          Plateforme Nationale des Données Ouvertes
+          </p>
+      </div>
+    </div>
+    <!-- Banner navbar middle -->
+    <div class="banner">
+      
+      
+        <a href="http://www.ogptunisie.gov.tn/fr/index.php/appel-a-candidature-pour-linscription-au-hackathon-opengovdatahack2023/" target="_blank" title="Hackathon OpenGovDataHack2023">        
+          <img src="./Portail National des Données Ouvertes en Tunisie_files/OpenGovDataHacka2023-Fr-728-X-90_19.2e16d0ba.fill-728x90.jpg" width="100%" height="100%" class="placeholder-img" alt="Hackathon OpenGovDataHack2023" suogfll1z="">
+        </a>
+      
+     </div>
+  </div>
+</nav>
+
+      <!--Starting Bottom navbar  -->
+       
+ <!-- Bottom navbar  -->
+  <nav class="nav nav-bottom">
+    <div id="nav-content" class="nav-content w-100">
+      <!-- Navbar toggle responsive -->
+      <div id="toggle" class="responsive-navbar drawer-toggle d-none">
+        <i class="fa fa-bars"></i>
+      </div>
+      <!-- Navbar drawer responsive -->
+      <!-- Navbar drawer : to change according to your needs -->
+
+      <!-- Links plateforme -->
+
+      
+
+
+
+<!-- ======= Nav Bar 2 Start ======= -->
+  <ul id="links" class="links">
+      
+        
+              
+               <li class="px-2">
+                      <a href="https://data.gov.tn/fr/" class="nav-link  ">Accueil</a>
+                </li>
+              
+      
+        
+              
+               <li class="px-2">
+                      <a href="https://catalog.data.gov.tn/fr/dataset" class="nav-link  ">Données</a>
+                </li>
+              
+      
+        
+              
+               <li class="px-2">
+                      <a href="https://data.gov.tn/fr/cms/producteurs-de-donnees/" class="nav-link  ">Producteurs</a>
+                </li>
+              
+      
+        
+              
+               <li class="px-2">
+                      <a href="https://data.gov.tn/fr/cms/themes-de-donnees" class="nav-link  ">Thèmes</a>
+                </li>
+              
+      
+        
+              
+               <li class="px-2">
+                      <a href="https://data.gov.tn/fr/reutilisations-de-donnees/" class="nav-link active ">Réutilisations</a>
+                </li>
+              
+      
+        
+              
+               <li class="px-2">
+                      <a href="https://data.gov.tn/fr/actualit%C3%A9s/" class="nav-link  ">Actualités</a>
+                </li>
+              
+      
+        
+              
+               <li class="px-2">
+                      <a href="https://data.gov.tn/fr/evenements/" class="nav-link  ">Evénements</a>
+                </li>
+              
+      
+      
+</ul>
+    
+
+   
+    </div>
+    
+    <!-- responsive -->
+    
+
+
+
+<div class="responsive-navbar w-100">
+    <div class="right-content bar-navbar">
+      <span data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="19" viewBox="0 0 30 19">
+            <g id="Group_10" data-name="Group 10" transform="translate(-1732.006 -85)">
+                <rect id="Rectangle_7" data-name="Rectangle 7" width="30" height="3" rx="1.5" transform="translate(1732.006 85)" fill="#fff"></rect>
+                <rect id="Rectangle_8" data-name="Rectangle 8" width="30" height="3" rx="1.5" transform="translate(1732.006 93)" fill="#fff"></rect>
+                <rect id="Rectangle_9" data-name="Rectangle 9" width="30" height="3" rx="1.5" transform="translate(1732.006 101)" fill="#fff"></rect>
+            </g>
+        </svg>
+      </span>
+      <div class="offcanvas offcanvas-end ps-relative" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+          <div class="offcanvas-header">
+            <div class="brand">
+              <h5 id="offcanvasRightLabel">
+                <a href="https://data.gov.tn/fr" class="logo">
+                  <div class="d-flex flex-row align-items-center gap-2">
+                    <img src="./Portail National des Données Ouvertes en Tunisie_files/ALOGO.png" class="lazyload first" height="52.6" width="34" alt="REPUBLIQUE TUNISIENNE" title="Acceuil">
+                    <div class="merge-logo">
+                      <img src="./Portail National des Données Ouvertes en Tunisie_files/flag.svg" class="lazyload" height="38" width="100%" alt="REPUBLIQUE TUNISIENNE" title="Acceuil">
+                        <span>
+                          <small>REPUBLIQUE</small>
+                          TUNISIENNE
+                        </span>
+                    </div>
+                  </div>
+                </a>
+              </h5>
+            </div>
+            <button name="closeButton" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          
+          <div class="offb">
+            <a href="https://data.gov.tn/">
+              <div class="brand-info">Plateforme Nationale des Données Ouvertes</div>
+            </a>
+            <div class="offcanvas-body">
+                <header>
+                    <div role="navigation">
+                      
+                          <ul class="drawer-menu">
+                                
+                                  
+                                        
+                                          <li>
+                                                <a href="https://data.gov.tn/fr/" class="item-nav">Accueil</a>
+                                          </li>
+                                        
+                                
+                                  
+                                        
+                                          <li>
+                                                <a href="https://catalog.data.gov.tn/fr/dataset" class="item-nav">Données</a>
+                                          </li>
+                                        
+                                
+                                  
+                                        
+                                          <li>
+                                                <a href="https://data.gov.tn/fr/cms/producteurs-de-donnees/" class="item-nav">Producteurs</a>
+                                          </li>
+                                        
+                                
+                                  
+                                        
+                                          <li>
+                                                <a href="https://data.gov.tn/fr/cms/themes-de-donnees" class="item-nav">Thèmes</a>
+                                          </li>
+                                        
+                                
+                                  
+                                        
+                                          <li>
+                                                <a href="https://data.gov.tn/fr/reutilisations-de-donnees/" class="item-nav">Réutilisations</a>
+                                          </li>
+                                        
+                                
+                                  
+                                        
+                                          <li>
+                                                <a href="https://data.gov.tn/fr/actualit%C3%A9s/" class="item-nav">Actualités</a>
+                                          </li>
+                                        
+                                
+                                  
+                                        
+                                          <li>
+                                                <a href="https://data.gov.tn/fr/evenements/" class="item-nav">Evénements</a>
+                                          </li>
+                                        
+                                
+                          </ul>
+                    </div>
+                </header>
+                <div class="nav-responsive-bottom">
+                  <ul>
+                    <li>
+                      <div class="change-font-size">
+                       <a id="font4" href="https://data.gov.tn/fr/reutilisations-de-donnees/#" class="nav-link pointer" value="14">A<sup>-</sup></a>
+                       <a id="font5" href="https://data.gov.tn/fr/reutilisations-de-donnees/#" class="nav-link pointer" value="16">A</a>
+                       <a id="font6" href="https://data.gov.tn/fr/reutilisations-de-donnees/#" class="nav-link pointer" value="18">A<sup>+</sup></a>
+                      </div>
+                     </li>
+                     <li>
+                      <a class="nav-link " aria-label="Close" data-bs-dismiss="offcanvas" role="button" data-bs-toggle="modal" href="https://data.gov.tn/fr/reutilisations-de-donnees/#exampleModalToggle">
+                       <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+                         <g id="Group_1503" data-name="Group 1503" transform="translate(-1621.329 -22.2)">
+                          <g id="Group_1502" data-name="Group 1502">
+                           <g id="Group_1500" data-name="Group 1500">
+                            <path id="Path_1946" data-name="Path 1946" d="M1628.051,35.645a6.723,6.723,0,1,1,4.756-1.967A6.7,6.7,0,0,1,1628.051,35.645Zm0-12.124a5.4,5.4,0,1,0,3.822,1.58A5.389,5.389,0,0,0,1628.051,23.521Z" fill="#fff"></path>
+                           </g>
+                           <g id="Group_1501" data-name="Group 1501">
+                            <path id="Path_1947" data-name="Path 1947" d="M1637.668,39.2a.659.659,0,0,1-.467-.194l-5.2-5.2a.661.661,0,1,1,.935-.934l5.2,5.2a.661.661,0,0,1-.467,1.128Z" fill="#fff"></path>
+                           </g>
+                          </g>
+                         </g>
+                        </svg>
+                       </span>
+                      </a>
+                     </li>
+                     
+                      <li>
+                        <a href="https://data.gov.tn/fr/auth/login/" class="nav-link">
+                         <span class="me-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="13.044" height="17.391" viewBox="0 0 13.044 17.391">
+                           <g id="Group_1497" data-name="Group 1497" transform="translate(-1657.86 -22.2)">
+                            <g id="Group_1496" data-name="Group 1496">
+                             <path id="Path_1944" data-name="Path 1944" d="M1664.382,30.9a4.348,4.348,0,1,0-4.348-4.348A4.348,4.348,0,0,0,1664.382,30.9Zm0-7.247a2.9,2.9,0,1,1-2.9,2.9A2.9,2.9,0,0,1,1664.382,23.649Z" fill="#fff"></path>
+                             <path id="Path_1945" data-name="Path 1945" d="M1664.382,32.345a6.529,6.529,0,0,0-6.522,6.522.725.725,0,0,0,1.45,0,5.072,5.072,0,1,1,10.144,0,.725.725,0,0,0,1.45,0A6.529,6.529,0,0,0,1664.382,32.345Z" fill="#fff"></path>
+                            </g>
+                           </g>
+                          </svg>
+                         </span>
+                         Connexion
+                        </a>
+                       </li>
+
+                     
+                     
+                  </ul>
+                </div>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+      
+   
+  </nav>
+      <!--Ending Bottom navbar  -->
+
+      
+<!-- ======= breadcrumb ======= -->
+<div class="toolbar" role="navigation" aria-label="Breadcrumb">
+    <div class="container">
+     <ol class="breadcrumb">
+      <li class="home">
+       <a href="https://data.gov.tn/fr/" aria-label="Home"><i class="fa fa-home me-2"></i> Accueil</a>
+      </li>
+        
+      <li class="active">
+       <a href="https://data.gov.tn/fr/reutilisations-de-donnees/">Toutes les réutilisations</a>
+      </li>
+     </ol>
+    </div>
+</div>
+<!-- .breadcrumb -->
+
+
+      
+
+
+
+<!-- 
+ 
+-->
+
+
+      
+        <div class="container">
+
+          <!-- Add action Button -->
+          
+
+
+
+  <a href="https://data.gov.tn/fr/reutilisations-de-donnees/add/" class="propose-reuse responsive">
+    <img src="./Portail National des Données Ouvertes en Tunisie_files/propose-reuse.svg" width="16%" alt="reuse-image" class="lazyload">
+    <span class="propose-text">Proposer l'ajout d'une nouvelle réutilisation</span>
+      
+  </a>
+
+
+      
+          <!-- End off Adding Action Button-->
+
+          <div class="row full-size mt-5">
+            
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 d-flex  flex-column order-2  order-md-2 order-lg-2 order-xl-1 ">
+              
+                
+
+
+
+  
+
+
+  <a href="https://data.gov.tn/fr/reutilisations-de-donnees/add/" class="propose-reuse">
+    <img src="./Portail National des Données Ouvertes en Tunisie_files/propose-reuse.svg" width="16%" alt="reuse-image" class=" lazyloaded">
+    <span class="propose-text">Proposer l'ajout d'une nouvelle réutilisation</span>
+  </a>
+    
+
+
+
+<aside class="reuse-side-bar">
+
+  <section>
+    <div class="side-bar-fr-section-title">
+      Indicateurs clés
+    </div> 
+    <div class="side-bar-indicateurs">
+        <a href="https://catalog.data.gov.tn/fr/dataset" class="indicateur-card">
+            <img src="./Portail National des Données Ouvertes en Tunisie_files/data-opened.svg" alt="data-opened" class=" lazyloaded" width="40%">
+            <span class="inducateurs-key-numbers">2775</span>
+              <span class="inducateurs-key-text"> Données<br>ouvertes
+                </span>
+        </a>
+        <a href="https://data.gov.tn/fr/cms/producteurs-de-donnees" class="indicateur-card">
+            <img src="./Portail National des Données Ouvertes en Tunisie_files/productor-data.svg" alt="data-opened" class=" lazyloaded" width="40%">
+            <span class="inducateurs-key-numbers">197</span>
+            <span class="inducateurs-key-text"> Producteur(s) <br>de données </span>
+        </a>
+        <a href="https://data.gov.tn/fr/cms/themes-de-donnees" class="indicateur-card">
+            <img src="./Portail National des Données Ouvertes en Tunisie_files/data-themes.svg" alt="data-opened" class=" lazyloaded" width="40%">
+            <span class="inducateurs-key-numbers">23</span>
+              <span class="inducateurs-key-text">Thèmes de<br>données ouvertes</span>
+        </a>
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees" class="indicateur-card">
+            <img src="./Portail National des Données Ouvertes en Tunisie_files/reuse-data.svg" alt="data-opened" class=" lazyloaded" width="40%">
+            <span class="inducateurs-key-numbers">10</span>
+              <span class="inducateurs-key-text"> Réutilisations<br>de données</span>
+        </a>
+        <a class="indicateur-card" href="https://data.gov.tn/fr/demandes-de-donnees">
+          <img src="./Portail National des Données Ouvertes en Tunisie_files/data-added.svg" width="40%" alt="data-opened" class=" lazyloaded">
+          <span class="inducateurs-key-numbers">14</span>
+          <span class="inducateurs-key-text">Demandes<br>d’ouverture des données</span>
+        </a>
+        <a class="indicateur-card" href="https://data.gov.tn/fr/cms/users/all/">
+          <img src="./Portail National des Données Ouvertes en Tunisie_files/users.svg" width="40%" alt="data-opened" class=" lazyloaded">
+          <span class="inducateurs-key-numbers">498</span>
+          <span class="inducateurs-key-text">Utlisateurs<br>inscrits </span>
+        </a>
+    </div>
+  </section>
+
+  
+
+  
+    <section class="mt-3">
+      <div class=" side-bar-fr-section-title">
+        Top 10 des producteurs de données
+      </div>
+
+      <div class="d-flex flex-column">
+        
+        <a href="https://catalog.data.gov.tn/fr/producteurs-de-donnees/ministere-de-l-agriculture-des-ressources-hydrauliques-et-de-la-peche" class="top-product-card">
+              <div class="d-flex gap-2">
+                    
+                      <img src="./Portail National des Données Ouvertes en Tunisie_files/logo_ministere_de_l_agriculture.2e16d0ba.fill-43x40.png" width="43" height="40" alt="product" class=" lazyloaded">
+                    
+                  <p class="top-product-text">
+                      
+                          Ministère de l'Agriculture, des Ressources Hydrauliques et de la Pêche
+                      
+                  </p>
+              </div>
+              <span class="top-product-number">881</span>
+          </a>
+        
+        <a href="https://catalog.data.gov.tn/fr/producteurs-de-donnees/ministere-des-affaires-culturelles" class="top-product-card">
+              <div class="d-flex gap-2">
+                    
+                      <img src="./Portail National des Données Ouvertes en Tunisie_files/culture.2e16d0ba.fill-43x40.png" width="43" height="40" alt="product" class=" lazyloaded">
+                    
+                  <p class="top-product-text">
+                      
+                          Minstère des affaires culturelles
+                      
+                  </p>
+              </div>
+              <span class="top-product-number">307</span>
+          </a>
+        
+        <a href="https://catalog.data.gov.tn/fr/producteurs-de-donnees/ministere-industrie" class="top-product-card">
+              <div class="d-flex gap-2">
+                    
+                      <img src="./Portail National des Données Ouvertes en Tunisie_files/logo_ministere_industrie.2e16d0ba.fill-43x40.jpg" width="43" height="40" alt="product" class=" lazyloaded">
+                    
+                  <p class="top-product-text">
+                      
+                          Ministère de l'Industrie, de l’Energie, des Mines
+                      
+                  </p>
+              </div>
+              <span class="top-product-number">222</span>
+          </a>
+        
+        <a href="https://catalog.data.gov.tn/fr/producteurs-de-donnees/1kelibia" class="top-product-card">
+              <div class="d-flex gap-2">
+                    
+                      <img src="./Portail National des Données Ouvertes en Tunisie_files/kelibia-commune_RrlHsAT.2e16d0ba.fill-43x40.png" width="43" height="40" alt="product" class=" lazyloaded">
+                    
+                  <p class="top-product-text">
+                      
+                          Commune de Kélibia
+                      
+                  </p>
+              </div>
+              <span class="top-product-number">95</span>
+          </a>
+        
+        <a href="https://catalog.data.gov.tn/fr/producteurs-de-donnees/jammel" class="top-product-card">
+              <div class="d-flex gap-2">
+                    
+                      <img src="./Portail National des Données Ouvertes en Tunisie_files/commune_jemmel-removebg-preview.2e16d0ba.fill-43x40.png" width="43" height="40" alt="product" class=" lazyloaded">
+                    
+                  <p class="top-product-text">
+                      
+                          Commune de Jemmel
+                      
+                  </p>
+              </div>
+              <span class="top-product-number">90</span>
+          </a>
+        
+        <a href="https://catalog.data.gov.tn/fr/producteurs-de-donnees/enfidha" class="top-product-card">
+              <div class="d-flex gap-2">
+                    
+                      <img src="./Portail National des Données Ouvertes en Tunisie_files/commune_enfidha-removebg-preview.2e16d0ba.fill-43x40.png" width="43" height="40" alt="product" class=" lazyloaded">
+                    
+                  <p class="top-product-text">
+                      
+                          Commune d'Enfidha
+                      
+                  </p>
+              </div>
+              <span class="top-product-number">87</span>
+          </a>
+        
+        <a href="https://catalog.data.gov.tn/fr/producteurs-de-donnees/agareb" class="top-product-card">
+              <div class="d-flex gap-2">
+                    
+                      <img src="./Portail National des Données Ouvertes en Tunisie_files/commune_Aagareb-removebg-preview.2e16d0ba.fill-43x40.png" width="43" height="40" alt="product" class=" lazyloaded">
+                    
+                  <p class="top-product-text">
+                      
+                          Municipalité Agareb
+                      
+                  </p>
+              </div>
+              <span class="top-product-number">71</span>
+          </a>
+        
+        <a href="https://catalog.data.gov.tn/fr/producteurs-de-donnees/bouarada" class="top-product-card">
+              <div class="d-flex gap-2">
+                    
+                      <img src="./Portail National des Données Ouvertes en Tunisie_files/commune_bouarada-removebg-preview.2e16d0ba.fill-43x40.png" width="43" height="40" alt="product" class=" lazyloaded">
+                    
+                  <p class="top-product-text">
+                      
+                          Commune Bouarada
+                      
+                  </p>
+              </div>
+              <span class="top-product-number">56</span>
+          </a>
+        
+        <a href="https://catalog.data.gov.tn/fr/producteurs-de-donnees/ministere-des-affaires-sociales" class="top-product-card">
+              <div class="d-flex gap-2">
+                    
+                      <img src="./Portail National des Données Ouvertes en Tunisie_files/logo_ministere_affaires_sociales.2e16d0ba.fill-43x40.png" width="43" height="40" alt="product" class=" lazyloaded">
+                    
+                  <p class="top-product-text">
+                      
+                          Ministère des Affaires Sociales
+                      
+                  </p>
+              </div>
+              <span class="top-product-number">53</span>
+          </a>
+        
+        <a href="https://catalog.data.gov.tn/fr/producteurs-de-donnees/metouia" class="top-product-card">
+              <div class="d-flex gap-2">
+                    
+                      <img src="./Portail National des Données Ouvertes en Tunisie_files/commune_metouia-removebg-preview.2e16d0ba.fill-43x40.png" width="43" height="40" alt="product" class="lazyload">
+                    
+                  <p class="top-product-text">
+                      
+                          Commune de Métouia
+                      
+                  </p>
+              </div>
+              <span class="top-product-number">52</span>
+          </a>
+        
+      </div>
+
+      <div class="see-all-reuses">
+        <button class="btn-see-all-reuses" onclick="location.href=&#39;/fr/cms/users/publishers/&#39;;">Voir tous les producteurs
+          <svg xmlns="http://www.w3.org/2000/svg" width="21.007" height="11.048" viewBox="0 0 21.007 11.048">
+            <g id="Group_34" data-name="Group 34" transform="translate(-1716 -1406.704)">
+              <g id="Group_33" data-name="Group 33">
+                <path id="Path_11" data-name="Path 11" d="M1716,1412.009c.058-.037.052-.107.08-.159a.851.851,0,0,1,.741-.5c.088-.005.177,0,.266,0h17.574c-.008-.1-.083-.14-.132-.189-.965-.978-1.935-1.951-2.9-2.93a.869.869,0,0,1,.343-1.478.816.816,0,0,1,.853.206c1.172,1.178,2.355,2.345,3.5,3.547a2.575,2.575,0,0,1-.046,3.537c-.606.641-1.24,1.254-1.863,1.878-.521.523-1.04,1.048-1.565,1.567a.879.879,0,0,1-1.494-.456.884.884,0,0,1,.295-.831q1.461-1.453,2.918-2.91c.052-.052.12-.091.143-.174a.4.4,0,0,0-.237-.023q-8.675,0-17.348.006a1.049,1.049,0,0,1-1.129-.674Z" fill="#666"></path>
+              </g>
+            </g>
+          </svg> 
+        </button>         
+      </div>
+    </section>
+  
+
+</aside>
+              
+            </div>
+          
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9 order-1 order-md-1 order-lg-1 order-xl-2 ">
+              
+    <div class="d-flex flex-column align-items-center w-100 ">
+        
+
+<div class="reuse-filter-container">
+    <h1 class="reuse-title">Réutilisations des données</h1>
+    
+    <form method="GET" action="https://data.gov.tn/fr/reutilisations-de-donnees/search/" class="resuse-filter-card">
+        <div class="w-100">
+            <div class="d-flex w-100">
+                <div class="d-flex flex-row w-100">    
+                    
+                        <input class="input-form-reuse w-100" name="search" type="search" placeholder=" Recherche parmi les cas de réutilisation des données ">
+                    
+                    <button type="submit" class="search-icon-reuse" aria-label="search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36.039 36.039">
+                        <g id="Group_147" data-name="Group 147" transform="translate(-876.087 -705.802)">
+                            <circle id="Ellipse_262" data-name="Ellipse 262" cx="13.192" cy="13.192" r="13.192" transform="translate(876.886 706.601)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.599"></circle>
+                            <line id="Line_9" data-name="Line 9" x2="11.307" y2="11.307" transform="translate(899.689 729.404)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.599"></line>
+                        </g>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <details class="search w-100 d-flex justify-content-end">
+                <summary>
+                    <div class="header-summary d-flex justify-content-between align-items-center">
+                        <label class="w-100">Filtres de recherche:</label>
+                        <div class="d-flex justify-content-end w-100 mt-2">
+                            <a id="advancedSearch">
+                                <span class="default">Recherche avancée</span>  
+                                <span class="shown">Masquer</span>
+                            </a>
+                            <i class="fa fa-search-plus"></i>
+                            <i class="fa fa-caret-up"></i>
+                        </div>
+                    </div>
+                </summary>
+                <div class="row align-items-center w-100 mt-3">
+                    <div class=" col-lg-4 col-md-12 col-sm-12">
+                        <div class="d-flex flex-column w-100">
+                            <span class="select-desc">Type des ré-utilisateurs :</span>
+                            
+                                <select name="user" onchange="form.submit();" class="reuse-select" id="id_user">
+                                    <option value="" disabled="" selected="" hidden="">Choisir une option</option>
+                                    
+                                        <option value="1-person">Étudiant</option>
+                                    
+                                        <option value="2-person">Développeur</option>
+                                    
+                                        <option value="3-person">Journaliste</option>
+                                    
+                                        <option value="4-person">Fonctionnaire</option>
+                                    
+                                        <option value="5-person">Chercheur</option>
+                                    
+                                        <option value="1-business">Startup</option>
+                                    
+                                        <option value="2-business">Association</option>
+                                    
+                                </select>
+                            
+                        </div>
+                    </div>
+
+                    <div class=" col-lg-4 col-md-12 col-sm-12">
+                        <div class="d-flex flex-column w-100">
+                            <span class="select-desc">Type des réutilisations :</span>
+                            
+                                <select name="type_reuse" onchange="form.submit();" class="reuse-select" id="id_type_reuse">
+                                    <option value="" disabled="" selected="" hidden="">Choisir une option</option>
+                                    
+                                        <option value="1">Visualisation des données</option>
+                                    
+                                        <option value="2">Application Web</option>
+                                    
+                                        <option value="3">Application mobile</option>
+                                    
+                                        <option value="6">Article de presse / article de blog</option>
+                                    
+                                        <option value="4">Papier de recherche</option>
+                                    
+                                        <option value="5">API</option>
+                                    
+                                </select>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 col-sm-12 pe-0"> 
+                        <div class="d-flex flex-column w-100">
+                            <span class="select-desc">Secteur des réutilisations :</span>
+                            
+                                <select name="secteur" onchange="form.submit();" class="reuse-select" id="id_secteur">
+                                     <option value="" disabled="" selected="" hidden="">Choisir une option</option>
+                                    
+                                        <option value="1">Santé</option>
+                                    
+                                        <option value="2">agriculture</option>
+                                    
+                                        <option value="3">Transport et Mobilité</option>
+                                    
+                                        <option value="4">Enseignement Supérieur</option>
+                                    
+                                </select>
+                            
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+        
+        <div class="d-flex justify-content-between align-items-center w-100 flex-wrap">
+            <div class="d-flex align-items-center">
+                
+                    <h2 class="game-data-founded me-2">10</h2><h2 class="game-data-founded">Réutilisations trouvées</h2>
+                
+            </div>
+            <div class="justify-content-center align-items-center sort gap-2">
+                <label class="lable-filter p-0">Par ordre :</label>
+                
+                    <select name="order_by" onchange="form.submit();" class="reuse-select sort-select" id="id_order_by">
+                        
+                            <option value="asc_create">Date de création croissante</option>
+                        
+                            <option value="desc_create">Date de création décroissante</option>
+                        
+                            <option value="asc_response">Date de traitement croissante</option>
+                        
+                            <option value="desc_response">Date de traitement décroissante</option>
+                        
+                    </select>
+                
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+
+        <div class="reuse-filter-underline"></div>
+        
+        <div class=" section-reuse w-100">
+        
+            <div class="filter-items mb-3">
+                <div class="d-flex align-items-center gap-3  flex-wrap">
+                    
+                    
+                    
+
+                </div>
+                
+            </div>
+
+            
+
+<div class="reuse-cards-container">
+    
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees/tableau-de-bord-des-indicateurs-annuels-des-dattes/" title=" Tableau de bord des indicateurs annuels des dattes " class="swiper-slide main-card visualisation">
+            <div class="reutilisation-card-main">
+                <div class="swiper__card">
+                    <img class=" lazyloaded" src="./Portail National des Données Ouvertes en Tunisie_files/tableau-de-bord-des-indicateurs-an.2e16d0ba.fill-477x477.png" alt="reutlisation" height="100%" width="100%">
+                    <div class="swiper-body">
+                        <div class="tags-list mb-2">
+                            
+                                
+                                    <div class="reutilisation-card-tag">
+                                        None
+                                    </div>
+                                    
+                                
+                            
+                        </div>
+                        <p class="swiper-description" dir="ltr">Tableau de bord des indicateurs annuels des dattes</p>
+
+                        <div class="d-flex justify-content-start align-itmes-center gap-2">
+                            <div class="d-flex  align-items-center gap-2 w-100">
+                                
+                                    <img alt="user" class=" lazyloaded" height="100%" width="100%" src="./Portail National des Données Ouvertes en Tunisie_files/default_profile.webp">
+                                
+                                <div class="d-flex justify-content-between align-items-center flex-wrap-reuse w-100 gap-2">
+                                    <div class="reutilisation-card-tag golden">onagri onagri</div>
+                                    <div class="text">Publiée le : 2/9/2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees/evolution-des-prix-fob-du-ble-dur-selon-lorigine/" title=" Evolution des prix FOB du blé dur selon l&#39;origine " class="swiper-slide main-card visualisation">
+            <div class="reutilisation-card-main">
+                <div class="swiper__card">
+                    <img class=" lazyloaded" src="./Portail National des Données Ouvertes en Tunisie_files/evolution-des-prix-fob-du-ble-dur-.2e16d0ba.fill-477x477.jpg" alt="reutlisation" height="100%" width="100%">
+                    <div class="swiper-body">
+                        <div class="tags-list mb-2">
+                            
+                                
+                                    <div class="reutilisation-card-tag">
+                                        None
+                                    </div>
+                                    
+                                
+                            
+                        </div>
+                        <p class="swiper-description" dir="ltr">Evolution des prix FOB du blé dur selon l'origine</p>
+
+                        <div class="d-flex justify-content-start align-itmes-center gap-2">
+                            <div class="d-flex  align-items-center gap-2 w-100">
+                                
+                                    <img alt="user" class=" lazyloaded" height="100%" width="100%" src="./Portail National des Données Ouvertes en Tunisie_files/default_profile.webp">
+                                
+                                <div class="d-flex justify-content-between align-items-center flex-wrap-reuse w-100 gap-2">
+                                    <div class="reutilisation-card-tag golden">onagri onagri</div>
+                                    <div class="text">Publiée le : 1/9/2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees/indicateurs-de-performance-de-la-filiere-agrumicole/" title=" Indicateurs de performance de la filière agrumicole " class="swiper-slide main-card visualisation">
+            <div class="reutilisation-card-main">
+                <div class="swiper__card">
+                    <img class=" lazyloaded" src="./Portail National des Données Ouvertes en Tunisie_files/indicateurs-de-performance-de-la-f.2e16d0ba.fill-477x477.jpg" alt="reutlisation" height="100%" width="100%">
+                    <div class="swiper-body">
+                        <div class="tags-list mb-2">
+                            
+                                
+                                    <div class="reutilisation-card-tag">
+                                        None
+                                    </div>
+                                    
+                                
+                            
+                        </div>
+                        <p class="swiper-description" dir="ltr">Indicateurs de performance de la filière agrumicole</p>
+
+                        <div class="d-flex justify-content-start align-itmes-center gap-2">
+                            <div class="d-flex  align-items-center gap-2 w-100">
+                                
+                                    <img alt="user" class=" lazyloaded" height="100%" width="100%" src="./Portail National des Données Ouvertes en Tunisie_files/default_profile.webp">
+                                
+                                <div class="d-flex justify-content-between align-items-center flex-wrap-reuse w-100 gap-2">
+                                    <div class="reutilisation-card-tag golden">admin admin</div>
+                                    <div class="text">Publiée le : 15/8/2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees/la-d%C3%A9mocratisation-de-lia-chez-les-%C3%A9tudiants-tunisiens-%C3%A9tat-des-lieux-et-perspectives/" title=" La Démocratisation de l&#39;IA chez les Étudiants Tunisiens : État des Lieux et Perspectives " class="swiper-slide main-card visualisation">
+            <div class="reutilisation-card-main">
+                <div class="swiper__card">
+                    <img class=" lazyloaded" src="./Portail National des Données Ouvertes en Tunisie_files/tunisie-etudiant-ia.2e16d0ba.fill-477x477.png" alt="reutlisation" height="100%" width="100%">
+                    <div class="swiper-body">
+                        <div class="tags-list mb-2">
+                            
+                                
+                                    <div class="reutilisation-card-tag">
+                                        Papier de recherche
+                                    </div>
+                                    
+                                
+                            
+                        </div>
+                        <p class="swiper-description" dir="ltr">La Démocratisation de l'IA chez les Étudiants Tunisiens : État des Lieux et Perspectives</p>
+
+                        <div class="d-flex justify-content-start align-itmes-center gap-2">
+                            <div class="d-flex  align-items-center gap-2 w-100">
+                                
+                                    <img alt="user" class=" lazyloaded" height="100%" width="100%" src="./Portail National des Données Ouvertes en Tunisie_files/default_profile.webp">
+                                
+                                <div class="d-flex justify-content-between align-items-center flex-wrap-reuse w-100 gap-2">
+                                    <div class="reutilisation-card-tag golden">Vume AI </div>
+                                    <div class="text">Publiée le : 3/5/2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees/dashboard-de-lenseignement-sup%C3%A9rieur-en-tunisie/" title=" Tableau de bord de l&#39;Enseignement Supérieur en Tunisie " class="swiper-slide main-card visualisation">
+            <div class="reutilisation-card-main">
+                <div class="swiper__card">
+                    <img class=" lazyloaded" src="./Portail National des Données Ouvertes en Tunisie_files/enseign_super_XwJp4yI.2e16d0ba.fill-477x477.png" alt="reutlisation" height="100%" width="100%">
+                    <div class="swiper-body">
+                        <div class="tags-list mb-2">
+                            
+                                
+                                    <div class="reutilisation-card-tag">
+                                        Visualisation des données
+                                    </div>
+                                    
+                                
+                            
+                        </div>
+                        <p class="swiper-description" dir="ltr">Tableau de bord de l'Enseignement Supérieur en Tunisie</p>
+
+                        <div class="d-flex justify-content-start align-itmes-center gap-2">
+                            <div class="d-flex  align-items-center gap-2 w-100">
+                                
+                                    <img alt="user" class=" lazyloaded" height="100%" width="100%" src="./Portail National des Données Ouvertes en Tunisie_files/default_profile.webp">
+                                
+                                <div class="d-flex justify-content-between align-items-center flex-wrap-reuse w-100 gap-2">
+                                    <div class="reutilisation-card-tag golden">admin admin</div>
+                                    <div class="text">Publiée le : 5/3/2024</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees/thnity/" title="" class="swiper-slide main-card visualisation">
+            <div class="reutilisation-card-main">
+                <div class="swiper__card">
+                    <img class=" lazyloaded" src="./Portail National des Données Ouvertes en Tunisie_files/thnity.2e16d0ba.fill-477x477.png" alt="reutlisation" height="100%" width="100%">
+                    <div class="swiper-body">
+                        <div class="tags-list mb-2">
+                            
+                                
+                                    <div class="reutilisation-card-tag">
+                                        Application mobile
+                                    </div>
+                                    
+                                
+                            
+                        </div>
+                        <p class="swiper-description" dir="ltr">Thnity</p>
+
+                        <div class="d-flex justify-content-start align-itmes-center gap-2">
+                            <div class="d-flex  align-items-center gap-2 w-100">
+                                
+                                    <img alt="user" class=" lazyloaded" height="100%" width="100%" src="./Portail National des Données Ouvertes en Tunisie_files/default_profile.webp">
+                                
+                                <div class="d-flex justify-content-between align-items-center flex-wrap-reuse w-100 gap-2">
+                                    <div class="reutilisation-card-tag golden">Thnity MaaS </div>
+                                    <div class="text">Publiée le : 14/12/2023</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees/arkam-%D8%A3%D8%B1%D9%82%D8%A7%D9%85/" title="" class="swiper-slide main-card visualisation">
+            <div class="reutilisation-card-main">
+                <div class="swiper__card">
+                    <img class=" lazyloaded" src="./Portail National des Données Ouvertes en Tunisie_files/fb-cover.2e16d0ba.fill-477x477.jpg" alt="reutlisation" height="100%" width="100%">
+                    <div class="swiper-body">
+                        <div class="tags-list mb-2">
+                            
+                                
+                                    <div class="reutilisation-card-tag">
+                                        Application Web
+                                    </div>
+                                    
+                                
+                            
+                        </div>
+                        <p class="swiper-description" dir="ltr">Arkam - أرقام</p>
+
+                        <div class="d-flex justify-content-start align-itmes-center gap-2">
+                            <div class="d-flex  align-items-center gap-2 w-100">
+                                
+                                    <img alt="user" class="lazyload" height="100%" width="100%" src="./Portail National des Données Ouvertes en Tunisie_files/default_profile.webp">
+                                
+                                <div class="d-flex justify-content-between align-items-center flex-wrap-reuse w-100 gap-2">
+                                    <div class="reutilisation-card-tag golden">Idaraty </div>
+                                    <div class="text">Publiée le : 14/12/2023</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees/pluviom%C3%A9trie-journali%C3%A8re-en-tunisie/" title="" class="swiper-slide main-card visualisation">
+            <div class="reutilisation-card-main">
+                <div class="swiper__card">
+                    <img class=" lazyloaded" src="./Portail National des Données Ouvertes en Tunisie_files/pluviometrie_Tunisie1_NnKW5nB.2e16d0ba.fill-477x477.png" alt="reutlisation" height="100%" width="100%">
+                    <div class="swiper-body">
+                        <div class="tags-list mb-2">
+                            
+                                
+                                    <div class="reutilisation-card-tag">
+                                        Visualisation des données
+                                    </div>
+                                    
+                                
+                            
+                        </div>
+                        <p class="swiper-description" dir="ltr">Pluviométrie journalière en Tunisie</p>
+
+                        <div class="d-flex justify-content-start align-itmes-center gap-2">
+                            <div class="d-flex  align-items-center gap-2 w-100">
+                                
+                                    <img alt="user" class="lazyload" height="100%" width="100%" src="./Portail National des Données Ouvertes en Tunisie_files/default_profile.webp">
+                                
+                                <div class="d-flex justify-content-between align-items-center flex-wrap-reuse w-100 gap-2">
+                                    <div class="reutilisation-card-tag golden">onagri onagri</div>
+                                    <div class="text">Publiée le : 22/9/2023</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees/wassalni/" title="" class="swiper-slide main-card visualisation">
+            <div class="reutilisation-card-main">
+                <div class="swiper__card">
+                    <img class="lazyload" src="./Portail National des Données Ouvertes en Tunisie_files/application_wassalni_-_Copie.de4ade99.fill-477x477.png" alt="reutlisation" height="100%" width="100%">
+                    <div class="swiper-body">
+                        <div class="tags-list mb-2">
+                            
+                                
+                                    <div class="reutilisation-card-tag">
+                                        Application mobile
+                                    </div>
+                                    
+                                
+                            
+                        </div>
+                        <p class="swiper-description" dir="ltr">Wassalni</p>
+
+                        <div class="d-flex justify-content-start align-itmes-center gap-2">
+                            <div class="d-flex  align-items-center gap-2 w-100">
+                                
+                                    <img alt="user" class="lazyload" height="100%" width="100%" src="./Portail National des Données Ouvertes en Tunisie_files/default_profile.webp">
+                                
+                                <div class="d-flex justify-content-between align-items-center flex-wrap-reuse w-100 gap-2">
+                                    <div class="reutilisation-card-tag golden">admin admin</div>
+                                    <div class="text">Publiée le : 2/3/2023</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://data.gov.tn/fr/reutilisations-de-donnees/situation-journali%C3%A8re-des-barrages-en-tunisie/" title="" class="swiper-slide main-card visualisation">
+            <div class="reutilisation-card-main">
+                <div class="swiper__card">
+                    <img class="lazyload" src="./Portail National des Données Ouvertes en Tunisie_files/barrages_CKVELbT.2e16d0ba.fill-477x477.png" alt="reutlisation" height="100%" width="100%">
+                    <div class="swiper-body">
+                        <div class="tags-list mb-2">
+                            
+                                
+                                    <div class="reutilisation-card-tag">
+                                        Visualisation des données
+                                    </div>
+                                    
+                                
+                            
+                        </div>
+                        <p class="swiper-description" dir="ltr">Situation journalière des barrages en Tunisie</p>
+
+                        <div class="d-flex justify-content-start align-itmes-center gap-2">
+                            <div class="d-flex  align-items-center gap-2 w-100">
+                                
+                                    <img alt="user" class="lazyload" height="100%" width="100%" src="./Portail National des Données Ouvertes en Tunisie_files/default_profile.webp">
+                                
+                                <div class="d-flex justify-content-between align-items-center flex-wrap-reuse w-100 gap-2">
+                                    <div class="reutilisation-card-tag golden">admin admin</div>
+                                    <div class="text">Publiée le : 2/3/2023</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    
+</div>
+
+            
+            <div class="d-flex justify-content-center w-100 mt-5">
+                
+                        
+
+
+
+ 
+                
+            </div>
+        </div>
+    </div>
+
+            </div>
+          </div>
+        </div>
+      
+      
+      
+
+
+
+
+
+
+<script type="text/javascript">
+    let baseURL = 'https://data.gov.tn'
+    let jsSubscribeURL = baseURL + '/fr/contact/abonnement-newsletter/'
+    let jsFeedbackURL = baseURL + '/fr/contact/postfeedback/' 
+    let jsCSRF = 'l7JmqBSHqWA7uVVrW3Da5TTV7PEWRcJKWpNITQqKOBJuPHq8jITnKaRGONe8NdVy'
+</script>
+
+
+
+<!-- footer -->
+<footer class="footer-main mt-5">
+    <div class="d-flex justify-content-center align-items-start footer-container w-100 gap-5">
+    <div class="box-wrapper">
+      
+
+
+
+
+
+
+<div class="d-flex flex-column justify-content-start align-items-center gap-4">
+        <h2 class="footer-title">Liens Rapides</h2>
+        <div class="footer-links-cards w-100 mb-2">
+          
+            
+              <div class="d-flex justify-content-start align-items-center gap-3">
+                <img alt="plans-actions" class="lazyload" height="30" src="./Portail National des Données Ouvertes en Tunisie_files/plans-actions.2e16d0ba.fill-30x30.png" width="30">
+                <a href="https://data.gov.tn/fr/documentation-open-data/plan-daction-national-des-donn%C3%A9es-ouvertes/" class="footer-links">
+                  Plan d'action national Open Data
+                </a>
+               </div>
+            
+              <div class="d-flex justify-content-start align-items-center gap-3">
+                <img alt="datainventory" class="lazyload" height="28" src="./Portail National des Données Ouvertes en Tunisie_files/datainventory.2e16d0ba.fill-30x30.png" width="28">
+                <a href="https://data.gov.tn/fr/documentation-open-data/inventaire-des-donn%C3%A9es-publiques/" class="footer-links">
+                  Inventaire des données publiques
+                </a>
+               </div>
+            
+              <div class="d-flex justify-content-start align-items-center gap-3">
+                <img alt="decret-open-data" class="lazyload" height="30" src="./Portail National des Données Ouvertes en Tunisie_files/Icn_stra.2e16d0ba.fill-30x30.png" width="30">
+                <a href="https://data.gov.tn/fr/documentation-open-data/d%C3%A9cret-gouvernemental-open-data/" class="footer-links">
+                  Décret Gouvernemental Open Data
+                </a>
+               </div>
+            
+              <div class="d-flex justify-content-start align-items-center gap-3">
+                <img alt="icon-activites" class="lazyload" height="30" src="./Portail National des Données Ouvertes en Tunisie_files/icon-activites.2e16d0ba.fill-30x30.png" width="30">
+                <a href="https://data.gov.tn/fr/documentation-open-data/plans-dactivit%C3%A9s-sectoriels-open-data/" class="footer-links">
+                  Plans d’activités sectoriels Open Data
+                </a>
+               </div>
+            
+              <div class="d-flex justify-content-start align-items-center gap-3">
+                <img alt="guide-open-data" class="lazyload" height="30" src="./Portail National des Données Ouvertes en Tunisie_files/Impact.2e16d0ba.fill-30x30.png" width="30">
+                <a href="https://data.gov.tn/fr/documentation-open-data/guide-de-louverture-des-donn%C3%A9es-publiques-en-tunisie/" class="footer-links">
+                  Guide Open Data
+                </a>
+               </div>
+            
+              <div class="d-flex justify-content-start align-items-center gap-3">
+                <img alt="datarequest" class="lazyload" height="27" src="./Portail National des Données Ouvertes en Tunisie_files/datarequest.2e16d0ba.fill-30x30.png" width="28">
+                <a href="https://data.gov.tn/fr/demandes-de-donnees" class="footer-links">
+                  Demandes d’ouverture des données
+                </a>
+               </div>
+            
+          
+        </div>
+
+        <div class="d-flex justify-content-start align-items-center w-100 flex-wrap w-100 mt-4">
+          
+                
+                  <a href="https://data.gov.tn/fr/licences-de-r%C3%A9utilisation-des-donn%C3%A9es-publiques-ouvertes/" class="footer-pol-link">Licences</a>
+                
+                  <a href="https://data.gov.tn/fr/conditions-g%C3%A9n%C3%A9rales-dutilisation/" class="footer-pol-link">Conditions générales d’utilisation</a>
+                
+                  <a href="https://data.gov.tn/fr/" class="footer-pol-link">Politique de confidentialité</a>
+                
+          
+        </div>
+   
+        <div class="d-flex justify-content-start align-items-center w-100 flex-wrap w-100">
+            
+                
+                  <a href="https://data.gov.tn/fr/qui-sommes-nous/" class="footer-pol-link footer-link-color">Qui sommes-nous&nbsp;?</a>
+                
+                  <a href="https://data.gov.tn/fr/liens-utiles/" class="footer-pol-link footer-link-color">Liens Utiles</a>
+                
+                  <a href="https://data.gov.tn/fr/" class="footer-pol-link footer-link-color">Plan du site</a>
+                
+                  <a href="https://data.gov.tn/fr/contact/contact-us/" class="footer-pol-link footer-link-color">Contact</a>
+                
+            
+        </div>
+       </div>
+   
+       <div class="d-flex flex-column justify-content-start align-items-center gap-4">
+        <h2 class="footer-title w-100">Newsletter</h2>
+        <div class="d-flex justify-content-center align-items-center gap-2 mb-2 ">
+            <input type="text" placeholder="Votre e-mail" class="footer-input emailinput form-control" name="email_newsletter" id="email_newsletter">
+            <button type="button" id="news-letters-button" class="footer-button" aria-label="footer-button" data-bs-toggle="modal" href="#newsletterModal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22.847" height="20.943" viewBox="0 0 22.847 20.943">
+                    <path id="Path_2063" data-name="Path 2063" d="M1345.544,4088.935h-13.328a4.765,4.765,0,0,0-4.759,4.76v11.424a4.764,4.764,0,0,0,4.759,4.759h13.328a4.764,4.764,0,0,0,4.76-4.759V4093.7A4.765,4.765,0,0,0,1345.544,4088.935Zm-13.328,1.9h13.328a2.855,2.855,0,0,1,2.647,1.8l-7.29,7.291a2.862,2.862,0,0,1-4.041,0l-7.29-7.291A2.855,2.855,0,0,1,1332.216,4090.839Zm13.328,17.136h-13.328a2.856,2.856,0,0,1-2.855-2.856v-10l6.153,6.149a4.767,4.767,0,0,0,6.733,0l6.153-6.149v10A2.856,2.856,0,0,1,1345.544,4107.975Z" transform="translate(-1327.457 -4088.935)" fill="#fff"></path>
+                </svg>
+            </button>
+        </div>
+        
+
+        <h2 class="footer-title w-100">Propulsé par</h2>
+
+        <div class="w-100 d-flex flex-column gap-3">
+
+            
+                
+                    <a href="https://ckan.org/" title="Propulsé par CKAN"><img src="./Portail National des Données Ouvertes en Tunisie_files/logo-ckan.2e16d0ba.fill-187x74.png" alt="Ckan logo" class="ckan-logo lazyload pointer" height="100%" width="100%"></a>
+                
+                    <a href="https://wagtail.org/" title="Propulsé par Wagtail"><img src="./Portail National des Données Ouvertes en Tunisie_files/logo-wagtail.2e16d0ba.fill-187x74.png" alt="Ckan logo" class="ckan-logo lazyload pointer" height="100%" width="100%"></a>
+                
+            
+        </div>
+       </div>
+
+       
+       
+       <div class="d-flex flex-column justify-content-start align-items-center gap-4">
+        <h2 class="footer-title w-100">Vidéos</h2>
+
+        
+            
+                <a href="https://data.gov.tn/fr/reutilisations-de-donnees/None" title="Vidéos"><img src="./Portail National des Données Ouvertes en Tunisie_files/video.2e16d0ba.fill-363x205.png" alt="Video" class="lazyload" height="100" width="190"></a>
+            
+        
+            
+        
+
+        <h2 class="footer-title w-100 mt-4">Nous suivre</h2>
+        <div class="d-flex justify-content-start align-items-center gap-2 w-100">
+
+            
+                
+                    <a href="https://data.gov.tn/fr/reutilisations-de-donnees/None" title="Nous Suivre sur Facebook">
+                        <img src="./Portail National des Données Ouvertes en Tunisie_files/facebook.2e16d0ba.fill-40x40.png" alt="avatar" width="40" height="40" class=" rounded-circle">
+                    </a>
+                
+                    <a href="https://data.gov.tn/fr/reutilisations-de-donnees/None" title="Nous Suivre sur Youtube">
+                        <img src="./Portail National des Données Ouvertes en Tunisie_files/youtube.2e16d0ba.fill-40x40.png" alt="avatar" width="40" height="40" class=" rounded-circle">
+                    </a>
+                
+            
+            
+        </div>
+       </div>
+       
+       
+       
+       <div class="d-flex flex-column justify-content-start align-items-center gap-4 mt-5">
+        
+            
+                <a href="https://www.facebook.com/UAE.Tunisie/?locale=fr_FR" title="Unité de l&#39;administration électronique" class="d-flex flex-column  justify-content-start flex-wrap">
+                    <img src="./Portail National des Données Ouvertes en Tunisie_files/uae-egovUnit.2e16d0ba.fill-184x71.png" alt="Unité de l&#39;administration électronique" class="mb-0 p-2 lazyload bg-white" height="90px" width="200px">
+                </a>
+            
+        
+
+        
+        <div class="d-flex flex-column  justify-content-start gap-3">
+            
+                
+                    <span class="footer-text">
+                        
+                            Présidence du Gouvernement - Unité de l'administration électronique
+                        
+                    </span>
+                    
+                
+                    <span class="footer-text">
+                        
+                            1 boulevard Mohamed Béji Caïd Essebsi, Centre Urbain Nord, 1080 Tunis
+                        
+                    </span>
+                    
+                
+                    <span class="footer-text">
+                        
+                            Email : opendata@tunisia.gov.tn
+                        
+                    </span>
+                    
+                
+            
+            
+        </div>
+        
+      </div>
+    
+    </div>
+    </div>
+
+   </footer>
+<!-- footer -->
+
+
+<!-- feedback -->
+<section id="feedback-section" style="display: none;">
+    <div class="feedback-position">
+        <div class="btn-feedback" id="btn-feedback">
+
+            <div class="d-flex align-items-center w-100 gap-1">
+
+                <img src="./Portail National des Données Ouvertes en Tunisie_files/icons-feedback.png" width="20px" height="20px">
+                <p>FeedBack</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="feedback-container d-none animation-fade-opacity " id="feedback">
+        <div class="position-relative w-100 h-100">
+            <div class="close-feedback" id="close-feedback">
+                <svg height="10px" id="Layer_1" style="enable-background:new 0 0 10 10;" version="1.1" viewBox="0 0 512 512" width="10px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"></path></svg>
+            </div>
+            <form class="feedback-form" id="feedback-form" method="POST">
+                <input type="hidden" name="csrfmiddlewaretoken" value="l7JmqBSHqWA7uVVrW3Da5TTV7PEWRcJKWpNITQqKOBJuPHq8jITnKaRGONe8NdVy">
+                
+                <!-- reCAPTCHA API -->
+                <input type="hidden" id="g-recaptcha-response-feedback" name="g-recaptcha-response-feedback"> 
+
+                <div id="feedback-section-1">
+                    <p class="feedback-title">Nous aimerions recevoir de vos nouvelles.</p>
+                    <p class="feedback-description">Dans l'ensemble, a-t-il été facile de réaliser ce que vous vouliez aujourd'hui ?</p>
+                    <div class="d-flex align-items-center justify-content-between pe-2" id="rates">
+                        <label><input type="radio" name="feedback-rate" value="1"><span>1</span></label>
+                        <label><input type="radio" name="feedback-rate" value="2"><span>2</span></label>
+                        <label><input type="radio" name="feedback-rate" value="3"><span>3</span></label>
+                        <label><input type="radio" name="feedback-rate" value="4"><span>4</span></label>
+                        <label><input type="radio" name="feedback-rate" value="5"><span>5</span></label>
+                        <label><input type="radio" name="feedback-rate" value="6"><span>6</span></label>
+                        <label><input type="radio" name="feedback-rate" value="7"><span>7</span></label>
+                        <label><input type="radio" name="feedback-rate" value="8"><span>8</span></label>
+                        <label><input type="radio" name="feedback-rate" value="9"><span>9</span></label>
+                        <label><input type="radio" name="feedback-rate" value="10"><span>10</span></label>
+                    </div>
+                    <div class="extrem-rate">
+                        <div class="rate-desc-left">Extrêmement difficile</div>
+                        <div class="rate-desc-rigth">Extrêmement facile</div>
+                    </div>
+                </div>
+                <div id="feedback-section-2" class="d-none">
+                    <p class="feedback-title">Veuillez nous en dire plus sur votre expérience</p>
+                    <textarea name="comment" id="feedback-comment" class="clone-input"></textarea>
+                    <div class="form-row my-3">
+                        <input type="checkbox" name="im-happy" value="happy" class="check-box">
+                        <label for="im-happy" class="feedback-description">Je suis heureux d'être contacté pour discuter des commentaires</label>
+                    </div>
+                    <div id="feedback-ident" style="display: none">
+                        
+                            <label for="name">Nom</label>
+                            <input type="text" name="name" id="feedback-name" class="clone-input">
+                            <div id="errorName" style="display:none;"></div>
+                            <label for="email" class="mt-3">E-mail</label>
+                            <input type="text" name="email" id="feedback-email" class="clone-input">
+                            <div id="errorEmail" style="display:none;"></div>
+                            
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between w-100 mt-4 ">
+                    <button id="btn-prev-feedback" type="button" disabled=""><i class="fa fa-chevron-left me-1" aria-hidden="true"></i>Précédent</button>
+                    <button id="btn-next-feedback" type="button" disabled="">Suivant<i class="fa fa-chevron-right ms-1" aria-hidden="true"></i></button>
+                    <button type="submit" class="bt-primary d-none" id="btn-submit-feedback">Soumettre</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Newsletter -->
+
+
+<div class="modal fade" id="newsletterModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content theme-content">
+        <div class="modal-header theme-header">
+            <h5 class="modal-title theme-title">Abonnement à la lettre d’information <i>data.gov.tn</i></h5>
+            <button type="button" class="close theme-title" data-bs-dismiss="modal" name="close" aria-label="Close">✖</button>
+        </div>
+        <form method="POST" id="modalNewsLetters" action="https://data.gov.tn/fr/contact/abonnement-newsletter/">
+            <div class="modal-body">
+                <div id="spinner-div" class="pt-5" style="display:none;">
+                    <div class="spinner-border text-primary" role="status"></div>
+                </div>
+
+                <div id="form_abonnement">
+                    
+                        <strong>Recevoir gratuitement la lettre d’information de data.gov.tn!</strong>
+                        <p>La lettre d’information inclut des publications et des informations relatives au programme d’ouverture des données, élaborées par l’Unité de l’Administration Electronique (éditeur de la plateforme nationale des données ouvertes).</p>
+                    
+
+                    <div class="d-flex justify-content-center align-items-center gap-2">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="l7JmqBSHqWA7uVVrW3Da5TTV7PEWRcJKWpNITQqKOBJuPHq8jITnKaRGONe8NdVy">
+                        <!-- reCAPTCHA input -->
+                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" value="0cAFcWeA5TZUWGBmYmGYZMn_gh91jUEYpTIIJV0LM939-YOB1BR9ojJDuFT2P1AGHqGd6MX6hw_ynOe2aN9EXSsBcyufRc3dCELSKICi40sr-4kArSxNsinHZXks8z_fB9onxZONkPRVYU79TMqili6B58CHvUxgMRHGqiif-3ZwYUQ8b7Yx5_-SsTfjitaBikT0IKTtJDBUu7EPq3WOhOMpe2H2T2gjN6OstpIGc5Q39e71YYscaKDIec0QbTXlziLvRUa0S-12cmKS-Gj50Vl-bQAGA8HkaZNb3i2hGw1ONtBWPkwVMCqjo1pQGZ0O0RsytECF-KLcAYcUV4hzq2RWk-yXAKMV47GlcOZKka9lBdtdGxwuJjIxnlUOH6sIwGUgUs8L05t_jWJ6sQA-kZ7yf_HrBXmUnyzHAZ20MtOtkaHkeOF1scZNlU0_HFVwj_rpHBRyW_ZsuxUqfpfnGzLdkKxgIx0o3fICRuueh35O9OUaiPMksS5nRjs24Pg8W7ZsJCB7VZ0FTdedsK-i2W24PHAWagWGhZzVT3sWstQHvvIbkRiIBmnnCvBD2VHWBoC8KdyFpn5zWDD_SI3CGwbu1S-fs57sXvoSH13u4M0fOLu4HAhvuPCpD0EOMNkOSwzu8YOoTbs9XkH8xuidwNKytyDguRXdFr1eCZFfPtnKurcKvv6aurZr00F3g6wxutUiBwAaLw57sFY-7l3FpwgtbwuY0m0j4aUcv6zGNcvEZ8d-Fwj02uup4"> 
+                        <input type="email" placeholder="Votre e-mail" class="footer-input emailinput form-control" name="email_abonnement_newsletter" id="id_email_abonnement_newsletter" required="">
+                    </div>
+                    <div id="errorContent" style="display:none;"></div>
+                    <div class="mt-4  fw-lighter fst-italic">
+                         En cliquant sur le boutton <strong>Confirmer</strong>, j'accepte de recevoir la lettre d'information  de la plateforme nationale des données ouvertes data.gov.tn par courrier électronique et déclare avoir pris connaissance <u><a href="https://data.gov.tn/fr/reutilisations-de-donnees/#" class=" text-decoration-none">des conditions générales d'utilisation</a></u>. 
+                    </div>
+                </div>
+                <div id="messageContent"></div>
+                <div class="mt-4 fw-lighter" id="resend" style="display:none;">
+                     Pour recevoir un nouvel email de confirmation, prière de cliquer sur ce lien :
+                    <u><a href="https://data.gov.tn/fr/reutilisations-de-donnees/#" class="text-decoration-none" id="id_url_send">Renvoyer un nouvel email de confirmation</a></u>
+                    
+                </div>
+                <hr>
+                <div class="mt-4 text-muted fw-lighter fst-italic">
+                    Pour se désabonner de la newsletter, prière de cliquer sur le lien suivant :  
+                    <u><a href="https://data.gov.tn/fr/contact/desabonnement-newsletter/" class="text-decoration-none">Se désabonner</a></u>.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-success" id="submit_form">Confirmer</button>
+                
+            </div>
+        </form>
+
+           
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- use in data_reuse data_request delete_user -->
+<!-- Toast delete Success-->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 999">
+    <div id="successToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" id="toast-success">
+            
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Toast delete Error-->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 999">
+    <div id="failToast" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" id="toast-failure">
+            Une erreur s'est produite, veuillez réessayer plus tard !
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<!-- use in data_reuse data_request delete_user -->
+
+
+
+
+      
+      
+        
+            <script src="./Portail National des Données Ouvertes en Tunisie_files/jquery-3.6.0.min.js.download" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+            
+        
+
+        
+
+        
+          <script src="./Portail National des Données Ouvertes en Tunisie_files/api.js.download"></script>
+
+          <script>
+          //global grecaptcha
+          grecaptcha.ready(function() {
+            grecaptcha.execute('6Lf5MSskAAAAALFOi9chgIDsqr8D7Slo5_Q7JZBN',).then(function(token) {
+              document.getElementById('g-recaptcha-response').value = token;
+            });
+          });
+
+          
+          </script>
+        
+
+        
+            <script src="./Portail National des Données Ouvertes en Tunisie_files/bootstrap.bundle.min.js.download" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        
+        
+        
+            <script src="./Portail National des Données Ouvertes en Tunisie_files/swiper-bundle.min.js.download" integrity="sha512-dPYTaB+Ip4gAl9vo6U0jSmI8v1AZKjPKH367mfo7pR5gLf1IKpjm3bIXIwm+MmYWEf0eiBEWSBqE+MdKUx0jfg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        
+
+
+        
+            <script defer="" src="./Portail National des Données Ouvertes en Tunisie_files/helpers.js.download"></script>
+            <script defer="" src="./Portail National des Données Ouvertes en Tunisie_files/lazyload.js.download"></script>
+            <script defer="" src="./Portail National des Données Ouvertes en Tunisie_files/swiper.js.download"></script>
+        
+
+        
+          <script defer="" src="./Portail National des Données Ouvertes en Tunisie_files/newsletter.js.download"></script>
+        
+        
+
+      
+      
+      
+       
+  
+
+<div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-n9yedkvdrws1" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="./Portail National des Données Ouvertes en Tunisie_files/anchor.html"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;" src="./Portail National des Données Ouvertes en Tunisie_files/saved_resource(1).html"></iframe></div><div class="volume-up-wrapper"><div class="volume-up-indicator">100 %</div></div></body></html>

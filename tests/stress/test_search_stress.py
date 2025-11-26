@@ -1,14 +1,19 @@
 import pytest
 import time
+from selenium.webdriver.common.by import By
 from pages.home_page import HomePage
 from pages.search_page import SearchPage
 from config import Config
 
 @pytest.mark.stress
-def test_concurrent_search_load(browser):
+def test_concurrent_search_load(auto_setup_monitoring, browser):
     """Test how the system handles repeated searches in a short time."""
     home_page = HomePage(browser)
     search_page = SearchPage(browser)
+
+    # Set up automatic monitoring
+    auto_setup_monitoring(home_page)
+    auto_setup_monitoring(search_page)
 
     home_page.go_to_dataset_search_fr()
 

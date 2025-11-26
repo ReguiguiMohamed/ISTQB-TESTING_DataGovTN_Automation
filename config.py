@@ -20,6 +20,11 @@ class Config:
     EXPLICIT_WAIT = int(os.getenv("EXPLICIT_WAIT", 15))
     PAGE_LOAD_TIMEOUT = int(os.getenv("PAGE_LOAD_TIMEOUT", 30))
 
+    # Rate limiting and delays for government websites
+    REQUEST_DELAY = float(os.getenv("REQUEST_DELAY", 2.0))  # 2 seconds between requests
+    MAX_RETRIES = int(os.getenv("MAX_RETRIES", 3))
+    RETRY_DELAY = float(os.getenv("RETRY_DELAY", 1.0))  # 1 second between retries
+
     # Performance Threshold
     PERFORMANCE_THRESHOLD = float(os.getenv("PERFORMANCE_THRESHOLD", 5.0))
 

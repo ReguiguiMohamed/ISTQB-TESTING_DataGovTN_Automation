@@ -1,0 +1,321 @@
+let dataSetForm = document.querySelectorAll(".datasets-form");
+let reutilisationForm = document.querySelectorAll(".reutilisations-form");
+
+let dataSetEvent = document.querySelectorAll(".op-dataset");
+let reutilisationEvent = document.querySelectorAll(".op-reutilisation");
+if (reutilisationEvent) {
+ reutilisationEvent.forEach((element) => {
+  element.addEventListener(
+   "click",
+   function () {
+    reutilisationForm.forEach((element) => {
+     element.classList.remove("d-none");
+     element.classList.add("animation-fade-in-bar");
+    });
+
+    dataSetForm.forEach((element) => {
+     element.classList.add("d-none");
+     element.classList.add("animation-fade-in-bar");
+    });
+   },
+   { passive: true }
+  );
+ });
+
+ dataSetEvent.forEach((element) => {
+  element.addEventListener(
+   "click",
+   function () {
+    reutilisationForm.forEach((element) => {
+     element.classList.add("d-none");
+    });
+
+    dataSetForm.forEach((element) => {
+     element.classList.remove("d-none");
+    });
+   },
+   { passive: true }
+  );
+ });
+}
+let cont = document.getElementById("root");
+
+let btn = document.getElementById("font1");
+
+let btn4 = document.getElementById("font4");
+let btn5 = document.getElementById("font5");
+let btn6 = document.getElementById("font6");
+let step = 2;
+
+btn.addEventListener(
+ "click",
+ () => {
+  let ancienValue = getComputedStyle(document.documentElement).getPropertyValue("--font-size-changer");
+  let val = parseInt(ancienValue.toString().replace("px", ""));
+  let newVal = val - 1;
+
+  document.documentElement.style.setProperty("--font-size-changer", `${newVal}px`);
+ },
+ { passive: true }
+);
+
+let btn2 = document.getElementById("font2");
+
+btn2.addEventListener(
+ "click",
+ () => {
+  document.documentElement.style.setProperty("--font-size-changer", `0px`);
+ },
+ { passive: true }
+);
+
+let btn3 = document.getElementById("font3");
+
+btn3.addEventListener(
+ "click",
+ () => {
+  let ancienValue = getComputedStyle(document.documentElement).getPropertyValue("--font-size-changer");
+  let val = parseInt(ancienValue.toString().replace("px", ""));
+  let newVal = val + 1;
+
+  document.documentElement.style.setProperty("--font-size-changer", `${newVal}px`);
+ },
+ { passive: true }
+);
+
+btn4.addEventListener(
+ "click",
+ () => {
+  cont.classList.add(`fs-14`);
+  cont.classList.remove(`fs-16`);
+  cont.classList.remove(`fs-18`);
+ },
+ { passive: true }
+);
+
+btn5.addEventListener(
+ "click",
+ () => {
+  cont.classList.add(`fs-16`);
+  cont.classList.remove(`fs-18`);
+  cont.classList.remove(`fs-14`);
+ },
+ { passive: true }
+);
+
+btn6.addEventListener(
+ "click",
+ () => {
+  cont.classList.add(`fs-18`);
+  cont.classList.remove(`fs-16`);
+  cont.classList.remove(`fs-14`);
+ },
+ { passive: true }
+);
+
+/* Language switcher */
+const lang = document.getElementById("case");
+const selectedLang = document.getElementById("selectedLanguage");
+lang.addEventListener("click", function (event) {
+ let selected = selectedLang.innerHTML;
+
+ selectedLang.innerHTML = lang.innerHTML;
+ lang.innerHTML = selected;
+});
+
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+ if (dropdown[i]) {
+  dropdown[i].addEventListener("click", function () {
+   this.classList.toggle("active");
+   var dropdownContent = this.nextElementSibling;
+   if (dropdownContent.style.display === "flex") {
+    dropdownContent.style.display = "none";
+   } else {
+    dropdownContent.style.display = "flex";
+   }
+  });
+ }
+}
+
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+ return new bootstrap.Popover(popoverTriggerEl);
+});
+
+let copyTextLink = document.getElementById("link-copy");
+let popoverlink = document.getElementById("popover1");
+if (popoverlink) {
+ popoverlink.addEventListener("click", function () {
+  copyTextLink.select();
+  copyTextLink.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(copyTextLink.value);
+  popoverlink["data-bs-content"] = "Copied!";
+ });
+
+ let copyDirectLink = document.getElementById("direct-link");
+ let popover2link = document.getElementById("popover2");
+
+ popover2link.addEventListener("click", function () {
+  copyDirectLink.select();
+  copyDirectLink.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(copyDirectLink.value);
+  popover2link["data-bs-content"] = "Copied!";
+ });
+}
+
+/***************** feedback*************** */
+const feedback = document.getElementById("feedback");
+const btnFeedback = document.getElementById("btn-feedback");
+const btnNextFeedback = document.getElementById("btn-next-feedback");
+const btnPrevFeedback = document.getElementById("btn-prev-feedback");
+const btnSubmitFeedback = document.getElementById("btn-submit-feedback");
+
+const feedbackSection1 = document.getElementById("feedback-section-1");
+const feedbackSection2 = document.getElementById("feedback-section-2");
+
+const btnCloseFeedback = document.getElementById("close-feedback");
+
+const feedbackComment = document.getElementById("feedback-comment");
+const feedbackName = document.getElementById("feedback-name");
+const feedbackEmail = document.getElementById("feedback-email");
+
+function closeFeedback() {
+ feedback.classList.add("d-none");
+ btnFeedback.classList.remove("d-none");
+
+ feedbackSection1.classList.remove("d-none");
+ feedbackSection2.classList.add("d-none");
+
+ btnPrevFeedback.setAttribute("disabled", true);
+ btnNextFeedback.classList.remove("d-none");
+ btnSubmitFeedback.classList.add("d-none");
+}
+
+if (btnFeedback) {
+ btnFeedback.addEventListener("click", () => {
+  feedback.classList.remove("d-none");
+  btnFeedback.classList.add("d-none");
+ });
+}
+if (btnCloseFeedback) {
+ btnCloseFeedback.addEventListener("click", () => {
+  closeFeedback();
+ });
+}
+
+if (btnNextFeedback) {
+ btnNextFeedback.addEventListener("click", (e) => {
+  e.preventDefault();
+  feedbackSection1.classList.add("d-none");
+  feedbackSection2.classList.remove("d-none");
+
+  btnPrevFeedback.removeAttribute("disabled");
+  btnNextFeedback.classList.add("d-none");
+  btnSubmitFeedback.classList.remove("d-none");
+ });
+}
+
+if (btnPrevFeedback) {
+ btnPrevFeedback.addEventListener("click", (e) => {
+  e.preventDefault();
+  feedbackSection1.classList.remove("d-none");
+  feedbackSection2.classList.add("d-none");
+
+  btnPrevFeedback.setAttribute("disabled", true);
+  btnSubmitFeedback.removeAttribute("disabled");
+
+  btnNextFeedback.classList.remove("d-none");
+  btnSubmitFeedback.classList.add("d-none");
+ });
+}
+
+if (btnSubmitFeedback && feedbackComment && feedbackName && feedbackEmail) {
+ btnSubmitFeedback.addEventListener("click", (e) => {
+  // e.preventDefault();
+  if (!feedbackComment.value) {
+   /*feedbackComment.classList.add("input-requried-box");
+   setTimeout(() => {
+    feedbackComment.classList.remove("input-requried-box");
+   }, 2000);*/
+  }
+  if (!feedbackName.value) {
+   feedbackName.classList.add("input-requried-box");
+   setTimeout(() => {
+    feedbackName.classList.remove("input-requried-box");
+   }, 2000);
+  }
+  if (!feedbackEmail.value || !isValidEmailAddress(feedbackEmail.value)) {
+   feedbackEmail.classList.add("input-requried-box");
+   setTimeout(() => {
+    feedbackEmail.classList.remove("input-requried-box");
+   }, 2000);
+  }
+
+  if (feedbackComment.value && feedbackName.value && feedbackEmail.value) {
+   //closeFeedback();
+  }
+ });
+}
+
+/************ cookies *********** */
+
+const btnAccepteAllCookies = document.getElementById("accept-all-cookies");
+const btnAcceptcustomizedCookies = document.getElementById("accept-customized-cookies");
+
+const sectionCookies = document.getElementById("cookies-container");
+const sectionCustomizedCookies = document.getElementById("customized-cookies");
+
+if (btnAccepteAllCookies) {
+ /*btnAccepteAllCookies.addEventListener("click", () => {
+  sectionCookies.classList.add("d-none");
+ });*/
+}
+
+if (btnAcceptcustomizedCookies) {
+ /*btnAcceptcustomizedCookies.addEventListener("click", () => {
+  sectionCookies.classList.add("d-none");
+ });*/
+}
+
+/*********************** cookies helpers **************/
+
+function setCookie(cname, cvalue, exhours) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exhours * 60 * 60 * 1000));
+  let expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires+ ";domain=data.gov.tn;path=/";
+}
+
+function deleteCookie(cname) {
+    const d = new Date();
+    d.setTime(d.getTime() + (24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=;" + expires;
+}
+
+function getCookie(cname) {
+    console.log("reading cookie : " + cname);
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  console.log(ca);
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+        let cookie_val = c.substring(name.length, c.length);
+       console.log(cookie_val);
+       if (cookie_val !== "") {
+           return cookie_val;
+       }
+    }
+  }
+  console.log("nothing found");
+  return "";
+}

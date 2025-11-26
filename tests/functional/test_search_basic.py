@@ -1,5 +1,6 @@
 import pytest
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.by import By
 
 from pages.home_page import HomePage
 from pages.search_page import SearchPage
@@ -87,3 +88,23 @@ def test_open_first_dataset_has_title_and_resources(browser):
 
     assert title.strip() != "", "Le titre du dataset est vide"
     assert resources_count > 0, "Le dataset ne contient aucune ressource"
+
+
+@pytest.mark.functional
+def test_search_with_auto_monitoring(auto_setup_monitoring, browser):
+    home = HomePage(browser)
+    search = SearchPage(browser)
+
+    # Automatically set up monitoring for both page objects
+    auto_setup_monitoring(home)
+    auto_setup_monitoring(search)
+
+    # 1. Go to the search page - all interactions are now automatically monitored
+    home.go_to_dataset_search_fr()
+
+    # 2. Search - all clicks, inputs, and loading states are monitored automatically
+    search.search("education")
+
+    # All UI state changes are automatically documented without additional code!
+    titles = search.get_results_titles()
+    assert len(titles) > 0

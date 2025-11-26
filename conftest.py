@@ -63,7 +63,9 @@ def browser(request):
         else:
             raise ValueError(f"Unsupported browser: {browser_name}")
 
-    driver.implicitly_wait(Config.IMPLICIT_WAIT)
+    # Removed implicit wait to rely solely on explicit waits in BasePage for better control
+    # This prevents mixed wait strategies that can cause unpredictable behavior
+    driver.implicitly_wait(0)  # Set to 0 to disable implicit waits completely
 
     yield driver
 
@@ -89,3 +91,38 @@ def pytest_runtest_makereport(item, call):
                 print(f"\nScreenshot saved: {file_name}")
             except Exception as e:
                 print(f"Failed to save screenshot: {e}")
+
+
+@pytest.fixture(scope="session")
+def ui_documentation():
+    from utils.ui_documentation import UIDocumentationSystem
+    doc_system = UIDocumentationSystem()
+    yield doc_system
+    # This runs after ALL tests finish, guaranteed
+    report_path = doc_system.generate_report("session_final")
+    print(f"\nUI Documentation Report generated: {report_path}")
+
+
+@pytest.fixture(scope="function")
+def ui_monitor(browser, ui_documentation):
+    """
+    Gives tests access to the monitor, which automatically records
+    to the global documentation system.
+    """
+    from utils.ui_monitor import UIStateMonitor
+    monitor = UIStateMonitor(browser)
+    # Link the monitor to the global doc system could be added here if needed
+    return monitor
+
+
+@pytest.fixture(scope="function")
+def auto_setup_monitoring(browser, ui_monitor, ui_documentation):
+    """
+    Automatically set up monitoring for all page objects without repeated code
+    """
+    def _setup_page_monitoring(page_object):
+        """Setup monitoring for a page object"""
+        if hasattr(page_object, 'setup_monitoring'):
+            page_object.setup_monitoring(ui_monitor=ui_monitor, doc_system=ui_documentation)
+        return page_object
+    return _setup_page_monitoring

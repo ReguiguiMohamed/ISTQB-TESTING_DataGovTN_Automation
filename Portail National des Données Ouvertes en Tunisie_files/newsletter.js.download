@@ -1,0 +1,120 @@
+$("#news-letters-button").click(function () {
+    var text = $("#email_newsletter").val();
+    $("#id_email_abonnement_newsletter").val(text);
+    $("#email_newsletter").val("");
+});
+
+$("#newsletterModal").on('hidden.bs.modal', function () {
+  $("#form_abonnement").show();
+  $("#submit_form").show();
+  $("#resend").hide();
+  $('#messageContent').html("");
+});
+
+function isValidEmailAddress(emailAddress) {
+    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+    return pattern.test(emailAddress);
+};
+
+
+  $("#modalNewsLetters").submit(function (e) {  
+    e.preventDefault();
+      
+    var email = $("#id_email_abonnement_newsletter").val();  
+    if(isValidEmailAddress(email)){
+      $('#errorContent').html("");
+      $('#errorContent').hide();
+      $("#form_abonnement").hide();
+      $("#submit_form").hide();
+      // serialize the data for sending the form data.
+      var serializedData = $(this).serialize();
+      //console.log(serializedData);
+      $('#spinner-div').show();//Load button clicked show spinner
+        $.ajax({
+            type: 'POST',
+            url: jsSubscribeURL, /*"/fr/abonnement-newsletter/",*/
+            data: serializedData,
+            success: function (response) {
+              //console.log(response);
+              if (response["resend_confirmation"] ) {
+                $('#resend').show();
+                //$("a[id='id_url_send']").attr("href","/fr/resend-confirmation-newsletter/"+email+"/");
+              }else{
+                $('#resend').hide();
+               
+              }
+              if (response["not_valid_email"] ) {
+                $('#errorContent').html("<span class='text-danger'>"+response["message"]+"</span>");
+                $('#errorContent').show();
+                $('#newsletterModal').modal('show');
+                $("#form_abonnement").show();
+                $("#submit_form").show();
+                $('#messageContent').html("");
+                $('#messageContent').hide();
+              }
+
+              if (response["status"] == 'success') {
+                $('#messageContent').html(response["message"])
+                // display the successfull.
+                $('#newsletterModal').modal('show');
+              }else if (response["status"] == 'exist-not-confirmed') {
+                $('#messageContent').append(response["message"])
+                // display the successfull.
+                $('#newsletterModal').modal('show');
+              }
+              else  {
+                $('#messageContent').html(response["message"]);
+                // display the successfull.
+                $('#newsletterModal').modal('show');
+              }
+            },error: function(response) {
+              //console.log(response);
+              $('#messageContent').html(response["message"]);
+              $('#newsletterModal').modal('show');
+            },
+            complete: function () {
+                $('#spinner-div').hide();//Request is complete so hide spinner
+            },
+        }).fail(function(data){
+          message ="<span class='text-danger'>Une erreur est survenue. Veuillez réessayer plus tard !</span>";
+          $('#messageContent').html(message);
+        });
+    }
+    else{
+        message ="<span class='text-danger'>Veuillez saisir une adresse email valide !</span>";
+        $('#errorContent').html(message);
+        $('#errorContent').show();
+    }    
+
+  });
+
+
+
+$("#id_url_send").click(function(e) {
+    e.preventDefault();
+    var serializedData = $(this).serialize();
+    var email = $("#id_email_abonnement_newsletter").val(); 
+    $.ajax({
+            type: 'get',
+            url: baseURL+"/fr/resend-confirmation-newsletter/"+email+"/",
+            data: serializedData,
+            success: function (response) {
+              if (response["status"] == 'success') {
+                $('#messageContent').html(response["message"])
+                // display the successfull.
+                $('#newsletterModal').modal('show');
+                $('#resend').hide();
+              }
+             
+            },error: function(response) {
+              //console.log(response);
+              $('#messageContent').html(response["message"]);
+              $('#newsletterModal').modal('show');
+            },
+        }).fail(function(data){
+          message ="<span class='text-danger'>Une erreur est survenue. Veuillez réessayer plus tard !</span>";
+          $('#messageContent').html(message);
+          $('#resend').hide();
+        });
+  }); 
+      

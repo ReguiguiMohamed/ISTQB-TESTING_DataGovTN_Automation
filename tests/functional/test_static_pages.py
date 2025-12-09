@@ -1,28 +1,33 @@
 """
-Test cases for Static pages (About, Terms, Licenses, etc.) with robust monitoring
+Test cases for various static pages like about, help, terms, etc.
+Tests that these pages load correctly and contain expected content.
 """
 import pytest
-from pages import StaticPage, HomePage
+from pages.static_page import StaticPage
+from pages.home_page import HomePage
 from config import Config
 
 
 @pytest.mark.functional
-def test_about_page_load_success(auto_setup_monitoring, browser):
-    """Test that About Us page loads successfully with robust monitoring."""
+def test_about_page_load(auto_setup_monitoring, browser):
+    """Test that the About page loads successfully."""
     static_page = StaticPage(browser)
-    
+
     # Set up monitoring
     auto_setup_monitoring(static_page)
-    
-    # Test safe navigation to About page
+
+    # Navigate to the about page using the method from StaticPage
     success = static_page.open_about_page()
-    
+
     if success:
-        # Verify page loaded by checking content
-        title = static_page.get_page_title()
-        content = static_page.get_page_content()
-        # Basic verification that we have meaningful content
-        assert title or len(content) > 50
+        title = static_page.get_title()
+        current_url = static_page.get_current_url()
+
+        # Verify we're on the about page
+        assert "qui-sommes-nous" in current_url.lower() or "about" in title.lower(), \
+            f"Expected to be on about page, but title: {title}, URL: {current_url}"
+
+        print(f"About page loaded successfully. Title: {title}")
     else:
         # If real page failed, verify fallback was used gracefully
         current_url = static_page.get_current_url()
@@ -30,152 +35,194 @@ def test_about_page_load_success(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
-def test_terms_page_load_success(auto_setup_monitoring, browser):
-    """Test that Terms page loads successfully with robust monitoring."""
+def test_terms_page_load(auto_setup_monitoring, browser):
+    """Test that the Terms of Use page loads successfully."""
     static_page = StaticPage(browser)
-    
+
     # Set up monitoring
     auto_setup_monitoring(static_page)
-    
-    # Test safe navigation to Terms page
+
+    # Navigate to the terms page using the method from StaticPage
     success = static_page.open_terms_page()
-    
+
     if success:
-        # Verify page loaded by checking for terms-related content
-        title = static_page.get_page_title()
-        content = static_page.get_page_content()
-        # Check for typical terms content
-        has_terms_content = ("condition" in content.lower() or 
-                           "terms" in content.lower() or 
-                           "utilisation" in content.lower())
-        assert has_terms_content or len(content) > 50
+        title = static_page.get_title()
+        current_url = static_page.get_current_url()
+
+        # Verify we're on the terms page
+        expected_terms_indicators = ["conditions", "utilisation", "terms", "conditions générales"]
+        has_terms_indicator = any(indicator in title.lower() for indicator in expected_terms_indicators) or \
+                            any(indicator in current_url.lower() for indicator in expected_terms_indicators)
+
+        assert has_terms_indicator, \
+            f"Expected to be on terms page, but title: {title}, URL: {current_url}"
+
+        print(f"Terms page loaded successfully. Title: {title}")
     else:
-        # If real page failed, verify fallback was used gracefully
         current_url = static_page.get_current_url()
         assert "about:blank" in current_url or Config.BASE_URL in current_url
 
 
 @pytest.mark.functional
-def test_licenses_page_load_success(auto_setup_monitoring, browser):
-    """Test that Licenses page loads successfully with robust monitoring."""
+def test_licenses_page_load(auto_setup_monitoring, browser):
+    """Test that the Licenses page loads successfully."""
     static_page = StaticPage(browser)
-    
+
     # Set up monitoring
     auto_setup_monitoring(static_page)
-    
-    # Test safe navigation to Licenses page
+
+    # Navigate to the licenses page
     success = static_page.open_licenses_page()
-    
+
     if success:
-        # Verify page loaded by checking for license-related content
-        title = static_page.get_page_title()
-        content = static_page.get_page_content()
-        # Check for typical license content
-        has_license_content = ("license" in content.lower() or 
-                             "licences" in content.lower() or 
-                             "réutilisation" in content.lower())
-        assert has_license_content or len(content) > 50
+        title = static_page.get_title()
+        current_url = static_page.get_current_url()
+
+        # Verify we're on the licenses page
+        expected_licenses_indicators = ["licences", "réutilisation", "donnees", "public"]
+        has_licenses_indicator = any(indicator in title.lower() for indicator in expected_licenses_indicators) or \
+                               any(indicator in current_url.lower() for indicator in expected_licenses_indicators)
+
+        assert has_licenses_indicator, \
+            f"Expected to be on licenses page, but title: {title}, URL: {current_url}"
+
+        print(f"Licenses page loaded successfully. Title: {title}")
     else:
-        # If real page failed, verify fallback was used gracefully
         current_url = static_page.get_current_url()
         assert "about:blank" in current_url or Config.BASE_URL in current_url
 
 
 @pytest.mark.functional
-def test_useful_links_page_load_success(auto_setup_monitoring, browser):
-    """Test that Useful Links page loads successfully with robust monitoring."""
+def test_useful_links_page_load(auto_setup_monitoring, browser):
+    """Test that the Useful Links page loads successfully."""
     static_page = StaticPage(browser)
-    
+
     # Set up monitoring
     auto_setup_monitoring(static_page)
-    
-    # Test safe navigation to Useful Links page
+
+    # Navigate to the useful links page
     success = static_page.open_useful_links_page()
-    
+
     if success:
-        # Verify page loaded by checking for content
-        content = static_page.get_page_content()
-        # Basic verification that we have content
-        assert len(content) > 50 or "lien" in content.lower()
+        title = static_page.get_title()
+        current_url = static_page.get_current_url()
+
+        # Verify we're on the useful links page
+        expected_useful_indicators = ["liens", "utiles", "links", "ressources"]
+        has_useful_indicator = any(indicator in title.lower() for indicator in expected_useful_indicators) or \
+                              any(indicator in current_url.lower() for indicator in expected_useful_indicators)
+
+        assert has_useful_indicator, \
+            f"Expected to be on useful links page, but title: {title}, URL: {current_url}"
+
+        print(f"Useful Links page loaded successfully. Title: {title}")
     else:
-        # If real page failed, verify fallback was used gracefully
         current_url = static_page.get_current_url()
         assert "about:blank" in current_url or Config.BASE_URL in current_url
 
 
 @pytest.mark.functional
-def test_data_requests_page_load_success(auto_setup_monitoring, browser):
-    """Test that Data Requests page loads successfully with robust monitoring."""
+def test_data_requests_page_load(auto_setup_monitoring, browser):
+    """Test that the Data Requests page loads successfully."""
     static_page = StaticPage(browser)
-    
+
     # Set up monitoring
     auto_setup_monitoring(static_page)
-    
-    # Test safe navigation to Data Requests page
+
+    # Navigate to the data requests page
     success = static_page.open_data_requests_page()
-    
+
     if success:
-        # Verify page loaded by checking for data request content
-        content = static_page.get_page_content()
-        # Check for typical data request content
-        has_data_request_content = ("demande" in content.lower() or 
-                                  "données" in content.lower() or 
-                                  "request" in content.lower())
-        assert has_data_request_content or len(content) > 50
+        title = static_page.get_title()
+        current_url = static_page.get_current_url()
+
+        # Verify we're on the data requests page
+        expected_data_indicators = ["demandes", "donnees", "data", "request"]
+        has_data_indicator = any(indicator in title.lower() for indicator in expected_data_indicators) or \
+                            any(indicator in current_url.lower() for indicator in expected_data_indicators)
+
+        assert has_data_indicator, \
+            f"Expected to be on data requests page, but title: {title}, URL: {current_url}"
+
+        print(f"Data Requests page loaded successfully. Title: {title}")
     else:
-        # If real page failed, verify fallback was used gracefully
         current_url = static_page.get_current_url()
         assert "about:blank" in current_url or Config.BASE_URL in current_url
 
 
 @pytest.mark.functional
-def test_static_page_content_search(auto_setup_monitoring, browser):
-    """Test content searching functionality on static pages."""
+def test_static_pages_content_verification(auto_setup_monitoring, browser):
+    """Verify that static pages have expected content structure."""
     static_page = StaticPage(browser)
-    
+
     # Set up monitoring
     auto_setup_monitoring(static_page)
-    
-    # Test any static page for content searching
+
+    # Test about page content structure
     success = static_page.open_about_page()
-    
+
     if success:
-        try:
-            # Test if we can find specific content
-            has_content = static_page.has_content("tunisie")
-            # This should not crash even if content isn't found
-        except:
-            # Acceptable for fragile sites
-            pass
+        # Get page content using the StaticPage method
+        page_content = static_page.get_page_content()
+        page_title = static_page.get_page_title()
+
+        # Verify that the page has content
+        assert len(page_content) > 50, "Static page should have meaningful content"
+        assert len(page_title) > 0, "Static page should have a title"
+
+        print(f"About page content verified - Title: {page_title[:50]}..., Content length: {len(page_content)}")
+
+        # Verify the content has actual text (not just HTML)
+        assert len(page_content.strip()) > 0, "Page content should not be empty"
+
+        # Navigate to terms page and verify content structure
+        static_page.open_terms_page()
+        terms_content = static_page.get_page_content()
+        terms_title = static_page.get_page_title()
+
+        print(f"Terms page content verified - Title: {terms_title[:50]}..., Content length: {len(terms_content)}")
+
+        assert len(terms_content) > 50, "Terms page should have meaningful content"
 
 
 @pytest.mark.functional
-def test_navigate_static_pages_from_home(auto_setup_monitoring, browser):
-    """Test navigation from home page to various static pages."""
-    home_page = HomePage(browser)
+def test_multiple_static_pages_load(auto_setup_monitoring, browser):
+    """Test loading multiple static pages in sequence."""
     static_page = StaticPage(browser)
-    
+
     # Set up monitoring
-    auto_setup_monitoring(home_page)
     auto_setup_monitoring(static_page)
-    
-    # Try to open home page
-    home_success = home_page.go_to_dataset_search_fr()
-    
-    if home_success:
-        # Test navigation to multiple static pages
-        
-        # About page
-        about_success = static_page.open_about_page()
-        if about_success:
-            about_title = static_page.get_page_title()
-        
-        # Terms page  
-        terms_success = static_page.open_terms_page()
-        if terms_success:
-            terms_content = static_page.get_page_content()
-        
-        # Data requests page
-        requests_success = static_page.open_data_requests_page()
-        if requests_success:
-            requests_content = static_page.get_page_content()
+
+    # Define the pages to test
+    pages_to_test = [
+        {"method": "open_about_page", "name": "About", "keywords": ["organisation", "donnees", "ouvertes"]},
+        {"method": "open_terms_page", "name": "Terms", "keywords": ["conditions", "utilisation", "donnees"]},
+        {"method": "open_licenses_page", "name": "Licenses", "keywords": ["licences", "reutilisation", "publiques"]},
+        {"method": "open_useful_links_page", "name": "Useful Links", "keywords": ["liens", "utiles", "ressources"]},
+    ]
+
+    tested_pages = 0
+
+    for page_info in pages_to_test:
+        # Call the appropriate method to open the page
+        open_method = getattr(static_page, page_info["method"])
+        success = open_method()
+
+        if success:
+            title = static_page.get_title()
+            current_url = static_page.get_current_url()
+            page_content = static_page.get_page_content()
+
+            # Verify page loaded correctly
+            print(f"{page_info['name']} page loaded: {title} - Content length: {len(page_content)}")
+
+            # Check if page content contains relevant keywords
+            has_relevant_content = any(keyword in page_content.lower() for keyword in page_info["keywords"])
+            print(f"{page_info['name']} page has relevant content: {has_relevant_content}")
+
+            tested_pages += 1
+        else:
+            print(f"Failed to load {page_info['name']} page, using fallback")
+
+    # Assert that at least one page loaded successfully
+    assert tested_pages > 0, "At least one static page should load successfully"

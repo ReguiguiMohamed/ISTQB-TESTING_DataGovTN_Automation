@@ -27,12 +27,16 @@ class BasePage:
         """Enforce rate limiting to avoid being blocked by government websites"""
         current_time = time.time()
         time_since_last_request = current_time - self._last_request_time
-        
+
         if time_since_last_request < Config.REQUEST_DELAY:
             sleep_time = Config.REQUEST_DELAY - time_since_last_request
             time.sleep(sleep_time)
-        
+
         self._last_request_time = time.time()
+
+        # Additional delay to reduce bot detection - only for sensitive operations
+        # Don't apply to every action to avoid excessive delays
+        # This is handled separately in sensitive methods like login
 
     def _retry_with_backoff(self, func, *args, **kwargs):
         """Execute a function with retry logic for handling connection issues"""

@@ -48,6 +48,7 @@ class AuthPage(BasePage):
     # For handling the post-login state
     USER_PROFILE_MENU = ("css selector", ".user-menu, .dropdown.user, .navbar-user, a.nav-link.fs-top.droped")
     MODIFY_EMAIL_LINK = (By.LINK_TEXT, "Modifier mon E-mail")
+    TASKS_LINK = (By.LINK_TEXT, "Mes tâches")
     EMAIL_PAGE_HEADER = (By.CSS_SELECTOR, "h1, h2") # To check the language
 
 

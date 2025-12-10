@@ -16,7 +16,7 @@ class ContributionsPage(BasePage):
     COMMENTAIRES_LINK = (By.CSS_SELECTOR, "a[href*='/fr/cms/contributions/mes-commentaires/']")
 
     # Elements on the sub-pages (e.g., after clicking "Propositions")
-    ADD_NEW_BUTTON = (By.CSS_SELECTOR, ".btn-success, .add-new, a[href*='/add/']")
+    ADD_NEW_BUTTON = (By.CSS_SELECTOR, "button.btn-primary")
 
     def __init__(self, driver, timeout: int = 10):
         super().__init__(driver, timeout)

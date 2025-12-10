@@ -1,4 +1,4 @@
-"""
+"""Tests for bugs on the "Mes contributions" page."""
 import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC

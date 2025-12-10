@@ -22,31 +22,31 @@ def browser(request):
     browser_name = request.config.getoption("--browser").lower()
     use_remote = request.config.getoption("--remote")
     headless = request.config.getoption("--headless") or Config.HEADLESS
-
+    
+    driver = None
     options = None
 
     if browser_name == "chrome":
         from selenium.webdriver.chrome.options import Options
         options = Options()
-        if headless: options.add_argument("--headless=new")
-
+        if headless:
+            options.add_argument("--headless=new")
     elif browser_name == "firefox":
         from selenium.webdriver.firefox.options import Options
         options = Options()
-        if headless: options.add_argument("-headless")
-
+        if headless:
+            options.add_argument("-headless")
     elif browser_name == "edge":
         from selenium.webdriver.edge.options import Options
         options = Options()
-        if headless: options.add_argument("--headless=new")
-
-    # Common options
+        if headless:
+            options.add_argument("--headless=new")
+    
     if options:
         options.add_argument(f"--window-size={Config.WINDOW_WIDTH},{Config.WINDOW_HEIGHT}")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
 
-    driver = None
     if use_remote:
         # Docker Execution
         driver = webdriver.Remote(command_executor=Config.REMOTE_URL, options=options)
@@ -57,18 +57,16 @@ def browser(request):
         elif browser_name == "firefox":
             driver = webdriver.Firefox(options=options)
         elif browser_name == "edge":
-            driver = webdriver.Edge(options=options)
+            from selenium.webdriver.edge.service import Service as EdgeService
+            from webdriver_manager.microsoft import EdgeChromiumDriverManager
+            driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()), options=options)
         elif browser_name == "safari":
             driver = webdriver.Safari()
         else:
             raise ValueError(f"Unsupported browser: {browser_name}")
 
-    # Removed implicit wait to rely solely on explicit waits in BasePage for better control
-    # This prevents mixed wait strategies that can cause unpredictable behavior
-    driver.implicitly_wait(0)  # Set to 0 to disable implicit waits completely
-
+    driver.implicitly_wait(0)
     yield driver
-
     driver.quit()
 
 @pytest.fixture(scope="function")

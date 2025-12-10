@@ -21,5 +21,4 @@ def test_api_link_is_broken(browser):
     
     expected_broken_text = '{"version": 3}'
     
-    assert expected_broken_text in content,
-        f"BUG CONFIRMED: API page shows incorrect content. Expected to find '{expected_broken_text}' but got '{content}'."
+    assert expected_broken_text in content, f"BUG CONFIRMED: API page shows incorrect content. Expected to find '{expected_broken_text}' but got '{content}'."

@@ -21,8 +21,15 @@ class DatasetCatalogPage(BasePage):
         self.open_url(self.url)
 
     def click_api_link(self):
-        """Clicks the API link in the footer description."""
-        self.click(self.API_LINK)
+        """
+        Scrolls the API link into view and clicks it using JavaScript to
+        avoid interception.
+        """
+        element = self.find(self.API_LINK)
+        # Scroll the element into the middle of the screen to ensure it's not obscured
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+        # Click using JavaScript
+        self.driver.execute_script("arguments[0].click();", element)
 
     def get_api_page_content(self):
         """Gets the content of the API page."""

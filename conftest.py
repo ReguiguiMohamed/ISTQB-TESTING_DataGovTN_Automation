@@ -4,6 +4,7 @@ from datetime import datetime
 from pathlib import Path
 from selenium import webdriver
 from config import Config
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default=Config.DEFAULT_BROWSER, help="Browser: chrome, firefox, edge")
@@ -53,7 +54,9 @@ def browser(request):
     else:
         # Local Execution
         if browser_name == "chrome":
-            driver = webdriver.Chrome(options=options)
+            from webdriver_manager.chrome import ChromeDriverManager
+            service = ChromeService(ChromeDriverManager().install())
+            driver = webdriver.Chrome(service=service, options=options)
         elif browser_name == "firefox":
             driver = webdriver.Firefox(options=options)
         elif browser_name == "edge":
@@ -70,6 +73,38 @@ def browser(request):
     yield driver
 
     driver.quit()
+
+@pytest.fixture(scope="function")
+def logged_in_browser(browser):
+    """
+    Handles the login process and yields a logged-in browser instance.
+    """
+    from pages.auth_page import AuthPage
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    import os
+
+    auth_page = AuthPage(browser)
+    auth_page.open_login_page()
+    
+    username = os.getenv("TEST_USERNAME")
+    password = os.getenv("TEST_PASSWORD")
+    if not username or not password:
+        pytest.skip("Real login credentials not configured (TEST_USERNAME/TEST_PASSWORD).")
+
+    auth_page.login(username, password)
+
+    print("\\n---> Please solve the CAPTCHA manually. The test will continue automatically after login...")
+    try:
+        WebDriverWait(browser, 60).until(
+            EC.url_contains("contributions")
+        )
+        print("Login successful, proceeding with test.")
+    except Exception as e:
+        pytest.fail(f"Login failed or redirect took too long after manual CAPTCHA solve. Error: {e}")
+
+    yield browser # Provide the logged-in browser to the test
+
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):

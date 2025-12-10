@@ -46,7 +46,10 @@ class AuthPage(BasePage):
     CMS_CONTRIBUTIONS_LINK = ("css selector", "a[href*='cms/contributions'], .cms-link, .contributions-link")
 
     # For handling the post-login state
-    USER_PROFILE_MENU = ("css selector", ".user-menu, .dropdown.user, .navbar-user")
+    USER_PROFILE_MENU = ("css selector", ".user-menu, .dropdown.user, .navbar-user, a.nav-link.fs-top.droped")
+    MODIFY_EMAIL_LINK = (By.LINK_TEXT, "Modifier mon E-mail")
+    EMAIL_PAGE_HEADER = (By.CSS_SELECTOR, "h1, h2") # To check the language
+
 
     def __init__(self, driver, timeout: int = 10):
         super().__init__(driver, timeout)
@@ -343,6 +346,12 @@ class AuthPage(BasePage):
         while time.time() - start_time < timeout:
             current_url = self.driver.current_url
             print(f"Current URL during wait: {current_url}")
+
+            # Check for explicit error messages on the page
+            error_text = self.get_error_message()
+            if error_text:
+                print(f"Login failed: Detected error message on page: {error_text}")
+                return False
 
             if "cms/contributions" in current_url or any(indicator in current_url for indicator in ['dashboard', 'account', 'profil']):
                 print(f"Login redirect successful. New URL: {current_url}")

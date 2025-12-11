@@ -6,6 +6,8 @@ from pages.auth_page import AuthPage
 from pages.dataset_catalog_page import DatasetCatalogPage
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
+@pytest.mark.usefixtures("jira_reporter")
 def test_modify_email_page_language_bug(logged_in_browser):
     """
     Tests Bug #2: The 'Modifier mon E-mail' page incorrectly switches to English.
@@ -29,6 +31,7 @@ def test_modify_email_page_language_bug(logged_in_browser):
         f"BUG CONFIRMED: Page switched to English. Expected '{expected_english_text}', but got '{header_text}'."
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_mes_taches_link_appears_and_is_broken(logged_in_browser):
     """
     Tests Bug #4: 'Mes tâches' link appears after visiting the API page and is broken.

@@ -8,6 +8,7 @@ from config import Config
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_faq_page_load_performance(auto_setup_monitoring, browser):
     """Test FAQ page load performance with robust error handling."""
     faq_page = FAQPage(browser)
@@ -31,6 +32,7 @@ def test_faq_page_load_performance(auto_setup_monitoring, browser):
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_contact_page_load_performance(auto_setup_monitoring, browser):
     """Test Contact page load performance with robust error handling."""
     contact_page = ContactPage(browser)
@@ -52,6 +54,7 @@ def test_contact_page_load_performance(auto_setup_monitoring, browser):
 
 
 @pytest.mark.performance 
+@pytest.mark.usefixtures("jira_reporter")
 def test_static_pages_load_performance(auto_setup_monitoring, browser):
     """Test multiple static pages load performance."""
     static_page = StaticPage(browser)
@@ -82,6 +85,7 @@ def test_static_pages_load_performance(auto_setup_monitoring, browser):
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_multiple_page_navigations_performance(auto_setup_monitoring, browser):
     """Test performance of multiple page navigations."""
     home_page = HomePage(browser)

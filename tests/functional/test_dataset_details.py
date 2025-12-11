@@ -8,6 +8,7 @@ from pages.dataset_page import DatasetPage
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_dataset_details_display_correctly(browser, base_url):
     """Test that dataset details are displayed correctly"""
     # Initialize page objects
@@ -40,6 +41,7 @@ def test_dataset_details_display_correctly(browser, base_url):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_dataset_resources_downloadable(browser, base_url):
     """Test that dataset resources can be downloaded"""
     # Initialize page objects
@@ -72,6 +74,7 @@ def test_dataset_resources_downloadable(browser, base_url):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_dataset_has_metadata(browser, base_url):
     """Test that dataset has metadata like organization, update date, license, etc."""
     # Initialize page objects
@@ -117,6 +120,7 @@ def test_dataset_has_metadata(browser, base_url):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_dataset_download_link_is_accessible(browser, base_url):
     """Test that dataset download link is accessible"""
     # Initialize page objects
@@ -155,6 +159,7 @@ def test_dataset_download_link_is_accessible(browser, base_url):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_breadcrumb_allows_return_to_search(browser, base_url):
     """Test that breadcrumb allows return to search results"""
     # Initialize page objects

@@ -9,6 +9,7 @@ from config import Config
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_about_page_load(auto_setup_monitoring, browser):
     """Test that the About page loads successfully."""
     static_page = StaticPage(browser)
@@ -35,6 +36,7 @@ def test_about_page_load(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_terms_page_load(auto_setup_monitoring, browser):
     """Test that the Terms of Use page loads successfully."""
     static_page = StaticPage(browser)
@@ -64,6 +66,7 @@ def test_terms_page_load(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_licenses_page_load(auto_setup_monitoring, browser):
     """Test that the Licenses page loads successfully."""
     static_page = StaticPage(browser)
@@ -93,6 +96,7 @@ def test_licenses_page_load(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_useful_links_page_load(auto_setup_monitoring, browser):
     """Test that the Useful Links page loads successfully."""
     static_page = StaticPage(browser)
@@ -122,6 +126,7 @@ def test_useful_links_page_load(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_data_requests_page_load(auto_setup_monitoring, browser):
     """Test that the Data Requests page loads successfully."""
     static_page = StaticPage(browser)
@@ -151,6 +156,7 @@ def test_data_requests_page_load(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_static_pages_content_verification(auto_setup_monitoring, browser):
     """Verify that static pages have expected content structure."""
     static_page = StaticPage(browser)
@@ -186,6 +192,7 @@ def test_static_pages_content_verification(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_multiple_static_pages_load(auto_setup_monitoring, browser):
     """Test loading multiple static pages in sequence."""
     static_page = StaticPage(browser)

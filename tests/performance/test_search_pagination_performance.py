@@ -4,6 +4,7 @@ from pages.search_page import SearchPage
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_pagination_performance(browser, base_url):
     """Test the performance of search result pagination"""
     # Initialize page objects
@@ -38,6 +39,7 @@ def test_search_pagination_performance(browser, base_url):
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_multiple_searches_performance(browser, base_url):
     """Test performance when executing multiple searches in sequence"""
     # Initialize page objects

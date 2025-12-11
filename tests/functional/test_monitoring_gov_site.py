@@ -6,6 +6,7 @@ import pytest
 from selenium.webdriver.common.by import By
 from pages.home_page import HomePage
 from pages.search_page import SearchPage
+@pytest.mark.usefixtures("jira_reporter")
 
 
 def test_monitoring_with_government_site(auto_setup_monitoring, browser):

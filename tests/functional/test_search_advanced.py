@@ -5,6 +5,7 @@ from pages.dataset_page import DatasetPage
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_exact_phrase_returns_expected_results(browser, base_url):
     """Test that searching for an exact phrase returns relevant results"""
     # Initialize page objects
@@ -27,6 +28,7 @@ def test_search_exact_phrase_returns_expected_results(browser, base_url):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_with_boolean_operators(browser, base_url):
     """Test that searching with boolean operators works (if supported)"""
     # Initialize page objects
@@ -49,6 +51,7 @@ def test_search_with_boolean_operators(browser, base_url):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_results_sorting_functionality(browser, base_url):
     """Test that search results can be sorted (if sorting is available)"""
     # Initialize page objects
@@ -100,6 +103,7 @@ def test_search_results_sorting_functionality(browser, base_url):
 
 @pytest.mark.functional
 @pytest.mark.xfail(reason="Autocomplete results container locator needs adjustment or results take too long to load.")
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_autocomplete_suggestions(browser, base_url):
     """Test that search autocomplete suggestions appear (if available)"""
     # Initialize page objects

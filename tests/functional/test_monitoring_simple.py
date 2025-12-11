@@ -4,6 +4,7 @@ Simple test to verify monitoring functionality works
 import pytest
 from selenium.webdriver.common.by import By
 from pages.home_page import HomePage
+@pytest.mark.usefixtures("jira_reporter")
 
 
 def test_monitoring_setup(auto_setup_monitoring, browser):

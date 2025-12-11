@@ -20,6 +20,7 @@ def _get_real_credentials_or_skip():
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_successful_login_with_credentials(auto_setup_monitoring, browser):
     """Test successful login with real credentials and reCAPTCHA handling."""
     auth_page = AuthPage(browser)
@@ -51,6 +52,8 @@ def test_successful_login_with_credentials(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
+@pytest.mark.usefixtures("jira_reporter")
 def test_logout_functionality(logged_in_browser):
     """
     Test logout functionality starting from a logged-in state.
@@ -78,6 +81,8 @@ def test_logout_functionality(logged_in_browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
+@pytest.mark.usefixtures("jira_reporter")
 def test_login_form_elements_accessibility(auto_setup_monitoring, browser):
     """Test that login form elements are accessible and can be filled."""
     auth_page = AuthPage(browser)
@@ -100,6 +105,8 @@ def test_login_form_elements_accessibility(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
+@pytest.mark.usefixtures("jira_reporter")
 def test_login_page_load_and_structure(auto_setup_monitoring, browser):
     """Test that login page loads and has expected structure."""
     auth_page = AuthPage(browser)

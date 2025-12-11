@@ -3,6 +3,7 @@ from pages.home_page import HomePage
 from pages.search_page import SearchPage
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_with_special_characters(browser):
     """Test searching with special characters."""
     home_page = HomePage(browser)
@@ -21,6 +22,7 @@ def test_search_with_special_characters(browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_navigate_to_nonexistent_page(browser):
     """Test 404 handling."""
     home_page = HomePage(browser)

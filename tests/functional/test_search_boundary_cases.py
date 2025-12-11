@@ -15,6 +15,7 @@ class TestSearchBoundaryCases:
         self.search_page = SearchPage(browser)
         self.home_page.go_to_dataset_search_fr()
 
+    @pytest.mark.usefixtures("jira_reporter")
     def test_search_with_minimum_length_string(self):
         """Single character search."""
         min_char = "a"
@@ -22,6 +23,7 @@ class TestSearchBoundaryCases:
         assert self.search_page.is_search_result_visible(), "Should handle single char input"
         print(f"Search with '{min_char}' executed successfully.")
 
+    @pytest.mark.usefixtures("jira_reporter")
     def test_search_with_long_string(self):
         """Very long string (255 chars)."""
         long_string = "a" * 255
@@ -30,6 +32,7 @@ class TestSearchBoundaryCases:
         assert self.search_page.is_search_result_visible(), "Should handle 255 chars without crash"
         print("Search with a 255-character string executed successfully.")
 
+    @pytest.mark.usefixtures("jira_reporter")
     def test_search_with_numeric_string(self):
         """Numeric input."""
         numeric = "1234567890"

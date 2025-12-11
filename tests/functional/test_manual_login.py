@@ -21,6 +21,7 @@ def _get_real_credentials_or_skip():
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_manual_login_with_recaptcha_solving(auto_setup_monitoring, browser):
     """Test login with manual reCAPTCHA solving capability."""
     auth_page = AuthPage(browser)
@@ -91,6 +92,7 @@ def test_manual_login_with_recaptcha_solving(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_manual_logout(auto_setup_monitoring, browser):
     """Test logout with manual capability."""
     auth_page = AuthPage(browser)

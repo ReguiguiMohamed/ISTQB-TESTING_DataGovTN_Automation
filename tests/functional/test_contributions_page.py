@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from pages.contributions_page import ContributionsPage
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_add_new_proposition_button_is_broken(logged_in_browser):
     """
     Tests Bug #1: The 'Faire une proposition' button on the reuses page is broken.
@@ -33,6 +34,8 @@ def test_add_new_proposition_button_is_broken(logged_in_browser):
         f"BUG CONFIRMED: Clicking the 'add new proposition' button should not do anything, but the URL changed."
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
+@pytest.mark.usefixtures("jira_reporter")
 def test_add_new_request_button_is_broken(logged_in_browser):
     """
     Tests Bug #1 variation: The 'Faire une demande' button is also broken.

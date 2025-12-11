@@ -7,6 +7,7 @@ from config import Config
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_faq_page_load_success(auto_setup_monitoring, browser):
     """Test that FAQ page loads successfully with robust monitoring."""
     faq_page = FAQPage(browser)
@@ -34,6 +35,7 @@ def test_faq_page_load_success(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_faq_search_functionality(auto_setup_monitoring, browser):
     """Test FAQ search functionality with robust error handling."""
     faq_page = FAQPage(browser)
@@ -56,6 +58,7 @@ def test_faq_search_functionality(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_faq_questions_and_answers_retrieval(auto_setup_monitoring, browser):
     """Test retrieving FAQ questions and answers with error handling."""
     faq_page = FAQPage(browser)
@@ -99,6 +102,7 @@ def test_faq_questions_and_answers_retrieval(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_navigate_to_faq_from_home(auto_setup_monitoring, browser):
     """Test navigation from home page to FAQ with monitoring."""
     home_page = HomePage(browser)
@@ -127,6 +131,7 @@ def test_navigate_to_faq_from_home(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_faq_page_elements_verification(auto_setup_monitoring, browser):
     """Comprehensive verification of FAQ page elements."""
     faq_page = FAQPage(browser)

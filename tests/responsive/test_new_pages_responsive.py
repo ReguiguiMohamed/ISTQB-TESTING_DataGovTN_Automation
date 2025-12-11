@@ -19,6 +19,7 @@ DESKTOP = (1366, 768)
     (*TABLET, "tablet"), 
     (*DESKTOP, "desktop")
 ])
+@pytest.mark.usefixtures("jira_reporter")
 def test_faq_page_responsive_layout(auto_setup_monitoring, browser, width, height, device_type):
     """Test FAQ page responsive layout across different devices."""
     faq_page = FAQPage(browser)
@@ -68,6 +69,7 @@ def test_faq_page_responsive_layout(auto_setup_monitoring, browser, width, heigh
     (*TABLET, "tablet"),
     (*DESKTOP, "desktop")
 ])
+@pytest.mark.usefixtures("jira_reporter")
 def test_contact_page_responsive_layout(auto_setup_monitoring, browser, width, height, device_type):
     """Test Contact page responsive layout across different devices."""
     contact_page = ContactPage(browser)
@@ -116,6 +118,7 @@ def test_contact_page_responsive_layout(auto_setup_monitoring, browser, width, h
     (*TABLET, "tablet"),
     (*DESKTOP, "desktop")
 ])
+@pytest.mark.usefixtures("jira_reporter")
 def test_static_page_responsive_layout(auto_setup_monitoring, browser, width, height, device_type):
     """Test static page responsive layout across different devices."""
     static_page = StaticPage(browser)
@@ -160,6 +163,7 @@ def test_static_page_responsive_layout(auto_setup_monitoring, browser, width, he
 
 
 @pytest.mark.responsive
+@pytest.mark.usefixtures("jira_reporter")
 def test_responsive_page_transitions(auto_setup_monitoring, browser):
     """Test responsive page transitions across different window sizes."""
     static_page = StaticPage(browser)

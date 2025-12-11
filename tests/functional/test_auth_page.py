@@ -7,6 +7,7 @@ from config import Config
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_login_page_load_success(auto_setup_monitoring, browser):
     """Test that Login page loads successfully with robust monitoring."""
     auth_page = AuthPage(browser)
@@ -30,6 +31,7 @@ def test_login_page_load_success(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_login_attempt_safe(auto_setup_monitoring, browser):
     """Test login attempt with safe error handling for fragile sites."""
     auth_page = AuthPage(browser)
@@ -55,6 +57,7 @@ def test_login_attempt_safe(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_navigate_to_login_from_home(auto_setup_monitoring, browser):
     """Test navigation from home page to Login with monitoring."""
     home_page = HomePage(browser)
@@ -78,6 +81,7 @@ def test_navigate_to_login_from_home(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_login_form_elements(auto_setup_monitoring, browser):
     """Test that login form elements can be accessed with error handling."""
     auth_page = AuthPage(browser)

@@ -10,6 +10,7 @@ import time
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_complete_login_logout_flow(auto_setup_monitoring, browser):
     """Test complete login -> verification -> logout flow with confirmation."""
     auth_page = AuthPage(browser)
@@ -92,6 +93,7 @@ def test_complete_login_logout_flow(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_login_with_credentials_verification(auto_setup_monitoring, browser):
     """Test login functionality and verify account-specific elements."""
     auth_page = AuthPage(browser)
@@ -122,6 +124,7 @@ def test_login_with_credentials_verification(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional 
+@pytest.mark.usefixtures("jira_reporter")
 def test_logout_confirmation_flow(auto_setup_monitoring, browser):
     """Test the logout process including the confirmation prompt."""
     auth_page = AuthPage(browser)
@@ -158,6 +161,7 @@ def test_logout_confirmation_flow(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_login_failure_with_invalid_credentials(auto_setup_monitoring, browser):
     """Test that login correctly handles invalid credentials."""
     auth_page = AuthPage(browser)

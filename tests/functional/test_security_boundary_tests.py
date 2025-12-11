@@ -17,6 +17,7 @@ def generate_random_string(length=10):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_contact_form_elements_only(auto_setup_monitoring, browser):
     """Test contact form elements without submitting (due to reCAPTCHA)."""
     contact_page = ContactPage(browser)
@@ -59,6 +60,7 @@ def test_contact_form_elements_only(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_contact_form_with_empty_values_check(auto_setup_monitoring, browser):
     """Test contact form field validation without submitting (due to reCAPTCHA)."""
     contact_page = ContactPage(browser)
@@ -84,6 +86,7 @@ def test_contact_form_with_empty_values_check(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_contact_form_with_special_characters_check(auto_setup_monitoring, browser):
     """Test contact form with special characters without submitting (due to reCAPTCHA)."""
     contact_page = ContactPage(browser)
@@ -115,6 +118,7 @@ def test_contact_form_with_special_characters_check(auto_setup_monitoring, brows
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_login_with_invalid_credentials(auto_setup_monitoring, browser):
     """Test login with completely invalid/random credentials."""
     auth_page = AuthPage(browser)
@@ -151,6 +155,7 @@ def test_login_with_invalid_credentials(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_login_with_empty_credentials(auto_setup_monitoring, browser):
     """Test login with empty username/password."""
     auth_page = AuthPage(browser)
@@ -183,6 +188,7 @@ def test_login_with_empty_credentials(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_login_with_sql_injection_attempts(auto_setup_monitoring, browser):
     """Test login with potential SQL injection attempts."""
     auth_page = AuthPage(browser)
@@ -233,6 +239,7 @@ def test_login_with_sql_injection_attempts(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_boundary_values_in_contact_form_check(auto_setup_monitoring, browser):
     """Test contact form with boundary values without submitting (due to reCAPTCHA)."""
     contact_page = ContactPage(browser)
@@ -273,6 +280,7 @@ def test_boundary_values_in_contact_form_check(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_xss_attempts_in_contact_form_check(auto_setup_monitoring, browser):
     """Test contact form with potential XSS attempts without submitting (due to reCAPTCHA)."""
     contact_page = ContactPage(browser)
@@ -311,6 +319,7 @@ def test_xss_attempts_in_contact_form_check(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_contact_form_structure_verification(auto_setup_monitoring, browser):
     """Verify the structure of the contact form without filling or submitting."""
     contact_page = ContactPage(browser)

@@ -5,6 +5,7 @@ import pytest
 from pages.dataset_catalog_page import DatasetCatalogPage
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_api_link_is_broken(browser):
     """
     Tests Bug #3: The API link on the dataset page leads to a non-functional page.

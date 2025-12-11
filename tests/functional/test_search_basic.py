@@ -8,6 +8,7 @@ from pages.dataset_page import DatasetPage
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_with_valid_keyword_returns_results(browser):
     home = HomePage(browser)
     search = SearchPage(browser)
@@ -26,6 +27,7 @@ def test_search_with_valid_keyword_returns_results(browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_results_persist_after_pagination(browser, base_url):
     """Test that search results persist after navigating to next page"""
     home_page = HomePage(browser, base_url)
@@ -65,6 +67,7 @@ def test_search_results_persist_after_pagination(browser, base_url):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_open_first_dataset_has_title_and_resources(browser):
     home = HomePage(browser)
     search = SearchPage(browser)
@@ -91,6 +94,7 @@ def test_open_first_dataset_has_title_and_resources(browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_with_auto_monitoring(auto_setup_monitoring, browser):
     home = HomePage(browser)
     search = SearchPage(browser)

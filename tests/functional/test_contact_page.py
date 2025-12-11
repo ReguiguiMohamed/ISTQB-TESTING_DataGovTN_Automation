@@ -7,6 +7,7 @@ from config import Config
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_contact_page_load_success(auto_setup_monitoring, browser):
     """Test that Contact page loads successfully with robust monitoring."""
     contact_page = ContactPage(browser)
@@ -34,6 +35,7 @@ def test_contact_page_load_success(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_contact_form_fields_interactions(auto_setup_monitoring, browser):
     """Test contact form fields with robust error handling and field verification."""
     contact_page = ContactPage(browser)
@@ -63,6 +65,7 @@ def test_contact_form_fields_interactions(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_navigate_to_contact_from_home(auto_setup_monitoring, browser):
     """Test navigation from home page to Contact with monitoring."""
     home_page = HomePage(browser)
@@ -91,6 +94,7 @@ def test_navigate_to_contact_from_home(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_contact_form_submission_robust(auto_setup_monitoring, browser):
     """Test contact form submission with comprehensive error handling and verification."""
     contact_page = ContactPage(browser)
@@ -134,6 +138,7 @@ def test_contact_form_submission_robust(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_contact_page_elements_verification(auto_setup_monitoring, browser):
     """Comprehensive verification of contact page elements."""
     contact_page = ContactPage(browser)

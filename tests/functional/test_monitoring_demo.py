@@ -3,6 +3,7 @@ Corrected test_ui_monitoring_demo with proper method calls and imports
 """
 import pytest
 from selenium.webdriver.common.by import By
+@pytest.mark.usefixtures("jira_reporter")
 
 def test_ui_monitoring_direct_usage(browser, ui_monitor):
     """

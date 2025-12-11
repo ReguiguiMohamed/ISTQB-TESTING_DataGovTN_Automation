@@ -5,15 +5,20 @@ import subprocess
 import sys
 import os
 from pathlib import Path
+import argparse
 
 def run_tests_and_create_jira_tickets():
     """Run pytest and automatically create Jira tickets for failures"""
     
-    print("Running tests and generating report...")
+    parser = argparse.ArgumentParser(description="Run tests and create Jira tickets for failures.")
+    parser.add_argument("test_path", nargs='?', default="tests/", help="Path to the test file or directory to run.")
+    args = parser.parse_args()
+
+    print(f"Running tests in: {args.test_path}")
     
     # Run pytest with HTML report
     result = subprocess.run([
-        sys.executable, "-m", "pytest", 
+        sys.executable, "-m", "pytest", args.test_path,
         "--html=reports/report.html", 
         "--self-contained-html",
         "-v"

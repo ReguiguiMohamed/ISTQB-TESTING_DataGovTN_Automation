@@ -9,6 +9,7 @@ from pages.dataset_page import DatasetPage
 
 
 @pytest.mark.performance  
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_performance_with_monitoring(auto_setup_monitoring, browser):
     home = HomePage(browser)
     search = SearchPage(browser)

@@ -7,6 +7,7 @@ from config import Config
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_response_time_under_threshold(browser):
     """
     Test that search returns results within a time threshold.
@@ -34,6 +35,7 @@ def test_search_response_time_under_threshold(browser):
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_performance_multiple_queries(browser):
     """
     Test search performance across multiple different queries.
@@ -99,6 +101,7 @@ def test_search_performance_multiple_queries(browser):
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_performance_no_results(browser):
     """
     Test performance when search returns no results (edge case).
@@ -132,6 +135,7 @@ def test_search_performance_no_results(browser):
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_performance_different_result_counts(browser):
     """
     Test performance with queries that return different numbers of results.
@@ -177,6 +181,7 @@ def test_search_performance_different_result_counts(browser):
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_consecutive_search_performance(browser):
     """
     Test performance when performing multiple searches in sequence.

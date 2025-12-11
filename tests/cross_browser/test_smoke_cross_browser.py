@@ -6,6 +6,7 @@ from config import Config
 
 @pytest.mark.cross_browser
 @pytest.mark.smoke
+@pytest.mark.usefixtures("jira_reporter")
 def test_homepage_dataset_search_smoke(browser):
     """
     Smoke test: verify that the French dataset search page loads correctly
@@ -30,6 +31,7 @@ def test_homepage_dataset_search_smoke(browser):
 
 @pytest.mark.cross_browser
 @pytest.mark.parametrize("search_keyword", ["data", "education"])
+@pytest.mark.usefixtures("jira_reporter")
 def test_cross_browser_basic_search_smoke(browser, search_keyword):
     """
     Smoke test: Basic search scenario across browsers.
@@ -51,6 +53,7 @@ def test_cross_browser_basic_search_smoke(browser, search_keyword):
 
 @pytest.mark.cross_browser
 @pytest.mark.parametrize("search_keyword", ["transport"])
+@pytest.mark.usefixtures("jira_reporter")
 def test_cross_browser_end_to_end_dataset_details(browser, search_keyword):
     """
     Smoke flow: Search -> Open Dataset -> Validate Details.

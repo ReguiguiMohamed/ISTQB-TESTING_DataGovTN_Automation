@@ -15,6 +15,7 @@ DESKTOP = (1366, 768)
     (*TABLET, "tablet"),
     (*DESKTOP, "desktop")
 ])
+@pytest.mark.usefixtures("jira_reporter")
 def test_homepage_responsive_layout(auto_setup_monitoring, browser, width, height, device_type):
     """
     Verifies that the layout adapts to different screen sizes.
@@ -80,6 +81,7 @@ def test_homepage_responsive_layout(auto_setup_monitoring, browser, width, heigh
     (*TABLET, "tablet"),
     (*DESKTOP, "desktop")
 ])
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_page_responsive_layout(auto_setup_monitoring, browser, width, height, device_type):
     """
     Verifies that the search page layout adapts to different screen sizes.
@@ -136,6 +138,7 @@ def test_search_page_responsive_layout(auto_setup_monitoring, browser, width, he
 
 
 @pytest.mark.responsive
+@pytest.mark.usefixtures("jira_reporter")
 def test_responsive_element_visibility_transitions(auto_setup_monitoring, browser):
     """
     Test responsive transitions by changing window sizes dynamically

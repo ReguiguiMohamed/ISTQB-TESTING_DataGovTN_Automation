@@ -10,6 +10,7 @@ from config import Config
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_performance_multiple_queries(auto_setup_monitoring, browser):
     """
     Test performance of multiple search queries with robust handling for unstable sites.
@@ -67,6 +68,7 @@ def test_search_performance_multiple_queries(auto_setup_monitoring, browser):
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_search_response_time_under_threshold(auto_setup_monitoring, browser):
     """Test that search response time stays under threshold with unstable site handling."""
     home_page = HomePage(browser)
@@ -109,6 +111,7 @@ def test_search_response_time_under_threshold(auto_setup_monitoring, browser):
 
 
 @pytest.mark.performance
+@pytest.mark.usefixtures("jira_reporter")
 def test_page_load_time(auto_setup_monitoring, browser):
     """Test page load time with robust error handling."""
     home_page = HomePage(browser)

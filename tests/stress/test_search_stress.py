@@ -6,6 +6,7 @@ from pages.search_page import SearchPage
 from config import Config
 
 @pytest.mark.stress
+@pytest.mark.usefixtures("jira_reporter")
 def test_concurrent_search_load(auto_setup_monitoring, browser):
     """Test how the system handles repeated searches in a short time."""
     home_page = HomePage(browser)
@@ -32,6 +33,7 @@ def test_concurrent_search_load(auto_setup_monitoring, browser):
         assert search_page.is_search_result_visible(), f"Search {i+1} failed UI check"
 
 @pytest.mark.stress
+@pytest.mark.usefixtures("jira_reporter")
 def test_repeated_search_does_not_crash(browser):
     """Test stability under repetition (20 iterations)."""
     home_page = HomePage(browser)

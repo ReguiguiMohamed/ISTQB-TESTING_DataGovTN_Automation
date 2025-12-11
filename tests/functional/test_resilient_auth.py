@@ -10,6 +10,7 @@ import time
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_login_page_accessibility(auto_setup_monitoring, browser):
     """Test that login page can be accessed without triggering security blocks."""
     auth_page = AuthPage(browser)
@@ -49,6 +50,7 @@ def test_login_page_accessibility(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_static_pages_that_work(auto_setup_monitoring, browser):
     """Test static pages that are more likely to work without blocking."""
     static_page = StaticPage(browser)
@@ -88,6 +90,7 @@ def test_static_pages_that_work(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_form_element_detection(auto_setup_monitoring, browser):
     """Test that we can at least detect form elements without interacting with them."""
     auth_page = AuthPage(browser)
@@ -118,6 +121,7 @@ def test_form_element_detection(auto_setup_monitoring, browser):
 
 
 @pytest.mark.functional
+@pytest.mark.usefixtures("jira_reporter")
 def test_basic_navigation(auto_setup_monitoring, browser):
     """Test basic navigation to various sections."""
     from pages.home_page import HomePage

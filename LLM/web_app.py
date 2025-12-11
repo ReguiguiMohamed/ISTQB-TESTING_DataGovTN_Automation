@@ -1,5 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 import google.generativeai as genai
+import os
+import sys
+from pathlib import Path
+
+# Add the parent directory to the path so we can import jira_automation_enhanced
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+from jira_automation_enhanced import JiraTicketCreator
 
 # Available models - update this list to match free models in Nov 2025
 # These are the models as of your requirement
@@ -151,6 +158,38 @@ def generate():
             'result': result['markdown_result'],
             'json_result': result['json_result']
         })
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/create-jira-tickets', methods=['POST'])
+def create_jira_tickets():
+    try:
+        data = request.json
+        test_cases = data.get('test_cases', [])
+
+        if not test_cases:
+            return jsonify({'error': 'No test cases provided'}), 400
+
+        # Configuration from environment variables
+        jira_url = os.getenv("JIRA_URL")
+        jira_username = os.getenv("JIRA_USERNAME")
+        jira_api_token = os.getenv("JIRA_API_TOKEN")
+        jira_project_key = os.getenv("JIRA_PROJECT_KEY")
+
+        if not all([jira_url, jira_username, jira_api_token, jira_project_key]):
+            return jsonify({'error': 'Jira configuration not found in environment variables.'}), 500
+
+        # Initialize the ticket creator
+        jira_creator = JiraTicketCreator(jira_url, jira_username, jira_api_token, jira_project_key)
+        
+        # Discover custom fields from environment variables
+        jira_creator.custom_fields['custom_priority'] = os.getenv("JIRA_CUSTOM_FIELD_PRIORITY")
+        jira_creator.custom_fields['severity'] = os.getenv("JIRA_CUSTOM_FIELD_SEVERITY")
+
+        created_tickets = jira_creator.bulk_create_tickets_from_json(test_cases)
+
+        return jsonify({'created_tickets': created_tickets})
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500

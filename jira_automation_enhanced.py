@@ -72,19 +72,10 @@ class JiraTicketCreator:
             except:
                 pass
 
-            # Add the specific field IDs we identified from the error message
-            # This is a fallback based on your Jira setup
-            custom_fields['required_custom_priority'] = 'customfield_10038'  # Priority
-            custom_fields['required_custom_severity'] = 'customfield_10037'  # Severity
-
             return custom_fields
         except Exception as e:
             print(f"Error discovering custom fields: {e}")
-            # Return the known field IDs as a fallback
-            return {
-                'required_custom_priority': 'customfield_10038',
-                'required_custom_severity': 'customfield_10037'
-            }
+            return {}
 
     def parse_test_report(self, report_path: str) -> List[Dict]:
         """
@@ -170,16 +161,14 @@ class JiraTicketCreator:
         elif priority:
             fields["priority"] = {"name": priority}
 
-        # Add the required custom fields - BUT only for issue types that support them
-        # Based on our analysis, only "Bug" issue type supports these custom fields
+        # Add custom fields if they exist
         if issue_type.lower() == "bug":
-            # These are OPTION fields that require the {"value": "option_name"} format
-            fields["customfield_10038"] = {"value": priority}   # Custom Priority dropdown
-            fields["customfield_10037"] = {"value": severity}   # Custom Severity dropdown
+            if "custom_priority" in self.custom_fields and priority:
+                fields[self.custom_fields["custom_priority"]] = {"value": priority}
+            if "severity" in self.custom_fields and severity:
+                fields[self.custom_fields["severity"]] = {"value": severity}
         else:
-            # For other issue types (Task, Story, etc.), only use standard fields
             print(f"Note: Custom Priority/Severity fields not available for issue type '{issue_type}'. Using standard fields only.")
-            # We'll still include them as backup in case the Jira configuration is different
 
         try:
             # Create the issue using the JIRA client
@@ -193,19 +182,6 @@ class JiraTicketCreator:
             print(f"Error creating Jira ticket: {e}")
             print(f"Fields tried: {list(fields.keys())}")
 
-            # If it's a custom field error and issue type is not Bug, try with Bug
-            error_msg = str(e).lower()
-            if ("customfield_10038" in str(e) or "customfield_10037" in str(e)) and issue_type.lower() != "bug":
-                print(f"Custom fields not supported for '{issue_type}'. Trying with 'Bug' issue type...")
-                return self.create_jira_ticket(
-                    summary=summary,
-                    description=description,
-                    issue_type="Bug",  # Force Bug type for custom fields
-                    labels=labels,
-                    priority=priority,
-                    severity=severity
-                )
-
             # Print the specific error response
             if hasattr(e, 'response') and e.response is not None:
                 try:
@@ -214,6 +190,36 @@ class JiraTicketCreator:
                 except:
                     print(f"Could not parse Jira error response: {e.response.text}")
             return None
+
+    def _determine_priority_and_severity(self, error_message: str) -> (str, str):
+        """
+        Determines the priority and severity of a bug based on keywords in the error message.
+
+        Args:
+            error_message: The error message from the test failure.
+
+        Returns:
+            A tuple containing the priority and severity.
+        """
+        error_message = error_message.lower()
+        
+        # Keywords for critical issues
+        critical_keywords = ["critical", "crash", "blocker", "fatal", "unhandled exception"]
+        if any(keyword in error_message for keyword in critical_keywords):
+            return "Haute", "Critique"
+
+        # Keywords for major issues
+        major_keywords = ["error", "exception", "fail", "traceback", "assertionerror"]
+        if any(keyword in error_message for keyword in major_keywords):
+            return "Moyenne", "Majeure"
+
+        # Keywords for minor issues
+        minor_keywords = ["warning", "ui", "layout", "element not found", "timeout"]
+        if any(keyword in error_message for keyword in minor_keywords):
+            return "Basse", "Mineure"
+
+        # Default to medium priority and major severity
+        return "Moyenne", "Majeure"
 
     def create_tickets_for_failures(self, report_path: str) -> List[Dict]:
         """
@@ -231,26 +237,27 @@ class JiraTicketCreator:
         for failure in failures:
             summary = f"Test Failure: {failure['test_name']}"
             description = f"""
-h3. Test Failed
-{failure['test_name']}
+h2. Automated Test Failure Report
 
-h3. Time of Failure
-{failure['timestamp']}
+h3. Test Details
+*Test Case:* {failure['test_name']}
+*Time of Failure:* {failure['timestamp']}
 
-h3. Error Details
-{{code}}
+h3. Error Message
+{{code:python}}
 {failure['error']}
 {{code}}
 
+h3. Environment
+*Browser:* {os.getenv("BROWSER", "N/A")}
+*Platform:* {os.getenv("PLATFORM", "N/A")}
+
 h3. Automation Info
-Automatically created from test automation pipeline.
+This ticket was automatically generated by the test automation pipeline.
             """.strip()
 
             # Determine priority and severity based on the failure
-            # For test failures, we might want to default to Medium priority
-            # and potentially determine severity from the error content
-            priority = "Medium"  # Default, could be determined from error type
-            severity = None  # Will only be set if the custom field exists
+            priority, severity = self._determine_priority_and_severity(failure['error'])
 
             ticket = self.create_jira_ticket(
                 summary=summary,
@@ -304,11 +311,11 @@ Automatically created from test automation pipeline.
 
             summary = f"Test Case: {title}"
             description = f"""
-h3. Test ID
-{test_id}
+h2. LLM-Generated Test Case
 
-h3. Test Type
-{test_type}
+h3. Test Information
+*Test ID:* {test_id}
+*Test Type:* {test_type.capitalize()}
 
 h3. Preconditions
 {chr(10).join([f'* {pc}' for pc in preconditions]) if preconditions else 'None'}
@@ -317,13 +324,16 @@ h3. Input Data
 {chr(10).join([f'* {inp}' for inp in input_data]) if input_data else 'None'}
 
 h3. Test Steps
-{chr(10).join([f'{i+1}. {step}' for i, step in enumerate(steps)]) if steps else 'No steps specified'}
+#_Test Steps_
+{chr(10).join([f'# {step}' for step in steps]) if steps else 'No steps specified'}
 
 h3. Expected Result
+{{panel:title=Expected Result|borderColor=#008000|titleBGColor=#D9EAD3}}
 {expected_result}
+{{panel}}
 
 h3. Automation Info
-Automatically created from LLM-generated test case.
+This ticket was automatically generated from an LLM-based test case.
             """.strip()
 
             # For test cases, use Task issue type and appropriate priority/severity
@@ -333,7 +343,7 @@ Automatically created from LLM-generated test case.
                 issue_type="Task",  # Use Task for test cases
                 labels=['automated-test-case', 'qa', 'llm-generated', test_type.lower(), 'test-automation'],
                 priority="Medium",
-                severity=None  # Not typically used for test cases
+                severity="Majeure" 
             )
 
             if ticket:
@@ -373,49 +383,49 @@ Automatically created from LLM-generated test case.
 
 
 def main():
-    """Example usage of the Jira ticket creator"""
-    # Configuration - these should be set via environment variables in production
-    jira_url = os.getenv("JIRA_URL") or input("Enter Jira URL (e.g., https://yourcompany.atlassian.net): ")
-    jira_username = os.getenv("JIRA_USERNAME") or input("Enter Jira username/email: ")
-    jira_api_token = os.getenv("JIRA_API_TOKEN") or input("Enter Jira API token: ")
-    jira_project_key = os.getenv("JIRA_PROJECT_KEY") or input("Enter Jira project key (e.g., PROJ): ")
-    
+    """Main function to run the Jira ticket creator from the command line."""
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Create Jira tickets from test reports or JSON files.")
+    parser.add_argument("--report-path", help="Path to the pytest HTML report.", default="reports/report.html")
+    parser.add_argument("--json-path", help="Path to a JSON file with LLM-generated test cases.")
+    parser.add_argument("--all", action="store_true", help="Process both the report and JSON file if they exist.")
+
+    args = parser.parse_args()
+
+    # Configuration from environment variables
+    jira_url = os.getenv("JIRA_URL")
+    jira_username = os.getenv("JIRA_USERNAME")
+    jira_api_token = os.getenv("JIRA_API_TOKEN")
+    jira_project_key = os.getenv("JIRA_PROJECT_KEY")
+
     if not all([jira_url, jira_username, jira_api_token, jira_project_key]):
-        print("Missing Jira configuration. Please set environment variables or provide values.")
-        return
-    
+        print("Error: Missing Jira configuration. Please set JIRA_URL, JIRA_USERNAME, JIRA_API_TOKEN, and JIRA_PROJECT_KEY environment variables.")
+        sys.exit(1)
+
     # Initialize the ticket creator
     jira_creator = JiraTicketCreator(jira_url, jira_username, jira_api_token, jira_project_key)
-    
-    print("\nJira Ticket Creator Options:")
-    print("1. Process pytest HTML report for test failures")
-    print("2. Process LLM-generated test cases (JSON)")
-    print("3. Process both")
-    
-    choice = input("\nEnter your choice (1-3): ").strip()
-    
-    if choice in ['1', '3']:
-        # Process test report
-        test_report_path = input("Enter path to HTML test report (default: reports/report.html): ").strip()
-        if not test_report_path:
-            test_report_path = "reports/report.html"
-            
-        if os.path.exists(test_report_path):
-            print(f"Processing test report: {test_report_path}")
-            created_tickets = jira_creator.create_tickets_for_failures(test_report_path)
-            print(f"Created {len(created_tickets)} Jira tickets from test failures")
+
+    # Discover custom fields from environment variables
+    jira_creator.custom_fields['custom_priority'] = os.getenv("JIRA_CUSTOM_FIELD_PRIORITY")
+    jira_creator.custom_fields['severity'] = os.getenv("JIRA_CUSTOM_FIELD_SEVERITY")
+
+
+    if args.all or args.report_path:
+        if os.path.exists(args.report_path):
+            print(f"Processing test report: {args.report_path}")
+            created_tickets = jira_creator.create_tickets_for_failures(args.report_path)
+            print(f"Created {len(created_tickets)} Jira tickets from test failures.")
         else:
-            print(f"Test report not found at {test_report_path}")
-    
-    if choice in ['2', '3']:
-        # Process LLM-generated test cases
-        json_path = input("Enter path to JSON test cases file: ").strip()
-        if json_path and os.path.exists(json_path):
-            print(f"Processing LLM-generated test cases: {json_path}")
-            created_tickets = jira_creator.bulk_create_tickets_from_json(json_path)
-            print(f"Created {len(created_tickets)} Jira tickets from LLM-generated test cases")
-        else:
-            print("JSON file not provided or not found.")
+            print(f"Test report not found at {args.report_path}")
+
+    if args.all or args.json_path:
+        if args.json_path and os.path.exists(args.json_path):
+            print(f"Processing LLM-generated test cases: {args.json_path}")
+            created_tickets = jira_creator.bulk_create_tickets_from_json(args.json_path)
+            print(f"Created {len(created_tickets)} Jira tickets from LLM-generated test cases.")
+        elif args.json_path:
+            print(f"JSON file not found at {args.json_path}")
 
 
 if __name__ == "__main__":

@@ -54,15 +54,6 @@ You can run tests in parallel across different browsers:
 pytest tests/cross_browser/test_smoke_cross_browser.py --remote -n 3
 ```
 
-### 5. Safari Testing (macOS only)
-
-Safari can only be tested on macOS systems with Safari installed:
-
-```bash
-# Run with Safari (macOS only, local execution)
-pytest tests/cross_browser/test_smoke_cross_browser.py --browser=safari
-```
-
 ## Available Services
 
 - **Selenium Hub**: `http://localhost:4444`
@@ -100,8 +91,3 @@ docker-compose down -v
 - The Chrome and Edge nodes require more memory (shm_size: 2gb)
 - If you run into memory issues, reduce the number of concurrent sessions
 - Adjust the NODE_MAX_INSTANCES and NODE_MAX_SESSION values in docker-compose.yml as needed
-
-### Browser-specific considerations
-- For Safari testing, you must use local execution on macOS
-- Safari requires specific permissions and configurations on macOS
-- Safari cannot be containerized like Chrome, Firefox, and Edge browsers

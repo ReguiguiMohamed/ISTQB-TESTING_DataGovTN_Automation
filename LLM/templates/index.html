@@ -587,51 +587,33 @@
             // Simulated API call - replace with actual endpoint
             setTimeout(async () => {
                 try {
-                    // Mock response for demonstration
-                    const mockResponse = {
-                        result: `| ID | Titre | Type | Préconditions | Données d'entrée | Étapes | Résultat attendu |
-|----|-------|------|---------------|------------------|--------|------------------|
-| TC001 | Test connexion utilisateur valide | positif | Utilisateur enregistré | Email: user@test.com<br>Password: Test123! | 1. Ouvrir page de connexion<br>2. Saisir email<br>3. Saisir mot de passe<br>4. Cliquer sur "Se connecter" | L'utilisateur est connecté et redirigé vers le dashboard |
-| TC002 | Test connexion avec email invalide | négatif | Aucune | Email: invalidemail<br>Password: Test123! | 1. Ouvrir page de connexion<br>2. Saisir email invalide<br>3. Saisir mot de passe<br>4. Cliquer sur "Se connecter" | Message d'erreur: "Email invalide" |
-| TC003 | Test connexion avec champ vide | limite | Aucune | Email: <vide><br>Password: <vide> | 1. Ouvrir page de connexion<br>2. Laisser les champs vides<br>3. Cliquer sur "Se connecter" | Message d'erreur: "Veuillez remplir tous les champs" |`,
-                        json_result: [
-                            {
-                                id: "TC001",
-                                title: "Test connexion utilisateur valide",
-                                type: "positif",
-                                preconditions: ["Utilisateur enregistré"],
-                                input_data: ["Email: user@test.com", "Password: Test123!"],
-                                steps: ["Ouvrir page de connexion", "Saisir email", "Saisir mot de passe", "Cliquer sur 'Se connecter'"],
-                                expected_result: "L'utilisateur est connecté et redirigé vers le dashboard"
-                            },
-                            {
-                                id: "TC002",
-                                title: "Test connexion avec email invalide",
-                                type: "négatif",
-                                preconditions: ["Aucune"],
-                                input_data: ["Email: invalidemail", "Password: Test123!"],
-                                steps: ["Ouvrir page de connexion", "Saisir email invalide", "Saisir mot de passe", "Cliquer sur 'Se connecter'"],
-                                expected_result: "Message d'erreur: 'Email invalide'"
-                            },
-                            {
-                                id: "TC003",
-                                title: "Test connexion avec champ vide",
-                                type: "limite",
-                                preconditions: ["Aucune"],
-                                input_data: ["Email: <vide>", "Password: <vide>"],
-                                steps: ["Ouvrir page de connexion", "Laisser les champs vides", "Cliquer sur 'Se connecter'"],
-                                expected_result: "Message d'erreur: 'Veuillez remplir tous les champs'"
-                            }
-                        ]
-                    };
+                    const response = await fetch('/generate', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            user_story: user_story,
+                            acceptance_criteria: acceptance_criteria,
+                            api_key: api_key,
+                            model_id: model
+                        })
+                    });
 
-                    currentTestCases = mockResponse.json_result;
-                    document.getElementById('result_text').value = mockResponse.result;
-                    document.getElementById('json_result_text').value = JSON.stringify(mockResponse.json_result, null, 2);
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'Failed to generate test cases');
+                    }
+
+                    const result = await response.json();
+
+                    currentTestCases = result.json_result;
+                    document.getElementById('result_text').value = result.result;
+                    document.getElementById('json_result_text').value = JSON.stringify(result.json_result, null, 2);
                     document.getElementById('result').style.display = 'block';
                     
                     const successDiv = document.getElementById('success');
-                    successDiv.textContent = `✅ ${mockResponse.json_result.length} test cases generated successfully!`;
+                    successDiv.textContent = `✅ ${result.json_result.length} test cases generated successfully!`;
                     successDiv.style.display = 'block';
 
                     setTimeout(() => {
@@ -697,9 +679,37 @@
             downloadFile(text, `test_cases_${timestamp}.md`, 'text/markdown');
         });
 
-        document.getElementById('createJiraTicketsBtn').addEventListener('click', function() {
+        document.getElementById('createJiraTicketsBtn').addEventListener('click', async function() {
             if (currentTestCases && currentTestCases.length > 0) {
-                alert(`🎫 Ready to create ${currentTestCases.length} Jira tickets!\n\nConfigure Jira settings in jira_automation.py to enable this feature.`);
+                const generateBtn = document.getElementById('generateBtn');
+                generateBtn.disabled = true;
+                generateBtn.textContent = '🎫 CREATING JIRA TICKETS...';
+                
+                try {
+                    const response = await fetch('/create-jira-tickets', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ test_cases: currentTestCases })
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        const successDiv = document.getElementById('success');
+                        successDiv.textContent = `✅ Successfully created ${result.created_tickets.length} Jira tickets!`;
+                        successDiv.style.display = 'block';
+                    } else {
+                        throw new Error(result.error || 'Failed to create Jira tickets');
+                    }
+                } catch (error) {
+                    document.getElementById('error').textContent = `❌ ERROR: ${error.message}`;
+                    document.getElementById('error').style.display = 'block';
+                } finally {
+                    generateBtn.disabled = false;
+                    generateBtn.textContent = '⚡ GENERATE TEST CASES ⚡';
+                }
             } else {
                 alert('❌ No test cases to create tickets from.');
             }

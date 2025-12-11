@@ -59,9 +59,6 @@ services:
       - selenium-grid-network
     shm_size: 2gb
 
-  # Note: Safari is only available on macOS and cannot be containerized like other browsers.
-  # For Safari testing, use local execution with: pytest --browser=safari (on macOS only)
-
 networks:
   selenium-grid-network:
     driver: bridge

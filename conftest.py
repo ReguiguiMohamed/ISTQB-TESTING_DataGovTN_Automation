@@ -60,8 +60,6 @@ def browser(request):
             from selenium.webdriver.edge.service import Service as EdgeService
             from webdriver_manager.microsoft import EdgeChromiumDriverManager
             driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()), options=options)
-        elif browser_name == "safari":
-            driver = webdriver.Safari()
         else:
             raise ValueError(f"Unsupported browser: {browser_name}")
 

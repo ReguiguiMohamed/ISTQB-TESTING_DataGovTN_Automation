@@ -1,6 +1,5 @@
 @echo off
 REM Script to run cross-browser tests with Docker Selenium Grid
-REM Note: Safari is not supported with Docker; it requires local execution on macOS
 
 set HUB_HOST=localhost
 set HUB_PORT=4444
@@ -37,7 +36,5 @@ python -m pytest %1 --remote --browser=edge --tb=short -v
 
 echo.
 echo Tests completed. Docker containers are still running.
-echo Note: Safari tests are not supported with Docker. On macOS, run Safari tests separately with:
-echo python -m pytest %1 --browser=safari
 echo.
 echo To stop Docker containers, run: docker-compose down

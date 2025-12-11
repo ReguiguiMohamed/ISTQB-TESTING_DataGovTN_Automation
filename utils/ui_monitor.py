@@ -23,7 +23,8 @@ class UIStateMonitor:
 
     def __init__(self, driver: WebDriver, log_file: str = None):
         self.driver = driver
-        self.log_file = log_file or f"ui_monitor_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+        # Don't create log files - only store log_file variable to maintain compatibility
+        self.log_file = log_file
         # Store the current implicit wait value
         self.original_implicit_wait = 0  # Since we've already set it to 0 in conftest.py
         self.setup_logging()
@@ -50,8 +51,7 @@ class UIStateMonitor:
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s',
             handlers=[
-                logging.FileHandler(self.log_file),
-                logging.StreamHandler()  # Also print to console
+                logging.StreamHandler()  # Only print to console, no file handler
             ]
         )
         self.logger = logging.getLogger(__name__)

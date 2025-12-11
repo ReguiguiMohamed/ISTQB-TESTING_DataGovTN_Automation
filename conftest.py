@@ -4,11 +4,12 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from selenium import webdriver
-from config import Config
 
 # Add project root to sys.path to allow for module imports
 project_root = Path(__file__).resolve().parent
 sys.path.insert(0, str(project_root))
+
+from config import Config
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default=Config.DEFAULT_BROWSER, help="Browser: chrome, firefox, edge")
@@ -58,17 +59,15 @@ def browser(request):
     else:
         # Local Execution
         if browser_name == "chrome":
-            from selenium.webdriver.chrome.service import Service as ChromeService
-            from webdriver_manager.chrome import ChromeDriverManager
-            driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+            driver = webdriver.Chrome(options=options)
         elif browser_name == "firefox":
-            from selenium.webdriver.firefox.service import Service as FirefoxService
-            from webdriver_manager.firefox import GeckoDriverManager
-            driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
+            driver = webdriver.Firefox(options=options)
         elif browser_name == "edge":
             from selenium.webdriver.edge.service import Service as EdgeService
             from webdriver_manager.microsoft import EdgeChromiumDriverManager
             driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()), options=options)
+        elif browser_name == "safari":
+            driver = webdriver.Safari()
         else:
             raise ValueError(f"Unsupported browser: {browser_name}")
 
@@ -76,36 +75,53 @@ def browser(request):
     yield driver
     driver.quit()
 
-@pytest.fixture(scope="function")
-def logged_in_browser(browser):
+@pytest.fixture(scope="session")
+def authenticated_cookies():
     """
-    Handles the login process and yields a logged-in browser instance.
+    Session-scoped fixture to handle login once and provide cookies for all tests
+    Uses DrissionPage with captchabypasser to solve CAPTCHA, then saves cookies for Selenium
     """
-    from pages.auth_page import AuthPage
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
+    from utils.captcha_login_helper import login_with_drissionpage_and_save_cookies
     import os
 
-    auth_page = AuthPage(browser)
-    auth_page.open_login_page()
-    
     username = os.getenv("TEST_USERNAME")
     password = os.getenv("TEST_PASSWORD")
     if not username or not password:
         pytest.skip("Real login credentials not configured (TEST_USERNAME/TEST_PASSWORD).")
 
-    auth_page.login(username, password)
+    print("Setting up authenticated session using DrissionPage and captchabypasser...")
+    cookies = login_with_drissionpage_and_save_cookies(username, password)
 
-    print("\\n---> Please solve the CAPTCHA manually. The test will continue automatically after login...")
-    try:
-        WebDriverWait(browser, 60).until(
-            EC.url_contains("contributions")
-        )
-        print("Login successful, proceeding with test.")
-    except Exception as e:
-        pytest.fail(f"Login failed or redirect took too long after manual CAPTCHA solve. Error: {e}")
+    if not cookies:
+        pytest.skip("Failed to authenticate using captchabypasser. Cannot run tests requiring login.")
 
-    yield browser # Provide the logged-in browser to the test
+    return cookies
+
+
+@pytest.fixture(scope="function")
+def logged_in_browser(browser, authenticated_cookies):
+    """
+    Provides a browser instance with authenticated session using pre-solved CAPTCHA cookies.
+    """
+    from utils.captcha_login_helper import load_cookies_into_selenium
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+
+    # Load the pre-authenticated cookies into the Selenium browser
+    success = load_cookies_into_selenium(browser)
+    if not success:
+        pytest.fail("Could not load authentication cookies into browser")
+
+    # Navigate to a page that requires authentication to verify session is working
+    browser.get("https://data.gov.tn/fr/user/profile")
+
+    # Give time for the page to load with the loaded cookies
+    import time
+    time.sleep(2)
+
+    print("Browser initialized with authenticated session from captchabypasser.")
+
+    yield browser  # Provide the logged-in browser to the test
 
 
 @pytest.hookimpl(hookwrapper=True)
@@ -160,10 +176,14 @@ def jira_reporter(request):
 
             # Initialize Jira ticket creator
             jira_creator = JiraTicketCreator(jira_url, jira_username, jira_api_token, jira_project_key)
-            
-            # Discover custom fields from environment variables
-            jira_creator.custom_fields['custom_priority'] = os.getenv("JIRA_CUSTOM_FIELD_PRIORITY")
-            jira_creator.custom_fields['severity'] = os.getenv("JIRA_CUSTOM_FIELD_SEVERITY")
+
+            # Optionally override discovered custom field IDs from environment
+            custom_priority_field = os.getenv("JIRA_CUSTOM_FIELD_PRIORITY")
+            severity_field = os.getenv("JIRA_CUSTOM_FIELD_SEVERITY")
+            if custom_priority_field:
+                jira_creator.custom_fields['custom_priority'] = custom_priority_field
+            if severity_field:
+                jira_creator.custom_fields['severity'] = severity_field
 
             # Create a single ticket for the failed test
             failure = {

@@ -4,6 +4,7 @@ Reads from environment variables with sensible defaults.
 """
 import os
 
+
 class Config:
     # Base URLs
     BASE_URL = os.getenv("BASE_URL", "https://data.gov.tn")
@@ -21,12 +22,12 @@ class Config:
     PAGE_LOAD_TIMEOUT = int(os.getenv("PAGE_LOAD_TIMEOUT", 30))
 
     # Rate limiting and delays for government websites with anti-bot measures
-    REQUEST_DELAY = float(os.getenv("REQUEST_DELAY", 2.0))  # Back to default for normal operation
-    MAX_RETRIES = int(os.getenv("MAX_RETRIES", 2))  # Reduced retries to avoid triggering anti-bot
-    RETRY_DELAY = float(os.getenv("RETRY_DELAY", 1.0))  # Back to default delay between retries
+    REQUEST_DELAY = float(os.getenv("REQUEST_DELAY", 2.0))
+    MAX_RETRIES = int(os.getenv("MAX_RETRIES", 2))
+    RETRY_DELAY = float(os.getenv("RETRY_DELAY", 1.0))
 
-    # Performance Threshold
-    PERFORMANCE_THRESHOLD = float(os.getenv("PERFORMANCE_THRESHOLD", 10.0))  # Increased for slow responses
+    # Performance threshold
+    PERFORMANCE_THRESHOLD = float(os.getenv("PERFORMANCE_THRESHOLD", 10.0))
 
     # Browser Defaults
     DEFAULT_BROWSER = "chrome"

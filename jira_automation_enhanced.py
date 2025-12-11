@@ -30,8 +30,12 @@ class JiraTicketCreator:
         # Connect to Jira using the official client
         self.jira = JIRA(server=jira_url, basic_auth=self.auth)
 
-        # Discover custom fields
-        self.custom_fields = self._discover_custom_fields()
+        # Discover custom fields (can be disabled via env to avoid /field calls in tests)
+        skip_discovery = os.getenv("JIRA_SKIP_FIELD_DISCOVERY", "").lower() in ("1", "true", "yes")
+        if skip_discovery:
+            self.custom_fields = {}
+        else:
+            self.custom_fields = self._discover_custom_fields()
 
     def _discover_custom_fields(self):
         """Discover custom fields in the project"""
@@ -163,10 +167,22 @@ class JiraTicketCreator:
 
         # Add custom fields if they exist
         if issue_type.lower() == "bug":
-            if "custom_priority" in self.custom_fields and priority:
-                fields[self.custom_fields["custom_priority"]] = {"value": priority}
-            if "severity" in self.custom_fields and severity:
-                fields[self.custom_fields["severity"]] = {"value": severity}
+            # Resolve custom priority/severity field ids (discovered, env, or hardcoded fallback)
+            custom_priority_field = (
+                self.custom_fields.get("custom_priority")
+                or os.getenv("JIRA_CUSTOM_FIELD_PRIORITY")
+                or "customfield_10038"
+            )
+            custom_severity_field = (
+                self.custom_fields.get("severity")
+                or os.getenv("JIRA_CUSTOM_FIELD_SEVERITY")
+                or "customfield_10037"
+            )
+
+            if custom_priority_field and priority:
+                fields[custom_priority_field] = {"value": priority}
+            if custom_severity_field and severity:
+                fields[custom_severity_field] = {"value": severity}
         else:
             print(f"Note: Custom Priority/Severity fields not available for issue type '{issue_type}'. Using standard fields only.")
 
@@ -406,9 +422,13 @@ def main():
     # Initialize the ticket creator
     jira_creator = JiraTicketCreator(jira_url, jira_username, jira_api_token, jira_project_key)
 
-    # Discover custom fields from environment variables
-    jira_creator.custom_fields['custom_priority'] = os.getenv("JIRA_CUSTOM_FIELD_PRIORITY")
-    jira_creator.custom_fields['severity'] = os.getenv("JIRA_CUSTOM_FIELD_SEVERITY")
+    # Optionally override discovered custom field IDs from environment
+    custom_priority_field = os.getenv("JIRA_CUSTOM_FIELD_PRIORITY")
+    severity_field = os.getenv("JIRA_CUSTOM_FIELD_SEVERITY")
+    if custom_priority_field:
+        jira_creator.custom_fields['custom_priority'] = custom_priority_field
+    if severity_field:
+        jira_creator.custom_fields['severity'] = severity_field
 
 
     if args.all or args.report_path:

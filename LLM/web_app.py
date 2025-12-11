@@ -182,10 +182,14 @@ def create_jira_tickets():
 
         # Initialize the ticket creator
         jira_creator = JiraTicketCreator(jira_url, jira_username, jira_api_token, jira_project_key)
-        
-        # Discover custom fields from environment variables
-        jira_creator.custom_fields['custom_priority'] = os.getenv("JIRA_CUSTOM_FIELD_PRIORITY")
-        jira_creator.custom_fields['severity'] = os.getenv("JIRA_CUSTOM_FIELD_SEVERITY")
+
+        # Optionally override discovered custom field IDs from environment
+        custom_priority_field = os.getenv("JIRA_CUSTOM_FIELD_PRIORITY")
+        severity_field = os.getenv("JIRA_CUSTOM_FIELD_SEVERITY")
+        if custom_priority_field:
+            jira_creator.custom_fields['custom_priority'] = custom_priority_field
+        if severity_field:
+            jira_creator.custom_fields['severity'] = severity_field
 
         created_tickets = jira_creator.bulk_create_tickets_from_json(test_cases)
 

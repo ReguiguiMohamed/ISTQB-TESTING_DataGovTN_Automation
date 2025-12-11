@@ -9,3 +9,6 @@ google-generativeai==0.8.4
 flask==3.0.3
 requests==2.31.0
 pytest-timeout==2.4.0
+DrissionPage==4.0.4
+pydub==0.25.1
+SpeechRecognition==3.10.4

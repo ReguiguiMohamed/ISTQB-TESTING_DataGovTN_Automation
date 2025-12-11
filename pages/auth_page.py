@@ -48,7 +48,7 @@ class AuthPage(BasePage):
     # For handling the post-login state
     USER_PROFILE_MENU = ("css selector", ".user-menu, .dropdown.user, .navbar-user, a.nav-link.fs-top.droped")
     MODIFY_EMAIL_LINK = (By.LINK_TEXT, "Modifier mon E-mail")
-    TASKS_LINK = (By.LINK_TEXT, "Mes tâches")
+    TASKS_LINK = (By.CSS_SELECTOR, "a[href*='/cms/tasks/']")
     EMAIL_PAGE_HEADER = (By.CSS_SELECTOR, "h1, h2") # To check the language
 
 
@@ -74,10 +74,13 @@ class AuthPage(BasePage):
             # If you have a test environment where reCAPTCHA is disabled,
             # you might have special attributes or endpoints
             print("No automatic bypass found, continuing...")
-            return True  # Return True to continue without reCAPTCHA
+            # Return False here so that the automatic solver (adapter)
+            # is given a chance to run when no explicit bypass exists.
+            return False
         except Exception as e:
             print(f"Error in reCAPTCHA bypass: {e}")
-            return True  # Continue anyway
+            # On errors, don't claim we bypassed; let downstream logic decide.
+            return False
 
     def handle_recaptcha(self):
         """Handle or bypass reCAPTCHA as needed for testing."""
@@ -97,23 +100,21 @@ class AuthPage(BasePage):
                 print("reCAPTCHA handling completed (or bypassed for testing)")
                 return
 
-            # Wait a moment for the page to fully load
-            time.sleep(1)
-
-            # Since we're seeing iframe errors, let's handle them more carefully
-            print("Looking for reCAPTCHA elements...")
-
             # Check if reCAPTCHA is present at all
             recaptcha_frames = self.driver.find_elements(By.CSS_SELECTOR, "iframe[src*='recaptcha']")
             if not recaptcha_frames:
                 print("No reCAPTCHA iframes found, continuing with login...")
                 return
 
-            print(f"Found {len(recaptcha_frames)} reCAPTCHA iframe(s), attempting to handle...")
+            print(f"Found {len(recaptcha_frames)} reCAPTCHA iframe(s)")
+            print("reCAPTCHA present - note that automated solving requires DrissionPage integration")
+            print("For best results, you may need to solve reCAPTCHA manually or run captchabypasser first")
 
-            # For site owners doing testing, sometimes the best approach
-            # is to continue and let the user manually handle if needed
-            print("reCAPTCHA present but continuing login process...")
+            # Provide information about the captchabypasser integration
+            print("Tip: You can run the captchabypasser separately first:")
+            print("  cd captchabypasser/GoogleRecaptchaBypass")
+            print("  python test_target_website.py")
+            print("Then run tests with already-solved reCAPTCHA session")
 
         except Exception as e:
             print(f"Non-critical error in reCAPTCHA handling (continuing): {e}")
@@ -170,7 +171,22 @@ class AuthPage(BasePage):
                 else:
                     print("Could not find any password input field")
 
-            # Handle reCAPTCHA if present
+            # First click can trigger the reCAPTCHA challenge on some flows
+            primed_click = False
+            try:
+                if self.find_all(self.LOGIN_BUTTON):
+                    self.click(self.LOGIN_BUTTON)
+                    primed_click = True
+                    print("Primed login button click to trigger reCAPTCHA (if any)")
+            except Exception:
+                print("Priming click failed or not needed, continuing...")
+
+            # Handle reCAPTCHA if present (automatic bypass/solver)
+            # Scroll a bit to ensure widgets are in view for visual/solver flows
+            try:
+                self.driver.execute_script("window.scrollBy(0, 300);")
+            except Exception:
+                pass
             self.handle_recaptcha()
 
             # Try to find and click the login button using multiple strategies
@@ -180,9 +196,9 @@ class AuthPage(BasePage):
             if not login_clicked and self.find_all(self.LOGIN_BUTTON):
                 try:
                     self.click(self.LOGIN_BUTTON)
-                    print("Successfully clicked login button with main selector")
+                    print("Successfully clicked login button with main selector after reCAPTCHA handling")
                     login_clicked = True
-                except:
+                except Exception:
                     print("Failed to click login button with main selector")
 
             # Strategy 2: Using XPath for "Se connecter" text
@@ -191,9 +207,9 @@ class AuthPage(BasePage):
                     login_button_xpath = "//button[contains(text(), 'Se connecter') or contains(text(), 'Connexion') or contains(@value, 'Se connecter') or contains(@value, 'Connexion')]"
                     login_element = self.driver.find_element(By.XPATH, login_button_xpath)
                     login_element.click()
-                    print("Successfully clicked login button with XPath")
+                    print("Successfully clicked login button with XPath after reCAPTCHA handling")
                     login_clicked = True
-                except:
+                except Exception:
                     print("Failed to find login button with XPath")
 
             # Strategy 3: Click any submit button in the form
@@ -202,11 +218,11 @@ class AuthPage(BasePage):
                     submit_buttons = self.driver.find_elements(By.CSS_SELECTOR, "button[type='submit'], input[type='submit']")
                     if submit_buttons:
                         submit_buttons[0].click()
-                        print("Clicked generic submit button")
+                        print("Clicked generic submit button after reCAPTCHA handling")
                         login_clicked = True
                     else:
                         print("No submit button found")
-                except:
+                except Exception:
                     print("Failed to click submit button")
 
             if not login_clicked:

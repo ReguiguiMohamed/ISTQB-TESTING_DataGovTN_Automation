@@ -228,7 +228,7 @@ def test_login_with_sql_injection_attempts(auto_setup_monitoring, browser):
         print(f"SQL payload '{sql_payload}' result - Logged in: {is_logged_in}")
 
         if is_logged_in:
-            print(f"⚠️  WARNING: SQL injection payload '{sql_payload}' may have worked!")
+            print(f"  WARNING: SQL injection payload '{sql_payload}' may have worked!")
             return  # Stop if any injection seems to work
 
         # Navigate back to login page for next test

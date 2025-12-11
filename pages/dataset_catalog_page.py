@@ -3,6 +3,7 @@ Page Object for the Dataset Catalog page.
 """
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
+import time
 
 
 class DatasetCatalogPage(BasePage):
@@ -28,6 +29,8 @@ class DatasetCatalogPage(BasePage):
         element = self.find(self.API_LINK)
         # Scroll the element into the middle of the screen to ensure it's not obscured
         self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+        # Small pause to allow any lazy-loaded content/animations to settle
+        time.sleep(1)
         # Click using JavaScript
         self.driver.execute_script("arguments[0].click();", element)
 

@@ -39,7 +39,7 @@ def test_search_with_boolean_operators(browser, base_url):
     home_page.go_to_dataset_search_fr()  # Updated to use new method
     
     # Perform search with boolean operator (using AND pattern)
-    search_keyword = "education AND health"
+    search_keyword = "santé et éducation"
     search_page.search(search_keyword)
     
     # Check if the search handles boolean operators appropriately

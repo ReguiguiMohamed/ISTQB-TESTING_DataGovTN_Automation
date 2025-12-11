@@ -9,12 +9,12 @@ class ContactPage(BasePage):
     """Page object for Contact page with robust navigation and monitoring."""
     
     # Locators
-    CONTACT_FORM = ("css selector", ".contact-form, form[action*='contact'], #contact-form")
-    NAME_INPUT = ("css selector", "input[name='name'], input[name='full_name'], #name")
-    EMAIL_INPUT = ("css selector", "input[name='email'], #email, input[type='email']")
-    SUBJECT_INPUT = ("css selector", "input[name='subject'], #subject, input[name='title']")
-    MESSAGE_INPUT = ("css selector", "textarea[name='message'], #message, textarea[name='content']")
-    SUBMIT_BUTTON = ("css selector", "button[type='submit'], input[type='submit'], .submit-btn")
+    CONTACT_FORM = ("css selector", "form.form-comment")
+    NAME_INPUT = ("css selector", "input[name='nom'], #id_nom")
+    EMAIL_INPUT = ("css selector", "input[name='email'], #id_email")
+    SUBJECT_INPUT = ("css selector", "input[name='sujet'], #id_sujet")
+    MESSAGE_INPUT = ("css selector", "textarea[name='message'], #id_message")
+    SUBMIT_BUTTON = ("css selector", "button[type='submit'], button.bt-primary")
     SUCCESS_MESSAGE = ("css selector", ".success-message, .alert-success, .contact-success")
     ERROR_MESSAGE = ("css selector", ".error-message, .alert-error, .contact-error")
     

@@ -1,9 +1,14 @@
 import pytest
 import os
+import sys
 from datetime import datetime
 from pathlib import Path
 from selenium import webdriver
 from config import Config
+
+# Add project root to sys.path to allow for module imports
+project_root = Path(__file__).resolve().parent
+sys.path.insert(0, str(project_root))
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default=Config.DEFAULT_BROWSER, help="Browser: chrome, firefox, edge")
@@ -53,9 +58,13 @@ def browser(request):
     else:
         # Local Execution
         if browser_name == "chrome":
-            driver = webdriver.Chrome(options=options)
+            from selenium.webdriver.chrome.service import Service as ChromeService
+            from webdriver_manager.chrome import ChromeDriverManager
+            driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
         elif browser_name == "firefox":
-            driver = webdriver.Firefox(options=options)
+            from selenium.webdriver.firefox.service import Service as FirefoxService
+            from webdriver_manager.firefox import GeckoDriverManager
+            driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
         elif browser_name == "edge":
             from selenium.webdriver.edge.service import Service as EdgeService
             from webdriver_manager.microsoft import EdgeChromiumDriverManager

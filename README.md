@@ -1,8 +1,7 @@
-# ISTQB-TESTING_DataGovTN_Automation
+# TESTING_DataGovTN_Automation
 
-ISTQB Foundation Level software testing project using Python and Selenium to implement Black-Box, Non-Functional, and Load testing on the Tunisian National Open Data Portal (data.gov.tn).
 
-## 🎯 LLM-Powered Test Case Generation
+##  LLM-Powered Test Case Generation
 
 This project includes an innovative LLM-based test case generator that automatically creates black-box test cases from user stories and acceptance criteria.
 
@@ -44,4 +43,7 @@ For detailed instructions, see [LLM/README.md](LLM/README.md).
 
 This project includes a Docker-based Selenium Grid setup for reliable cross-browser testing. This ensures consistent test execution across different browsers without requiring local browser driver installations.
 
-For detailed instructions, see [docs/docker-setup.md](docs/docker-setup.md).
+## CAPTCHA BYPASSER
+This Project Also bypasses Captcha through Pydub, DissionPage  that saves cookies and Injects Them .
+A Truly Magnificent Finding Here is That WE CAN MAKE WONDERS HAPPEN WITH IT .
+-To Be Continued...

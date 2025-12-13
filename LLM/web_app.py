@@ -7,6 +7,13 @@ from pathlib import Path
 # Add the parent directory to the path so we can import jira_automation_enhanced
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 from jira_automation_enhanced import JiraTicketCreator
+# Import individual config values or define them here
+import os
+# Configuration from environment variables (primary) or config file (fallback)
+JIRA_URL = os.getenv("JIRA_URL", "https://yourcompany.atlassian.net")
+JIRA_USERNAME = os.getenv("JIRA_USERNAME", "your-email@example.com")
+JIRA_API_TOKEN = os.getenv("JIRA_API_TOKEN", "your-api-token")
+JIRA_PROJECT_KEY = os.getenv("JIRA_PROJECT_KEY", "PROJ")
 
 # Available models - update this list to match free models in Nov 2025
 # These are the models as of your requirement
@@ -171,14 +178,15 @@ def create_jira_tickets():
         if not test_cases:
             return jsonify({'error': 'No test cases provided'}), 400
 
-        # Configuration from environment variables
-        jira_url = os.getenv("JIRA_URL")
-        jira_username = os.getenv("JIRA_USERNAME")
-        jira_api_token = os.getenv("JIRA_API_TOKEN")
-        jira_project_key = os.getenv("JIRA_PROJECT_KEY")
+        # Configuration from environment variables (primary) or config file (fallback)
+        # Updated to prioritize environment variables, then use the module-level variables as fallback
+        jira_url = os.getenv("JIRA_URL") or globals().get('JIRA_URL')
+        jira_username = os.getenv("JIRA_USERNAME") or globals().get('JIRA_USERNAME')
+        jira_api_token = os.getenv("JIRA_API_TOKEN") or globals().get('JIRA_API_TOKEN')
+        jira_project_key = os.getenv("JIRA_PROJECT_KEY") or globals().get('JIRA_PROJECT_KEY')
 
         if not all([jira_url, jira_username, jira_api_token, jira_project_key]):
-            return jsonify({'error': 'Jira configuration not found in environment variables.'}), 500
+            return jsonify({'error': 'Jira configuration not found. Please set environment variables (JIRA_URL, JIRA_USERNAME, JIRA_API_TOKEN, JIRA_PROJECT_KEY).'}), 500
 
         # Initialize the ticket creator
         jira_creator = JiraTicketCreator(jira_url, jira_username, jira_api_token, jira_project_key)
